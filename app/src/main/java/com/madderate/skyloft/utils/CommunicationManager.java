@@ -73,6 +73,6 @@ public class CommunicationManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return "";
     }
 }
