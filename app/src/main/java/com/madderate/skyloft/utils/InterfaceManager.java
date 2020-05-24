@@ -1,4 +1,4 @@
-package com.madderate.skyloft;
+package com.madderate.skyloft.utils;
 
 // 需要使用cookie
 public class InterfaceManager {

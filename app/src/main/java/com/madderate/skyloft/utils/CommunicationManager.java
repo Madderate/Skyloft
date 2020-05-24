@@ -1,4 +1,4 @@
-package com.madderate.skyloft;
+package com.madderate.skyloft.utils;
 
 /*
 * 网络通信类，使用api时请先声明此类
