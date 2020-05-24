@@ -34,4 +34,5 @@
     <string name="toast_while_empty_password">请输入密码！</string>
     <string name="toast_while_both_username_password_empty">请输入用户名与密码！</string>
     <string name="toast_while_both_phone_number_password_empty">请输入电话号码与密码！</string>
+    <string name="toast_while_phone_number_is_invalid">电话号码不正确！</string>
 </resources>
