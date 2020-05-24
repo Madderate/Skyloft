@@ -108,10 +108,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     if (!isPhoneNumber(phoneNumber)) {
                         toast.showToast(context, R.string.toast_while_phone_number_is_invalid, Toast.LENGTH_SHORT);
                     } else {
-//                        toast.showToast(BeforeLoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
-                        CommunicationManager communicationManager = new CommunicationManager();
-                        communicationManager.httpGetter(new AccountManager().phoneLoginInter(phoneNumber, password, "86"));
-                        Log.d(getClass().toString(), communicationManager.loginTest());
+                        //toast.showToast(LoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
+                        //CommunicationManager communicationManager = new CommunicationManager();
+                        //communicationManager.httpGetter(new AccountManager().phoneLoginInter());
                     }
                 }
                 break;

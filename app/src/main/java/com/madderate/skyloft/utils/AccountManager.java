@@ -2,10 +2,19 @@ package com.madderate.skyloft.utils;
 
 // 不需要使用cookie
 public class AccountManager {
+
+    private CommunicationManager c = new CommunicationManager();
+
     // 手机登录
     // 参数：手机，密码，国家区号*
-    public String phoneLoginInter(String phone,String password,String countryCode){
-        return "/login/cellphone?phone="+phone+"&password="+password+"&countrycode="+countryCode;
+    public String phoneLoginInter(String phone,String password){
+        c.setInterUrl("/login/cellphone");
+        c.setBody("phone="+phone+"&password="+password);
+        c.httpGetter();
+        while (true){
+            if(c.getText()!=null)
+                return c.getText();
+        }
     }
 
     // 邮箱登录
