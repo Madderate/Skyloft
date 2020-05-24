@@ -20,9 +20,6 @@ import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-
-
     private HandlerThread handlerThread;
     private Handler handler;
     private ImageView imageView;
