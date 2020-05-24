@@ -22,7 +22,7 @@
     <string name="music_list">歌单</string>
     <string name="radio">电台</string>
     <string name="rank_board">排行榜</string>
-    
+
     <string name="artists">歌手</string>
     <string name="album">专辑</string>
     <string name="song_name">曲名</string>
@@ -35,4 +35,12 @@
     <string name="toast_while_both_username_password_empty">请输入用户名与密码！</string>
     <string name="toast_while_both_phone_number_password_empty">请输入电话号码与密码！</string>
     <string name="toast_while_phone_number_is_invalid">电话号码不正确！</string>
+
+    <!-- BeforeLoginActivity相关 -->
+    <!-- actions -->
+    <string name="before_login_action">com.madderate.skyloft.BEFORE_LOGIN</string>
+    <!-- categories -->
+    <string name="before_login_phone_number_login_category">com.madderate.skyloft.PHONE_NUMBER_LOGIN</string>
+    <string name="before_login_email_login_category">com.madderate.skyloft.EMAIL_LOGIN</string>
+    <string name="before_login_register_category">com.madderate.skyloft.REGISTER</string>
 </resources>
