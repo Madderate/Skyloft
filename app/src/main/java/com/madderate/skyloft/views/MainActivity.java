@@ -18,10 +18,6 @@ import com.madderate.skyloft.models.UserInformation;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private HandlerThread handlerThread;
-    private Handler handler;
-    private ImageView imageView;
-    private TextView tv;
 
     private UserInformation userInfo = null;
 
@@ -50,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 在该函数之前需要获取用户信息，并初始化UserInformation类对象userInfo
         startLoginActivityIfUserNotLogin();
 
-        Button loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(this);
     }
 
     // 当用户信息为空时
@@ -76,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void onClickLoginButton(View v) {
-        CommunicationManager c = new CommunicationManager();
-        c.httpGetter(new AccountManager().phoneLoginInter("","","86"));
-        tv.setText(c.loginTest());
+//        CommunicationManager c = new CommunicationManager();
+//        c.httpGetter(new AccountManager().phoneLoginInter("","","86"));
+//        tv.setText(c.loginTest());
     }
 }
