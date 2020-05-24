@@ -1,18 +1,11 @@
 package com.madderate.skyloft.views;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.madderate.skyloft.utils.AccountManager;
-import com.madderate.skyloft.utils.CommunicationManager;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.models.UserInformation;
 
@@ -52,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 跳转登录界面让用户进行登录
     private void startLoginActivityIfUserNotLogin() {
         if (userInfo == null) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            userInfo = new UserInformation();
+            Intent intent = new Intent(getString(R.string.before_login_action));
+            intent.addCategory(getString(R.string.before_login_phone_number_login_category));
             startActivity(intent);
             finish();
         }
