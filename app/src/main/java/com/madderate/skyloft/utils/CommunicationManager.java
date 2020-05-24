@@ -46,10 +46,14 @@ public class CommunicationManager {
         try {
             URL url = new URL(registerUrl);
             httpURLC = (HttpURLConnection) url.openConnection();
-            httpURLC.setRequestMethod("GET");
+            httpURLC.setRequestMethod("POST");
             httpURLC.setConnectTimeout(1000*5);
             httpURLC.setReadTimeout(1000*5);
-            httpURLC.setDoInput(true);//允许从服务端读取数据
+            httpURLC.setDoInput(true);
+            httpURLC.setDoOutput(true);
+            httpURLC.setRequestProperty("phone", "");
+            httpURLC.setRequestProperty("password", "");
+            httpURLC.connect();//连接
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,7 +63,7 @@ public class CommunicationManager {
         final StringBuilder str = new StringBuilder();
         try {
             int httpCode = httpURLC.getResponseCode();
-            if (httpCode == 200) {
+            if (httpCode == HttpURLConnection.HTTP_OK) {
                 InputStream inputStream = httpURLC.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line = null;//一行一行的读取
