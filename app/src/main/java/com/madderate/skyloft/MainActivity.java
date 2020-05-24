@@ -1,4 +1,5 @@
 package com.madderate.skyloft;
+
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Bundle;
@@ -24,25 +25,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String ip = "121.37.168.191";
     public String ipAddress = "http://" + ip + ":3000";
 
-    private HandlerThread handlerThread;
-    private Handler handler;
-    private ImageView imageView;
     private Button loginButton;
     private TextView tv;
-
-
-
-    private final int DOWNDLOAD = 1;
-    private final int REGISTER = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+        StrictMode.setThreadPolicy(
+                new StrictMode.ThreadPolicy.Builder().
+                        detectDiskReads().
+                        detectDiskWrites().
+                        detectNetwork().
+                        penaltyLog().
+                        build()
+        );
+        StrictMode.setVmPolicy(
+                new StrictMode.VmPolicy.Builder().
+                        detectLeakedSqlLiteObjects().
+                        detectLeakedClosableObjects().
+                        penaltyLog().
+                        penaltyDeath().
+                        build()
+        );
         setContentView(R.layout.activity_main);
 
-        tv = (TextView) findViewById(R.id.text);
+        tv = findViewById(R.id.text);
 
         loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(this);
@@ -63,8 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String testAccount = "?phone=15070922393&password=";
 
     String phoneLoginInter = "/login/cellphone";
-    String refreshLoginStatusInter = "/login/cellphone";
-    String getLoginStatusInter = "/login/status";
 
     private void onClickLoginButton(View v) {
         tv.setText(PhoneLoginTest());
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String PhoneLoginTest() {
         final StringBuilder str = new StringBuilder();
-        HttpURLConnection connection = HttpGetter(phoneLoginInter+testAccount);
+        HttpURLConnection connection = HttpGetter(phoneLoginInter + testAccount);
         try {
             int httpCode = connection.getResponseCode();
             if (httpCode == 200) {
@@ -92,15 +97,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return null;
     }
 
-    private HttpURLConnection HttpGetter(String interUrl){
+    private HttpURLConnection HttpGetter(String interUrl) {
         String registerUrl = ipAddress + interUrl;
-        Log.d(TAG,registerUrl);
+        Log.d(TAG, registerUrl);
         try {
             URL url = new URL(registerUrl);
             HttpURLConnection getC = (HttpURLConnection) url.openConnection();
             getC.setRequestMethod("GET");
-            getC.setConnectTimeout(1000*5);
-            getC.setReadTimeout(1000*5);
+            getC.setConnectTimeout(1000 * 5);
+            getC.setReadTimeout(1000 * 5);
             getC.setDoInput(true);//允许从服务端读取数据
             return getC;
         } catch (Exception e) {
@@ -108,5 +113,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return null;
     }
-
 }
