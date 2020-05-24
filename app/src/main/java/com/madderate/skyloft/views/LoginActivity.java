@@ -91,9 +91,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         toast.showToast(LoginActivity.this, R.string.toast_while_phone_number_is_invalid, Toast.LENGTH_SHORT);
                     } else {
 //                        toast.showToast(LoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
-                        CommunicationManager communicationManager = new CommunicationManager();
-                        communicationManager.httpGetter(new AccountManager().phoneLoginInter(phoneNumber, password, "86"));
-                        Log.d(getClass().toString(), communicationManager.loginTest());
+                        //CommunicationManager communicationManager = new CommunicationManager();
+                        //communicationManager.httpGetter(new AccountManager().phoneLoginInter());
+
                     }
                 }
                 break;
