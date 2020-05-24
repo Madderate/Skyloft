@@ -21,13 +21,11 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static String ip = "121.37.168.191";
-    public String ipAddress = "http://" + ip + ":3000";
+
 
     private HandlerThread handlerThread;
     private Handler handler;
     private ImageView imageView;
-    private Button loginButton;
     private TextView tv;
 
 
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tv = (TextView) findViewById(R.id.text);
 
-        loginButton = findViewById(R.id.loginButton);
+        Button loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(this);
     }
 
@@ -59,54 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    String TAG = "MAIN";
-    String testAccount = "?phone=15070922393&password=";
-
-    String phoneLoginInter = "/login/cellphone";
-    String refreshLoginStatusInter = "/login/cellphone";
-    String getLoginStatusInter = "/login/status";
-
     private void onClickLoginButton(View v) {
-        tv.setText(PhoneLoginTest());
-    }
-
-    private String PhoneLoginTest() {
-        final StringBuilder str = new StringBuilder();
-        HttpURLConnection connection = HttpGetter(phoneLoginInter+testAccount);
-        try {
-            int httpCode = connection.getResponseCode();
-            if (httpCode == 200) {
-                InputStream inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = null;//一行一行的读取
-                while ((line = bufferedReader.readLine()) != null) {
-                    str.append(line);//把一行数据拼接到buffer里
-                }
-                return str.toString();
-            } else {
-                return String.valueOf(httpCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private HttpURLConnection HttpGetter(String interUrl){
-        String registerUrl = ipAddress + interUrl;
-        Log.d(TAG,registerUrl);
-        try {
-            URL url = new URL(registerUrl);
-            HttpURLConnection getC = (HttpURLConnection) url.openConnection();
-            getC.setRequestMethod("GET");
-            getC.setConnectTimeout(1000*5);
-            getC.setReadTimeout(1000*5);
-            getC.setDoInput(true);//允许从服务端读取数据
-            return getC;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        CommunicationManager c = new CommunicationManager();
+        c.httpGetter(new AccountManager().phoneLoginInter("","","86"));
+        tv.setText(c.loginTest());
     }
 
 }
