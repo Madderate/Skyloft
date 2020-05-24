@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.madderate.skyloft.AccountManager;
+import com.madderate.skyloft.CommunicationManager;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.models.UserInformation;
 
@@ -25,10 +27,9 @@ import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    public static String ip = "121.37.168.191";
-    public String ipAddress = "http://" + ip + ":3000";
-
+    private HandlerThread handlerThread;
+    private Handler handler;
+    private ImageView imageView;
     private TextView tv;
 
     private UserInformation userInfo = null;
@@ -58,9 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 在该函数之前需要获取用户信息，并初始化UserInformation类对象userInfo
         startLoginActivityIfUserNotLogin();
 
-        tv = findViewById(R.id.text);
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(this);
     }
 
+    // 当用户信息为空时
+    // 跳转登录界面让用户进行登录
     private void startLoginActivityIfUserNotLogin() {
         if (userInfo == null) {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -80,51 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    String TAG = "MAIN";
-    String testAccount = "?phone=15070922393&password=";
-
-    String phoneLoginInter = "/login/cellphone";
-
     private void onClickLoginButton(View v) {
-        tv.setText(PhoneLoginTest());
-    }
-
-    private String PhoneLoginTest() {
-        final StringBuilder str = new StringBuilder();
-        HttpURLConnection connection = HttpGetter(phoneLoginInter + testAccount);
-        try {
-            int httpCode = connection.getResponseCode();
-            if (httpCode == 200) {
-                InputStream inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = null;//一行一行的读取
-                while ((line = bufferedReader.readLine()) != null) {
-                    str.append(line);//把一行数据拼接到buffer里
-                }
-                return str.toString();
-            } else {
-                return String.valueOf(httpCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private HttpURLConnection HttpGetter(String interUrl) {
-        String registerUrl = ipAddress + interUrl;
-        Log.d(TAG, registerUrl);
-        try {
-            URL url = new URL(registerUrl);
-            HttpURLConnection getC = (HttpURLConnection) url.openConnection();
-            getC.setRequestMethod("GET");
-            getC.setConnectTimeout(1000 * 5);
-            getC.setReadTimeout(1000 * 5);
-            getC.setDoInput(true);//允许从服务端读取数据
-            return getC;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        CommunicationManager c = new CommunicationManager();
+        c.httpGetter(new AccountManager().phoneLoginInter("","","86"));
+        tv.setText(c.loginTest());
     }
 }
