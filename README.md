@@ -1,6 +1,7 @@
 # Skyloft
 
 第三方网易云音乐客户端<br/>
+服务器端使用了[Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)<br/>
 计划开发如下功能：<br/>
 
 ## 2020-05-31日前
