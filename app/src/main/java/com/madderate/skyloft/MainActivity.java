@@ -18,7 +18,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static String ip = "121.37.168.191";
+    public String ipAddress = "http://" + ip + ":3000";
 
     private HandlerThread handlerThread;
     private Handler handler;
@@ -26,8 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button loginButton;
     private TextView tv;
 
-    String ip = "192.168.31.81";
-    String ipAddress = "http://" + ip + ":3000";
+
 
     private final int DOWNDLOAD = 1;
     private final int REGISTER = 2;
