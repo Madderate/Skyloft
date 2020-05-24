@@ -31,3 +31,4 @@
 * 确定开发计划，合并dev分支 - madderate
 * 流向变了。不做微博改做网易云了。 - madderate
 * 添加了一些必要的字符串 - madderate
+* 添加了一些配色 - madderate
