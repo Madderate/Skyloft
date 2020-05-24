@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.madderate.skyloft.R;
+import com.madderate.skyloft.utils.AccountManager;
+import com.madderate.skyloft.utils.CommunicationManager;
 import com.madderate.skyloft.utils.SimplifiedToast;
 
 import java.util.Objects;
@@ -28,6 +32,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.setThreadPolicy(
+                new StrictMode.ThreadPolicy.Builder().
+                        detectDiskReads().
+                        detectDiskWrites().
+                        detectNetwork().
+                        penaltyLog().
+                        build()
+        );
+        StrictMode.setVmPolicy(
+                new StrictMode.VmPolicy.Builder().
+                        detectLeakedSqlLiteObjects().
+                        detectLeakedClosableObjects().
+                        penaltyLog().
+                        penaltyDeath().
+                        build()
+        );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -69,8 +89,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 else {
                     if (!isPhoneNumber(phoneNumber)) {
                         toast.showToast(LoginActivity.this, R.string.toast_while_phone_number_is_invalid, Toast.LENGTH_SHORT);
-                    } else
-                        toast.showToast(LoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
+                    } else {
+//                        toast.showToast(LoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
+                        CommunicationManager communicationManager = new CommunicationManager();
+                        communicationManager.httpGetter(new AccountManager().phoneLoginInter(phoneNumber, password, "86"));
+                        Log.d(getClass().toString(), communicationManager.loginTest());
+                    }
                 }
                 break;
         }
