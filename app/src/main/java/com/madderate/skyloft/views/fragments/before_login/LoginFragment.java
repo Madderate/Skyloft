@@ -1,12 +1,17 @@
-package com.madderate.skyloft.views;
+package com.madderate.skyloft.views.fragments.before_login;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import android.content.Context;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -15,14 +20,14 @@ import com.madderate.skyloft.R;
 import com.madderate.skyloft.utils.AccountManager;
 import com.madderate.skyloft.utils.CommunicationManager;
 import com.madderate.skyloft.utils.SimplifiedToast;
+import com.madderate.skyloft.views.BeforeLoginActivity;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    private Toolbar loginToolbar;
     private TextInputLayout phoneNumberInput;
     private TextInputLayout passwordInput;
     private Button loginButton;
@@ -30,8 +35,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // Toast对象，用来快速切换Toast显示
     private SimplifiedToast toast = null;
 
+    private Context context;
+
+    public LoginFragment(Context context) {
+        this.context = context;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         StrictMode.setThreadPolicy(
                 new StrictMode.ThreadPolicy.Builder().
                         detectDiskReads().
@@ -48,21 +60,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         penaltyDeath().
                         build()
         );
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        assert container != null;
+
+        View view = inflater.inflate(R.layout.login_fragment, container, false);
+
+        phoneNumberInput = view.findViewById(R.id.phoneNumberTextField);
+        passwordInput = view.findViewById(R.id.passwordTextField);
+        loginButton = view.findViewById(R.id.loginButton);
 
         // 获取SimplifiedToast单例对象
         toast = SimplifiedToast.getInstance();
 
-        // 将登录页的toolbar和Activity绑定起来
-        loginToolbar = findViewById(R.id.loginToolbar);
-        setSupportActionBar(loginToolbar);
-
-        phoneNumberInput = findViewById(R.id.phoneNumberTextField);
-        passwordInput = findViewById(R.id.passwordTextField);
-        loginButton = findViewById(R.id.loginButton);
-
+        // 设定按钮点击事件
         loginButton.setOnClickListener(this);
+
+        return view;
     }
 
     @Override
@@ -88,9 +106,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // 二者皆不空
                 else {
                     if (!isPhoneNumber(phoneNumber)) {
-                        toast.showToast(LoginActivity.this, R.string.toast_while_phone_number_is_invalid, Toast.LENGTH_SHORT);
+                        toast.showToast(context, R.string.toast_while_phone_number_is_invalid, Toast.LENGTH_SHORT);
                     } else {
-//                        toast.showToast(LoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
+//                        toast.showToast(BeforeLoginActivity.this, "phone number: " + phoneNumber + ", password: " + password, Toast.LENGTH_SHORT);
                         CommunicationManager communicationManager = new CommunicationManager();
                         communicationManager.httpGetter(new AccountManager().phoneLoginInter(phoneNumber, password, "86"));
                         Log.d(getClass().toString(), communicationManager.loginTest());
@@ -103,15 +121,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void showToastWhenAtLeastOneStringInTwoIsEmpty(String one, String another, String[] toastText, int duration) {
         // 如果one为空而another不为空
         if (one.equals("") && !another.equals("")) {
-            toast.showToast(LoginActivity.this, toastText[0], duration);
+            toast.showToast(context, toastText[0], duration);
         }
         // 如果another为空而one不为空
         else if (!one.equals("") && another.equals("")) {
-            toast.showToast(LoginActivity.this, toastText[1], duration);
+            toast.showToast(context, toastText[1], duration);
         }
         // 两者皆空
         else {
-            toast.showToast(LoginActivity.this, toastText[2], duration);
+            toast.showToast(context, toastText[2], duration);
         }
     }
 
