@@ -35,3 +35,7 @@
 * 添加了一些配色 - madderate
 * 创建了一个用来显示Toast的单例类SimplifiedToast - madderate
 * 复用一个骨架界面，用Fragment的方式（目前只实现了登录Fragment）来显示登录相关的（包括电话号码登录、邮箱登录、注册等）界面 - madderate
+
+### 2020-05-26
+
+* 添加了几个模型类
