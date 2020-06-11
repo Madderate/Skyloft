@@ -17,18 +17,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity
-            android:name=".views.BeforeLoginActivity"
-            android:theme="@style/LoginTheme">
-            <intent-filter>
-                <action android:name="com.madderate.skyloft.BEFORE_LOGIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.madderate.skyloft.PHONE_NUMBER_LOGIN" />
-                <category android:name="com.madderate.skyloft.EMAIL_LOGIN" />
-                <category android:name="com.madderate.skyloft.REGISTER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
