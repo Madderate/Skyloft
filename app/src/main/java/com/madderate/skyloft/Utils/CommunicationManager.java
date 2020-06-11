@@ -1,10 +1,8 @@
-package com.madderate.skyloft.utils;
+package com.madderate.skyloft.Utils;
 
 /*
 * 网络通信类，使用api时请先声明此类
 */
-
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -1,4 +1,4 @@
-package com.madderate.skyloft.models;
+package com.madderate.skyloft.Models;
 
 public class Information {
     private long id;

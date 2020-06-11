@@ -1,6 +1,5 @@
-package com.madderate.skyloft.views;
+package com.madderate.skyloft.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 

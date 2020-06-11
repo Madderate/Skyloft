@@ -1,4 +1,4 @@
-package com.madderate.skyloft.utils;
+package com.madderate.skyloft.Utils;
 
 import java.util.HashMap;
 import java.util.Map;

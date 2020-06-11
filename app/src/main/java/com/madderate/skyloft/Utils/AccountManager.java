@@ -1,4 +1,4 @@
-package com.madderate.skyloft.utils;
+package com.madderate.skyloft.Utils;
 
 // 不需要使用cookie
 public class AccountManager {
