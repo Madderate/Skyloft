@@ -5,6 +5,8 @@
     <string name="phone_number">电话号码</string>
     <string name="password">密码</string>
     <string name="login">登录</string>
+    <string name="login_with_phone">手机号登录</string>
+    <string name="login_with_email">邮箱登录</string>
     <string name="register">注册</string>
     <string name="exit">退出</string>
     <string name="switch_account">切换账号</string>
@@ -38,9 +40,11 @@
 
     <!-- BeforeLoginActivity相关 -->
     <!-- actions -->
-    <string name="before_login_action">com.madderate.skyloft.BEFORE_LOGIN</string>
-    <!-- categories -->
-    <string name="before_login_phone_number_login_category">com.madderate.skyloft.PHONE_NUMBER_LOGIN</string>
-    <string name="before_login_email_login_category">com.madderate.skyloft.EMAIL_LOGIN</string>
-    <string name="before_login_register_category">com.madderate.skyloft.REGISTER</string>
+    <string name="login_action">com.madderate.skyloft.LOGIN</string>
+    <!-- extra strings -->
+    <string name="replace_to">REPLACE_TO</string> <!-- fragment之间的切换 -->
+    <string name="jump_to">JUMP_TO</string> <!-- activity之间的切换 -->
+    <string name="phone_login_fragment">PhoneLoginFragment</string>
+    <string name="email_login_fragment">EmailLoginFragment</string>
+    <string name="register_activity">RegisterActivity</string>
 </resources>

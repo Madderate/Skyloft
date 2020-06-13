@@ -2,7 +2,7 @@ package com.madderate.skyloft.Models;
 
 import java.util.List;
 
-public class PlayList extends Information {
+public class Playlist extends Information {
     private Information owner;
     private List<Song> songs;
     private Illustration avatar;

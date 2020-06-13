@@ -8,14 +8,14 @@ public class Song extends Information {
     private long duration;
     private Information copyright; // 未来可能会有Copyright类
     private Information mv; // 未来有机会的话还会推出MV类
-    private List<PlayList> belongingPlayList;
+    private List<Playlist> belongingPlaylist;
 
-    public List<PlayList> getBelongingPlayList() {
-        return belongingPlayList;
+    public List<Playlist> getBelongingPlaylist() {
+        return belongingPlaylist;
     }
 
-    public void setBelongingPlayList(List<PlayList> belongingPlayList) {
-        this.belongingPlayList = belongingPlayList;
+    public void setBelongingPlaylist(List<Playlist> belongingPlaylist) {
+        this.belongingPlaylist = belongingPlaylist;
     }
 
     public List<Artist> getArtists() {

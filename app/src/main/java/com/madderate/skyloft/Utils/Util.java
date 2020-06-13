@@ -1,5 +1,11 @@
 package com.madderate.skyloft.Utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,25 +15,25 @@ public class Util {
 
     private static Map<Character, String> urlSpecialCharacterMap = new HashMap<Character, String>() {
         {
-            urlSpecialCharacterMap.put(' ', "%20");
-            urlSpecialCharacterMap.put('"', "%22");
-            urlSpecialCharacterMap.put('#', "%23");
-            urlSpecialCharacterMap.put('%', "%25");
-            urlSpecialCharacterMap.put('&', "%26");
-            urlSpecialCharacterMap.put('(', "%28");
-            urlSpecialCharacterMap.put(')', "%29");
-            urlSpecialCharacterMap.put('+', "%2B");
-            urlSpecialCharacterMap.put(',', "%2C");
-            urlSpecialCharacterMap.put('/', "%2F");
-            urlSpecialCharacterMap.put(':', "%3A");
-            urlSpecialCharacterMap.put(';', "%3B");
-            urlSpecialCharacterMap.put('<', "%3C");
-            urlSpecialCharacterMap.put('=', "%3D");
-            urlSpecialCharacterMap.put('>', "%3E");
-            urlSpecialCharacterMap.put('?', "%3F");
-            urlSpecialCharacterMap.put('@', "%40");
-            urlSpecialCharacterMap.put('\\', "%5C");
-            urlSpecialCharacterMap.put('|', "%7C");
+            put(' ', "%20");
+            put('"', "%22");
+            put('#', "%23");
+            put('%', "%25");
+            put('&', "%26");
+            put('(', "%28");
+            put(')', "%29");
+            put('+', "%2B");
+            put(',', "%2C");
+            put('/', "%2F");
+            put(':', "%3A");
+            put(';', "%3B");
+            put('<', "%3C");
+            put('=', "%3D");
+            put('>', "%3E");
+            put('?', "%3F");
+            put('@', "%40");
+            put('\\', "%5C");
+            put('|', "%7C");
         }
     };
 
@@ -72,5 +78,13 @@ public class Util {
             builder.append(replaceCharToURLEncode(aChar));
         }
         return builder.toString();
+    }
+
+    // Send replace fragment broadcast
+    public static void sendReplaceFragmentBroadcast(Context context, String action, Bundle bundle) {
+        Intent intent = new Intent(action);
+        intent.putExtras(bundle);
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
+        localBroadcastManager.sendBroadcast(intent);
     }
 }

@@ -15,7 +15,7 @@ public class User extends Information {
     private Illustration avatar;
     private Illustration background;
     private String school;
-    private List<PlayList> playLists;
+    private List<Playlist> playlists;
 
     public String getNickname() {
         return nickname;
@@ -113,11 +113,11 @@ public class User extends Information {
         this.school = school;
     }
 
-    public List<PlayList> getPlayLists() {
-        return playLists;
+    public List<Playlist> getPlaylists() {
+        return playlists;
     }
 
-    public void setPlayLists(List<PlayList> playLists) {
-        this.playLists = playLists;
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
     }
 }
