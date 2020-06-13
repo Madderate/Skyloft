@@ -11,7 +11,7 @@ import java.util.Map;
 
 // 通用的工具类
 // 包含各种通用算法
-public class Util {
+public class NetworkUtil {
 
     private static Map<Character, String> urlSpecialCharacterMap = new HashMap<Character, String>() {
         {
@@ -78,13 +78,5 @@ public class Util {
             builder.append(replaceCharToURLEncode(aChar));
         }
         return builder.toString();
-    }
-
-    // Send replace fragment broadcast
-    public static void sendReplaceFragmentBroadcast(Context context, String action, Bundle bundle) {
-        Intent intent = new Intent(action);
-        intent.putExtras(bundle);
-        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
-        localBroadcastManager.sendBroadcast(intent);
     }
 }
