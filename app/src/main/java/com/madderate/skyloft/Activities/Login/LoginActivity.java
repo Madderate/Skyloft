@@ -1,6 +1,5 @@
-package com.madderate.skyloft.Activities;
+package com.madderate.skyloft.Activities.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,11 +12,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-import com.madderate.skyloft.Activities.Fragments.EmailLoginFragment;
-import com.madderate.skyloft.Activities.Fragments.PhoneLoginFragment;
+import com.madderate.skyloft.Activities.BaseActivity;
+import com.madderate.skyloft.Activities.Login.Fragments.EmailLoginFragment;
+import com.madderate.skyloft.Activities.Login.Fragments.PhoneLoginFragment;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
-import com.madderate.skyloft.ViewModels.LoginViewModel;
+import com.madderate.skyloft.ViewModels.Login.LoginViewModel;
 
 public class LoginActivity extends BaseActivity {
 

@@ -1,6 +1,5 @@
-package com.madderate.skyloft.Activities;
+package com.madderate.skyloft.Activities.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,8 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.R;
-import com.madderate.skyloft.ViewModels.RegisterViewModel;
+import com.madderate.skyloft.ViewModels.Login.RegisterViewModel;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package com.madderate.skyloft.ViewModels;
+package com.madderate.skyloft.ViewModels.Login;
 
 import android.util.Log;
 

@@ -1,6 +1,5 @@
-package com.madderate.skyloft.Activities;
+package com.madderate.skyloft.Activities.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -10,8 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.R;
-import com.madderate.skyloft.ViewModels.CaptchaViewModel;
+import com.madderate.skyloft.ViewModels.Login.CaptchaViewModel;
 
 public class CaptchaActivity extends BaseActivity implements View.OnClickListener {
 

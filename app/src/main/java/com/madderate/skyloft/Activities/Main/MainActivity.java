@@ -1,10 +1,11 @@
-package com.madderate.skyloft.Activities;
+package com.madderate.skyloft.Activities.Main;
 
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.R;
 
 

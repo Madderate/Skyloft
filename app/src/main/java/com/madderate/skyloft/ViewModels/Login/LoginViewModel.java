@@ -1,11 +1,11 @@
-package com.madderate.skyloft.ViewModels;
+package com.madderate.skyloft.ViewModels.Login;
 
 import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.madderate.skyloft.Activities.CaptchaActivity;
+import com.madderate.skyloft.Activities.Login.CaptchaActivity;
 import com.madderate.skyloft.Utils.ActivityUtils;
 
 import java.util.regex.Pattern;

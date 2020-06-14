@@ -1,4 +1,4 @@
-package com.madderate.skyloft.Activities.Fragments;
+package com.madderate.skyloft.Activities.Login.Fragments;
 
 import android.os.Bundle;
 
@@ -17,7 +17,7 @@ import android.widget.EditText;
 
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
-import com.madderate.skyloft.ViewModels.LoginViewModel;
+import com.madderate.skyloft.ViewModels.Login.LoginViewModel;
 
 public class PhoneLoginFragment extends Fragment implements View.OnClickListener {
 
