@@ -2,7 +2,6 @@ package com.madderate.skyloft.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,14 +19,13 @@ import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.ViewModels.LoginViewModel;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     private static FragmentManager fragmentManager;
     private static LoginViewModel loginViewModel;
 
     private LoginBroadcastReceiver broadcastReceiver;
     private LocalBroadcastManager localBroadcastManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         // ViewModel总是由一个ViewModelProvider来管理
         // ViewModelProvider接收一个Fragment或FragmentActivity对象
         // 如果传入相同的对象以及相同的ViewModel class，就能获得相同的ViewModel实例
-        loginViewModel = new ViewModelProvider(LoginActivity.this).get(LoginViewModel.class);
-        // 初始化一个Fragment对象
-        // 以PhoneLoginFragment为初始对象
-        if (loginViewModel.getPhoneLoginFragment() == null) {
-            PhoneLoginFragment fragment = new PhoneLoginFragment();
-            fragment.setContext(LoginActivity.this);
-            loginViewModel.setPhoneLoginFragment(fragment);
-        }
+        loginViewModel =
+                new ViewModelProvider(LoginActivity.this)
+                        .get(LoginViewModel.class);
 
         // 获取本地广播管理员的实例
         localBroadcastManager = LocalBroadcastManager.getInstance(LoginActivity.this);
@@ -61,18 +54,29 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar loginToolbar = findViewById(R.id.login_toolbar);
         loginToolbar.setTitle(R.string.login);
         setSupportActionBar(loginToolbar);
-
-        // 初始fragment
-        // 当没有EmailLoginFragment实例同时有PhoneLoginFragment的实例时
-        // 将PhoneLoginFragment加载到Activity布局中
-        if (loginViewModel.getEmailLoginFragment() == null && loginViewModel.getPhoneLoginFragment() != null) {
-            fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.login_fragment, loginViewModel.getPhoneLoginFragment());
-            transaction.commit();
-        }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // 当标志isFirstStart为true时
+        // 尝试加载一个新Fragment到布局中
+        if (loginViewModel.isFirstStart()) {
+            fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            // 如果isPhoneLoginFragment标志位true
+            // 则加载一个PhoneLoginFragment对象
+            // 否则加载一个EmailLoginFragment对象
+            if (loginViewModel.isPhoneLoginFragment())
+                transaction.replace(R.id.login_fragment, new PhoneLoginFragment());
+            else
+                transaction.replace(R.id.login_fragment, new EmailLoginFragment());
+
+            transaction.commit();
+        }
+        loginViewModel.setFirstStart(false);
+    }
 
     @Override
     protected void onDestroy() {
@@ -89,24 +93,20 @@ public class LoginActivity extends AppCompatActivity {
                 try {
 
                     int destFragment = bundle.getInt(context.getString(R.string.replace_to), 0);
-                    // 切换Fragment时，记得将上一个Fragment对象置为空
-                    // 防止数据因为对象残留而在Fragment切换过程中被保留
+                    // 切换Fragment时，就是创建一个新的对象
                     if (destFragment == R.string.phone_login_fragment) {
                         PhoneLoginFragment fragment = new PhoneLoginFragment();
-                        fragment.setContext(context);
-                        loginViewModel.setPhoneLoginFragment(fragment);
-                        loginViewModel.setEmailLoginFragment(null);
-                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_fragment, loginViewModel.getPhoneLoginFragment());
+                        loginViewModel.setPhoneLoginFragment(true);
+                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_fragment, fragment);
                     } else if (destFragment == R.string.email_login_fragment) {
                         EmailLoginFragment fragment = new EmailLoginFragment();
-                        fragment.setContext(context);
-                        loginViewModel.setEmailLoginFragment(fragment);
-                        loginViewModel.setPhoneLoginFragment(null);
-                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_fragment, loginViewModel.getEmailLoginFragment());
+                        loginViewModel.setPhoneLoginFragment(false);
+                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_fragment, fragment);
                     }
 
                     int destActivity = bundle.getInt(context.getString(R.string.jump_to), 0);
                     if (destActivity == R.string.register_activity) {
+                        loginViewModel.setFirstStart(true);
                         ActivityUtils.jumpToActivity(context, RegisterActivity.class);
                     }
                 } catch (Exception e) {

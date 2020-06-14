@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.madderate.skyloft.R;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     String TAG = "TEST";
 
     @Override

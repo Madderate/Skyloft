@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="8dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".Activities.Fragments.PhoneLoginFragment">
 
     <EditText
@@ -12,20 +14,21 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/et_password"
         android:layout_margin="8dp"
+        android:hint="@string/login_phone_hint"
         android:inputType="phone"
-        android:hint="@string/login_with_phone" />
+        android:maxLength="11" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/login_button"
+        android:layout_above="@id/phone_login_button"
         android:layout_margin="8dp"
-        android:hint="@string/password"
+        android:hint="@string/login_password_hint"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/phone_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/other_options"
@@ -37,22 +40,22 @@
         android:id="@+id/other_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp">
 
         <Button
             android:id="@+id/to_login_with_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/login_with_email"/>
+            android:text="@string/login_email_hint" />
 
         <Button
             android:id="@+id/register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/register"/>
+            android:text="@string/register" />
 
     </LinearLayout>
 

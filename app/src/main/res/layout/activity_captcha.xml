@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LoginActivity">
+    tools:context=".Activities.CaptchaActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/register_toolbar"
+            android:id="@+id/captcha_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
@@ -23,38 +23,33 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="8dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:layout_margin="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <EditText
-            android:id="@+id/et_phone"
+        <TextView
+            android:id="@+id/tv_captcha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/et_password"
-            android:layout_margin="8dp"
-            android:hint="@string/register_phone_hint"
-            android:inputType="phone"
-            android:maxLength="11" />
+            android:layout_alignParentTop="true"
+            android:text="@string/captcha_text_view"
+            android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/et_captcha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/register_button"
-            android:layout_margin="8dp"
-            android:hint="@string/register_password_hint"
-            android:inputType="textPassword" />
+            android:layout_below="@id/tv_captcha"
+            android:layout_marginVertical="8dp"
+            android:hint="@string/captcha_hint"
+            android:inputType="number"
+            android:maxLength="4" />
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/send_captcha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="8dp"
-            android:text="@string/register"
-            android:textSize="16sp" />
+            android:text="@string/captcha_finish" />
 
     </RelativeLayout>
 
