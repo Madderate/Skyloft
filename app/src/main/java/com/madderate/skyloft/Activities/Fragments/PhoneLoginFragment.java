@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,10 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
     private Context context;
     private LoginViewModel loginViewModel;
 
+    private EditText etPhone;
+    private EditText etPassword;
+
+
     public void setContext(Context context) {
         this.context = context;
     }
@@ -32,12 +37,12 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_phone_login, container, false);
 
         try {
-            loginViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
+            if (getActivity() != null)
+                loginViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
 
             // Get buttons
             Button toLoginWithEmail = view.findViewById(R.id.to_login_with_email);
@@ -47,12 +52,9 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
             register.setOnClickListener(this);
 
             // Get EditTexts
-            EditText etPhone = view.findViewById(R.id.et_phone);
-            EditText etPassword = view.findViewById(R.id.et_password);
-            // Restore texts
-            etPhone.setText(loginViewModel.getPhoneNumber());
-            etPassword.setText(loginViewModel.getPassword());
-            // Store text while typing
+            etPhone = view.findViewById(R.id.et_phone);
+            etPassword = view.findViewById(R.id.et_password);
+
             etPhone.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,10 +95,10 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        loginViewModel.setPhoneNumber("");
-        loginViewModel.setPassword("");
+    public void onDestroyView() {
+        super.onDestroyView();
+        loginViewModel.setPhoneNumber(null);
+        loginViewModel.setPassword(null);
     }
 
     @Override

@@ -48,9 +48,7 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
             // Get EditTexts
             EditText etEmail = view.findViewById(R.id.et_email);
             EditText etPassword = view.findViewById(R.id.et_password);
-            // Restore texts
-            etEmail.setText(loginViewModel.getEmail());
-            etPassword.setText(loginViewModel.getPassword());
+
             // Store text while typing
             etEmail.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -92,10 +90,10 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        loginViewModel.setEmail("");
-        loginViewModel.setPassword("");
+    public void onDestroyView() {
+        super.onDestroyView();
+        loginViewModel.setEmail(null);
+        loginViewModel.setPassword(null);
     }
 
     @Override
