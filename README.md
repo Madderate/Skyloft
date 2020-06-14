@@ -44,3 +44,7 @@
 
 * 终于恢复了
 * 先设计了可能会用到的各种Activities，ViewModels，Models，接下来做一步看一步吧。
+
+### 2020-06-13
+
+* 以后可能不会更新readme了，看docx就好（逃
