@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/quick"
+        android:title="查询"
+        android:icon="@mipmap/quick"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/Function"
+        android:title="功能"
+        app:showAsAction="ifRoom|collapseActionView">
+        <item
+            android:id="@+id/message"
+            android:title="歌单信息" />
+        <item
+            android:id="@+id/add"
+            android:title="添加歌单" />
+        <item
+            android:id="@+id/share"
+            android:title="分享歌单" />
+    </item>
+
+
+
+</menu>
