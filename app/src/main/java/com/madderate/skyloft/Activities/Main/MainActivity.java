@@ -3,8 +3,6 @@ package com.madderate.skyloft.Activities.Main;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.R;
 
@@ -32,13 +30,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.test_button:
+        switch (v.getId()) {/*
+            case R.id.phone_login_button:
                 onClickTestButton();
-                break;
+                break;*/
         }
     }
-    private void onClickTestButton(){
-
-    }
+    private void onClickTestButton(){}
 }

@@ -21,8 +21,8 @@ public class CommunicationManager {
 
     private HttpURLConnection httpURLC;
 
-    private String interUrl;
-    private String body;
+    private String interUrl = "";
+    private String body = "";
 
     public void setInterUrl(String interUrl) {
         this.interUrl = interUrl;
@@ -106,7 +106,8 @@ public class CommunicationManager {
     public void test() {
         final StringBuilder str = new StringBuilder();
         try {
-            if (httpCode == HttpURLConnection.HTTP_OK) {
+            System.out.println(httpCode);
+            if (httpCode == HttpURLConnection.HTTP_OK || httpCode == HttpURLConnection.HTTP_MOVED_PERM) {
                 InputStream inputStream = httpURLC.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 String line = null;
@@ -115,11 +116,10 @@ public class CommunicationManager {
                 }
                 text = str.toString();
             } else {
-                text = String.valueOf(httpCode);
+                text = "异常";
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        text = "异常-"+httpCode;
     }
 }
