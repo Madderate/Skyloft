@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/et_password"
             android:layout_margin="8dp"
-            android:hint="@string/register_phone_hint"
+            android:hint="@string/login_register_hint_phone"
             android:inputType="phone"
             android:maxLength="11" />
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/register_button"
             android:layout_margin="8dp"
-            android:hint="@string/register_password_hint"
+            android:hint="@string/login_register_hint_password"
             android:inputType="textPassword" />
 
         <Button
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
-            android:text="@string/register"
+            android:text="@string/login_register_title"
             android:textSize="16sp" />
 
     </RelativeLayout>

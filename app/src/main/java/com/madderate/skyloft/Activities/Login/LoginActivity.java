@@ -27,10 +27,12 @@ public class LoginActivity extends BaseActivity {
     private LoginBroadcastReceiver broadcastReceiver;
     private LocalBroadcastManager localBroadcastManager;
 
+    private Toolbar loginToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_login_activity);
 
         fragmentManager = getSupportFragmentManager();
 
@@ -46,13 +48,13 @@ public class LoginActivity extends BaseActivity {
         localBroadcastManager = LocalBroadcastManager.getInstance(LoginActivity.this);
         broadcastReceiver = new LoginBroadcastReceiver();
         IntentFilter filter = new IntentFilter();
-        filter.addAction(getString(R.string.login_action));
+        filter.addAction(getString(R.string.login_activity_action));
         // 注册这个receiver为本地广播监听器
         localBroadcastManager.registerReceiver(broadcastReceiver, filter);
 
         // 初始化Toolbar
-        Toolbar loginToolbar = findViewById(R.id.login_toolbar);
-        loginToolbar.setTitle(R.string.login);
+        loginToolbar = findViewById(R.id.login_toolbar);
+        loginToolbar.setTitle(R.string.login_login_title);
         setSupportActionBar(loginToolbar);
     }
 
@@ -69,9 +71,9 @@ public class LoginActivity extends BaseActivity {
             // 则加载一个PhoneLoginFragment对象
             // 否则加载一个EmailLoginFragment对象
             if (loginViewModel.isPhoneLoginFragment())
-                transaction.replace(R.id.login_fragment, new PhoneLoginFragment());
+                transaction.replace(R.id.login_activity_fragment_container, new PhoneLoginFragment());
             else
-                transaction.replace(R.id.login_fragment, new EmailLoginFragment());
+                transaction.replace(R.id.login_activity_fragment_container, new EmailLoginFragment());
 
             transaction.commit();
         }
@@ -92,22 +94,22 @@ public class LoginActivity extends BaseActivity {
             if (bundle != null) {
                 try {
 
-                    int destFragment = bundle.getInt(context.getString(R.string.replace_to), 0);
+                    int destFragment = bundle.getInt(context.getString(R.string.replace_fragment), 0);
                     // 切换Fragment时，就是创建一个新的对象
-                    if (destFragment == R.string.phone_login_fragment) {
+                    if (destFragment == R.string.login_fragment_phone) {
                         PhoneLoginFragment fragment = new PhoneLoginFragment();
                         loginViewModel.setPhoneLoginFragment(true);
-                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_fragment, fragment);
-                    } else if (destFragment == R.string.email_login_fragment) {
+                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_activity_fragment_container, fragment);
+                    } else if (destFragment == R.string.login_fragment_email) {
                         EmailLoginFragment fragment = new EmailLoginFragment();
                         loginViewModel.setPhoneLoginFragment(false);
-                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_fragment, fragment);
+                        ActivityUtils.replaceFragment(fragmentManager, R.id.login_activity_fragment_container, fragment);
                     }
 
-                    int destActivity = bundle.getInt(context.getString(R.string.jump_to), 0);
-                    if (destActivity == R.string.register_activity) {
+                    int destActivity = bundle.getInt(context.getString(R.string.replace_activity), 0);
+                    if (destActivity == R.string.login_activity_register) {
                         loginViewModel.setFirstStart(true);
-                        ActivityUtils.jumpToActivity(context, RegisterActivity.class);
+                        ActivityUtils.jumpToActivity(context, RegisterActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
