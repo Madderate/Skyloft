@@ -22,14 +22,14 @@
         android:layout_marginVertical="8dp"
         android:text="@string/main_nav_temp_user_name"
         android:textColor="@color/colorText"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/user_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:text="@string/main_nav_temp_user_intro"
         android:textColor="@color/colorTextSecondaryLight" />
 

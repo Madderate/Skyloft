@@ -1,11 +1,13 @@
 package com.madderate.skyloft.ViewModels.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Activities.Login.CaptchaActivity;
+import com.madderate.skyloft.Activities.Main.MainActivity;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.Utils.InterfaceManager;
 
@@ -102,12 +104,19 @@ public class LoginViewModel extends ViewModel {
         accountManager.phoneLoginInter("15070922393","bushengtao16b","86");
         */
 
-        InterfaceManager interfaceManager = new InterfaceManager("");
-        interfaceManager.refreshLoginInter();
+//        InterfaceManager interfaceManager = new InterfaceManager("");
+//        interfaceManager.refreshLoginInter();
 
 
         if (isPhoneValid && isPasswordValid) {
-            ActivityUtils.jumpToActivity(context, CaptchaActivity.class);
+            ActivityUtils.jumpToActivity(
+                    context,
+                    MainActivity.class,
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_NO_HISTORY
+            );
         }
     }
 

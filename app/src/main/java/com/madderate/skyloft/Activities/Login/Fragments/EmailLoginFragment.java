@@ -21,6 +21,13 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
 
     private LoginViewModel loginViewModel;
 
+    private Button emailLoginButton;
+    private Button toLoginWithPhone;
+    private Button register;
+
+    private EditText etEmail;
+    private EditText etPassword;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,18 +40,16 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
                 loginViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
 
             // Get buttons
-            Button emailLoginButton = view.findViewById(R.id.email_login_button);
-            Button toLoginWithPhone = view.findViewById(R.id.to_login_with_phone);
-            Button register = view.findViewById(R.id.register);
+            emailLoginButton = view.findViewById(R.id.email_login_button);
+            toLoginWithPhone = view.findViewById(R.id.to_login_with_phone);
+            register = view.findViewById(R.id.register);
             // Set onClick listener
             emailLoginButton.setOnClickListener(this);
             toLoginWithPhone.setOnClickListener(this);
             register.setOnClickListener(this);
 
             // Get EditTexts
-            EditText etEmail = view.findViewById(R.id.et_email);
-            EditText etPassword = view.findViewById(R.id.et_password);
-
+            etEmail = view.findViewById(R.id.et_email);
             // 监听文本输入框的变化
             etEmail.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -62,6 +67,8 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
                     loginViewModel.setEmail(s.toString());
                 }
             });
+
+            etPassword = view.findViewById(R.id.et_password);
             etPassword.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

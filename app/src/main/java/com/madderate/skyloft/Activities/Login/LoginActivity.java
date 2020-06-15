@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity {
                     int destActivity = bundle.getInt(context.getString(R.string.replace_activity), 0);
                     if (destActivity == R.string.login_activity_register) {
                         loginViewModel.setFirstStart(true);
-                        ActivityUtils.jumpToActivity(context, RegisterActivity.class);
+                        ActivityUtils.jumpToActivity(context, RegisterActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

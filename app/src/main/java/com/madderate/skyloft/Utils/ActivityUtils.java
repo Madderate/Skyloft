@@ -25,9 +25,9 @@ public class ActivityUtils {
     // Activity的跳转
     // context: 用来创建Intent对象以及进行跳转
     // activity: 指定要跳转到的Activity
-    public static void jumpToActivity(Context context, Class activity) {
+    public static void jumpToActivity(Context context, Class activity, int intentFlag) {
         Intent intent = new Intent(context, activity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(intentFlag);
         context.startActivity(intent);
     }
 

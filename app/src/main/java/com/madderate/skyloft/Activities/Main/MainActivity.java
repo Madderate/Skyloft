@@ -1,8 +1,10 @@
 package com.madderate.skyloft.Activities.Main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -11,7 +13,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.madderate.skyloft.Activities.BaseActivity;
+import com.madderate.skyloft.Activities.Login.LoginActivity;
 import com.madderate.skyloft.R;
+import com.madderate.skyloft.Utils.ActivityUtils;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
@@ -19,6 +23,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private Toolbar mainToolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private View navHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +43,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         navView = findViewById(R.id.main_activity_nav_view);
         navView.setCheckedItem(R.id.nav_recommend);
         navView.setNavigationItemSelectedListener(this);
+
+        // 得到NavigationView的头部
+        navHeader = navView.getHeaderView(0);
+        navHeader.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.nav_header:
+                ActivityUtils.jumpToActivity(MainActivity.this, LoginActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
+                break;
+        }
     }
 
     @Override
