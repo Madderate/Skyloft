@@ -4,36 +4,40 @@ import java.util.List;
 
 public class Profile {
     private String detailDescription;
-    private Boolean followed;
     private String backgroundUrl;
     private String description;
     private String avatarImgIdStr;
     private String backgroundImgIdStr;
-    private int userId;
-    private Boolean defaultAvatar;
-    private int vipType;
-    private int gender;
-    private int accountStatus;
-    private long avatarImgId;
-    private String nickname;
-    private long birthday;
-    private int city;
     private String avatarUrl;
-    private int province;
-    private int djStatus;
+    private String nickname;
+    private String signature;
+    private String avatarImgId_str;
+
+    private Boolean defaultAvatar;
+    private Boolean followed;
     private Boolean mutual;
+
     private Object remarkName;
     private Object experts;
     private Object expertTags;
-    private int authStatus;
-    private String signature;
-    private int authority;
-    private String avatarImgId_str;
+
+    private int userId;
+    private int vipType;
+    private int gender;
+    private int accountStatus;
+    private int city;
+    private int province;
+    private int djStatus;
     private int followeds;
     private int follows;
     private int eventCount;
     private int playlistCount;
     private int playlistBeSubscribedCount;
+    private int authStatus;
+    private int authority;
+
+    private long avatarImgId;
+    private long birthday;
 
     public String getDetailDescription() {
         return detailDescription;
