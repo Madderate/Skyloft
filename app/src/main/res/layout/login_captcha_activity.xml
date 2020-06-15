@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:text="@string/captcha_text_view"
+            android:text="@string/login_captcha_text_view"
             android:textSize="14sp" />
 
         <EditText
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_captcha"
             android:layout_marginVertical="8dp"
-            android:hint="@string/captcha_hint"
+            android:hint="@string/login_captcha_hint_captcha"
             android:inputType="number"
             android:maxLength="4" />
 
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/captcha_finish" />
+            android:text="@string/login_captcha_button_text_finish" />
 
     </RelativeLayout>
 

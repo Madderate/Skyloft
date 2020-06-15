@@ -6,12 +6,12 @@ import android.widget.Toast;
 // Toast单例类
 // 存储Toast与SimplifiedToast类对象
 // 通过getInstance()方法获得对象
-public class SimplifiedToast {
+public class ToastUtil {
 
-    private volatile static SimplifiedToast simpleToast;
+    private volatile static ToastUtil simpleToast;
     private static Toast toast;
 
-    private SimplifiedToast() {
+    private ToastUtil() {
         // 在获取该单例对象时
         // 需要保证toast为null
         if (toast != null) {
@@ -21,11 +21,11 @@ public class SimplifiedToast {
     }
 
     // 获取该类的单例
-    public static SimplifiedToast getInstance() {
+    public static ToastUtil getInstance() {
         if (simpleToast == null) {
-            synchronized (SimplifiedToast.class) {
+            synchronized (ToastUtil.class) {
                 if (simpleToast == null) {
-                    simpleToast = new SimplifiedToast();
+                    simpleToast = new ToastUtil();
                 }
             }
         }

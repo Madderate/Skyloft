@@ -26,7 +26,7 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_phone_login, container, false);
+        View view = inflater.inflate(R.layout.login_login_activity_phone_fragment, container, false);
 
         try {
             if (getActivity() != null)
@@ -100,13 +100,13 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
         switch (v.getId()) {
             // 切换到邮箱登录
             case R.id.to_login_with_email:
-                bundle.putInt(getString(R.string.replace_to), R.string.email_login_fragment);
-                ActivityUtils.sendReplaceFragmentBroadcast(getActivity(), getString(R.string.login_action), bundle);
+                bundle.putInt(getString(R.string.replace_fragment), R.string.login_fragment_email);
+                ActivityUtils.sendReplaceFragmentBroadcast(getActivity(), getString(R.string.login_activity_action), bundle);
                 break;
             // 切换到注册
             case R.id.register:
-                bundle.putInt(getString(R.string.jump_to), R.string.register_activity);
-                ActivityUtils.sendReplaceFragmentBroadcast(getActivity(), getString(R.string.login_action), bundle);
+                bundle.putInt(getString(R.string.replace_activity), R.string.login_activity_register);
+                ActivityUtils.sendReplaceFragmentBroadcast(getActivity(), getString(R.string.login_activity_action), bundle);
                 break;
             // 登录
             case R.id.phone_login_button:

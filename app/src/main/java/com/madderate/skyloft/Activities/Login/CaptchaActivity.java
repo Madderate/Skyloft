@@ -23,7 +23,7 @@ public class CaptchaActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_captcha);
+        setContentView(R.layout.login_captcha_activity);
 
         captchaViewModel = new ViewModelProvider(CaptchaActivity.this).get(CaptchaViewModel.class);
 

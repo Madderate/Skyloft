@@ -9,8 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.madderate.skyloft.R;
-
 public class ActivityUtils {
 
     // 通过BroadcastReceiver来更换Fragment

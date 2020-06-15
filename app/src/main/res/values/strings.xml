@@ -1,19 +1,28 @@
 <resources>
     <string name="app_name">Skyloft</string>
 
-    <string name="username">用户名</string>
-    <string name="login">登录</string>
-    <string name="register">注册</string>
-    <string name="login_phone_hint">输入手机号以登录</string>
-    <string name="login_email_hint">输入邮箱以登录</string>
-    <string name="login_password_hint">输入对应密码</string>
-    <string name="register_phone_hint">输入手机号以注册</string>
-    <string name="register_password_hint">自己想的密码就要好好记住哦！</string>
-    <string name="captcha_text_view">请在下方输入验证码</string>
-    <string name="captcha_hint">请输入验证码</string>
-    <string name="captcha_finish">完成</string>
+    <string name="login_username">用户名</string>
+    <string name="login_login_title">登录</string>
+    <string name="login_register_title">注册</string>
+    <string name="login_hint_phone">输入手机号以登录</string>
+    <string name="login_hint_email">输入邮箱以登录</string>
+    <string name="login_hint_password">输入对应密码</string>
+    <string name="login_register_hint_phone">输入手机号以注册</string>
+    <string name="login_register_hint_password">自己想的密码就要好好记住哦！</string>
+    <string name="login_captcha_text_view">请在下方输入验证码</string>
+    <string name="login_captcha_hint_captcha">请输入验证码</string>
+    <string name="login_captcha_button_text_finish">完成</string>
     <string name="exit">退出</string>
     <string name="switch_account">切换账号</string>
+
+    <string name="main_nav_repository">资料库</string>
+    <string name="main_nav_recommend">为你推荐</string>
+    <string name="main_nav_glance">浏览</string>
+    <string name="main_nav_radio">电台</string>
+    <string name="main_nav_temp_user_name">点击登录</string>
+    <string name="main_nav_temp_user_intro">登录以获得为您精选的内容推荐</string>
+    <string name="main_menu_search">搜索</string>
+    <string name="main_menu_profile">个人信息</string>
 
     <string name="play_music">播放音乐</string>
     <string name="play_list">随机播放</string>
@@ -44,11 +53,11 @@
 
     <!-- BeforeLoginActivity相关 -->
     <!-- actions -->
-    <string name="login_action">com.madderate.skyloft.LOGIN</string>
+    <string name="login_activity_action">com.madderate.skyloft.LOGIN</string>
     <!-- extra strings -->
-    <string name="replace_to">REPLACE_TO</string> <!-- fragment之间的切换 -->
-    <string name="jump_to">JUMP_TO</string> <!-- activity之间的切换 -->
-    <string name="phone_login_fragment">PhoneLoginFragment</string>
-    <string name="email_login_fragment">EmailLoginFragment</string>
-    <string name="register_activity">RegisterActivity</string>
+    <string name="replace_fragment">REPLACE_TO</string> <!-- fragment之间的切换 -->
+    <string name="replace_activity">JUMP_TO</string> <!-- activity之间的切换 -->
+    <string name="login_fragment_phone">PhoneLoginFragment</string>
+    <string name="login_fragment_email">EmailLoginFragment</string>
+    <string name="login_activity_register">RegisterActivity</string>
 </resources>

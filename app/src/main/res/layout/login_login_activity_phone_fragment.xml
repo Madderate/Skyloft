@@ -9,30 +9,31 @@
     tools:context=".Activities.Login.Fragments.PhoneLoginFragment">
 
     <EditText
-        android:id="@+id/et_email"
+        android:id="@+id/et_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/et_password"
         android:layout_margin="8dp"
-        android:hint="@string/login_email_hint"
-        android:inputType="textEmailAddress" />
+        android:hint="@string/login_hint_phone"
+        android:inputType="phone"
+        android:maxLength="11" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/email_login_button"
+        android:layout_above="@id/phone_login_button"
         android:layout_margin="8dp"
-        android:hint="@string/login_password_hint"
+        android:hint="@string/login_hint_password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/email_login_button"
+        android:id="@+id/phone_login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/other_options"
         android:layout_margin="8dp"
-        android:text="@string/login"
+        android:text="@string/login_login_title"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -43,18 +44,18 @@
         android:layout_margin="8dp">
 
         <Button
-            android:id="@+id/to_login_with_phone"
+            android:id="@+id/to_login_with_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/login_phone_hint" />
+            android:text="@string/login_hint_email" />
 
         <Button
             android:id="@+id/register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/register" />
+            android:text="@string/login_register_title" />
 
     </LinearLayout>
 

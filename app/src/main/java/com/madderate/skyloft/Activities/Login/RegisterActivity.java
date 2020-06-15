@@ -26,14 +26,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.login_register_activity);
 
         registerViewModel =
                 new ViewModelProvider(RegisterActivity.this)
                         .get(RegisterViewModel.class);
 
         registerToolbar = findViewById(R.id.register_toolbar);
-        registerToolbar.setTitle(R.string.register);
+        registerToolbar.setTitle(R.string.login_register_title);
         setSupportActionBar(registerToolbar);
 
         registerButton = findViewById(R.id.register_button);
