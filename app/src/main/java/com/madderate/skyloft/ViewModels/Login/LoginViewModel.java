@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Activities.Login.CaptchaActivity;
 import com.madderate.skyloft.Utils.ActivityUtils;
+import com.madderate.skyloft.Utils.InterfaceManager;
 
 import java.util.regex.Pattern;
 
@@ -95,7 +96,15 @@ public class LoginViewModel extends ViewModel {
     public void phoneLogin(Context context) {
 
         // 测试代码
+        /*
         Log.d("LoginViewModel", "phone login");
+        AccountManager accountManager = new AccountManager();
+        accountManager.phoneLoginInter("15070922393","bushengtao16b","86");
+        */
+
+        InterfaceManager interfaceManager = new InterfaceManager("");
+        interfaceManager.refreshLoginInter();
+
 
         if (isPhoneValid && isPasswordValid) {
             ActivityUtils.jumpToActivity(context, CaptchaActivity.class);
