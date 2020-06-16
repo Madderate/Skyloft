@@ -18,7 +18,6 @@ import androidx.core.view.ViewCompat;
 
 public class StatusBarUtils {
 
-
     public static void setColor(Activity activity, @ColorInt int color, int statusBarAlpha){
         //先设置的全屏模式
         setFullScreen(activity);
@@ -63,8 +62,6 @@ public class StatusBarUtils {
         }
 
     }
-
-
 
     private static StatusBarView createTranslucentStatusBarView(Activity activity, int alpha) {
         // 绘制一个和状态栏一样高的矩形
