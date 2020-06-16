@@ -4,11 +4,11 @@
     <string name="login_username">用户名</string>
     <string name="login_login_title">登录</string>
     <string name="login_register_title">注册</string>
-    <string name="login_hint_phone">输入手机号以登录</string>
-    <string name="login_hint_email">输入邮箱以登录</string>
-    <string name="login_hint_password">输入对应密码</string>
+    <string name="login_hint_phone">输入手机号</string>
+    <string name="login_hint_email">输入邮箱</string>
+    <string name="login_hint_password">输入密码</string>
     <string name="login_register_hint_phone">输入手机号以注册</string>
-    <string name="login_register_hint_password">自己想的密码就要好好记住哦！</string>
+    <string name="login_register_hint_password">自己想的密码就要好好记住哦</string>
     <string name="login_captcha_text_view">请在下方输入验证码</string>
     <string name="login_captcha_hint_captcha">请输入验证码</string>
     <string name="login_captcha_button_text_finish">完成</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,24 +9,39 @@
     android:focusableInTouchMode="true"
     tools:context=".Activities.Login.Fragments.PhoneLoginFragment">
 
-    <EditText
-        android:id="@+id/et_phone"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_phone_login_phone_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/et_password"
+        android:layout_above="@id/et_phone_login_password_layout"
         android:layout_margin="8dp"
-        android:hint="@string/login_hint_phone"
-        android:inputType="phone"
-        android:maxLength="11" />
+        android:hint="@string/login_hint_phone">
 
-    <EditText
-        android:id="@+id/et_password"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phone_login_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:maxLength="11" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_phone_login_password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/phone_login_button"
         android:layout_margin="8dp"
         android:hint="@string/login_hint_password"
-        android:inputType="textPassword" />
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phone_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/phone_login_button"

@@ -10,16 +10,17 @@
     tools:context=".Activities.Login.Fragments.PhoneLoginFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_email"
+        android:id="@+id/et_email_login_email_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/et_password"
+        android:layout_above="@id/et_email_login_password_layout"
         android:layout_margin="8dp"
         android:hint="@string/login_hint_email"
         app:endIconMode="clear_text"
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -28,7 +29,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_password"
+        android:id="@+id/et_email_login_password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/email_login_button"
@@ -37,6 +38,7 @@
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
