@@ -1,7 +1,6 @@
-package com.madderate.skyloft.Views;
+package com.madderate.skyloft.Activities;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,15 +20,14 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.madderate.skyloft.Dialog.MsgDialog;
 import com.madderate.skyloft.R;
-import com.madderate.skyloft.Adapter.ListAdapter;
+import com.madderate.skyloft.Adapters.ListAdapter;
 import com.madderate.skyloft.Utils.StatusBarUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicSheetActivity extends AppCompatActivity {
+public class SongListActivity extends AppCompatActivity {
     String TAG = "歌单";
     private Toolbar mToolbar;
     private ImageView mHeaderBg;
@@ -47,7 +44,7 @@ public class MusicSheetActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Toast.makeText(MusicSheetActivity.this, "返回", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SongListActivity.this, "返回", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -65,16 +62,13 @@ public class MusicSheetActivity extends AppCompatActivity {
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()){
                 case R.id.Function:
-                    Toast.makeText(MusicSheetActivity.this, "更多功能", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SongListActivity.this, "更多功能", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.quick:
-                    Toast.makeText(MusicSheetActivity.this, "查询", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SongListActivity.this, "查询", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.message:
                     View view = getLayoutInflater().inflate(R.layout.sheet_msg, null);
-                    MsgDialog mMyDialog = new MsgDialog(MusicSheetActivity.this, 0, 0, view, R.style.DialogTheme);
-                    mMyDialog.setCancelable(true);
-                    mMyDialog.show();
                     break;
                 case R.id.share:
                     break;

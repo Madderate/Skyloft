@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.Activities.Login.LoginActivity;
+import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
+import com.madderate.skyloft.Models.Account;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +31,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private NavigationView navView;
     private View navHeader;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +40,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         drawerLayout = findViewById(R.id.main_activity_drawer_layout);
 
         mainToolbar = findViewById(R.id.main_toolbar);
+        // 暂时给这个Activity的标题设为"为你推荐"
         mainToolbar.setTitle(R.string.main_nav_recommend);
         setSupportActionBar(mainToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         }
+
+        RecommendFragment fragment = new RecommendFragment();
+        ActivityUtils.replaceFragment(getSupportFragmentManager(), R.id.main_activity_fragment_container, fragment);
 
         navView = findViewById(R.id.main_activity_nav_view);
         navView.setCheckedItem(R.id.nav_recommend);
@@ -47,13 +58,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         // 得到NavigationView的头部
         navHeader = navView.getHeaderView(0);
         navHeader.setOnClickListener(this);
+        // 使用Glide给avatar区域添加图片
+        Glide.with(MainActivity.this)
+                .load(R.mipmap.avatar)
+                .into((ImageView) navHeader.getRootView().findViewById(R.id.avatar));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nav_header:
-                ActivityUtils.jumpToActivity(MainActivity.this, LoginActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
+                Account account = Account.getInstance();
+                if (account.getAccountInfo() == null)
+                    ActivityUtils.jumpToActivity(MainActivity.this, LoginActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
         }
     }

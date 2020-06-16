@@ -104,60 +104,61 @@ public class UserInfo {
     public void setBindings(ArrayList<Binding> bindings) {
         this.bindings = bindings;
     }
-}
-class UserPoint{
-    private int userId;
-    private int balance;
-    private int updateTime;
-    private int version;
-    private int status;
-    private int blockBalance;
 
-    public int getUserId() {
-        return userId;
-    }
+    static class UserPoint{
+        private int userId;
+        private int balance;
+        private int updateTime;
+        private int version;
+        private int status;
+        private int blockBalance;
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+        public int getUserId() {
+            return userId;
+        }
 
-    public int getBalance() {
-        return balance;
-    }
+        public void setUserId(int userId) {
+            this.userId = userId;
+        }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
+        public int getBalance() {
+            return balance;
+        }
 
-    public int getUpdateTime() {
-        return updateTime;
-    }
+        public void setBalance(int balance) {
+            this.balance = balance;
+        }
 
-    public void setUpdateTime(int updateTime) {
-        this.updateTime = updateTime;
-    }
+        public int getUpdateTime() {
+            return updateTime;
+        }
 
-    public int getVersion() {
-        return version;
-    }
+        public void setUpdateTime(int updateTime) {
+            this.updateTime = updateTime;
+        }
 
-    public void setVersion(int version) {
-        this.version = version;
-    }
+        public int getVersion() {
+            return version;
+        }
 
-    public int getStatus() {
-        return status;
-    }
+        public void setVersion(int version) {
+            this.version = version;
+        }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+        public int getStatus() {
+            return status;
+        }
 
-    public int getBlockBalance() {
-        return blockBalance;
-    }
+        public void setStatus(int status) {
+            this.status = status;
+        }
 
-    public void setBlockBalance(int blockBalance) {
-        this.blockBalance = blockBalance;
+        public int getBlockBalance() {
+            return blockBalance;
+        }
+
+        public void setBlockBalance(int blockBalance) {
+            this.blockBalance = blockBalance;
+        }
     }
 }

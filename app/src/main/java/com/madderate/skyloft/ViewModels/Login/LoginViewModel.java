@@ -6,9 +6,11 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.madderate.skyloft.Activities.Login.CaptchaActivity;
 import com.madderate.skyloft.Activities.Main.MainActivity;
+import com.madderate.skyloft.Models.Account;
+import com.madderate.skyloft.Models.AccountInfo;
 import com.madderate.skyloft.Utils.ActivityUtils;
+import com.madderate.skyloft.Utils.EncodeUtil;
 import com.madderate.skyloft.Utils.InterfaceManager;
 
 import java.util.regex.Pattern;
@@ -104,11 +106,15 @@ public class LoginViewModel extends ViewModel {
         accountManager.phoneLoginInter("15070922393","bushengtao16b","86");
         */
 
-//        InterfaceManager interfaceManager = new InterfaceManager("");
-//        interfaceManager.refreshLoginInter();
-
+        InterfaceManager manager = new InterfaceManager();
 
         if (isPhoneValid && isPasswordValid) {
+
+            AccountInfo accountInfo = manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
+
+            Account user = Account.getInstance();
+            user.setAccountInfo(accountInfo);
+
             ActivityUtils.jumpToActivity(
                     context,
                     MainActivity.class,

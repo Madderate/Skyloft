@@ -1,4 +1,4 @@
-package com.madderate.skyloft.Adapter;
+package com.madderate.skyloft.Adapters;
 
 import androidx.recyclerview.widget.RecyclerView;
 

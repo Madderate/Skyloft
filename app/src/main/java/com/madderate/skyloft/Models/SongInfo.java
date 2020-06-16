@@ -93,99 +93,100 @@ public class SongInfo {
     public int getChooseCodeRate() {
         return chooseCodeRate;
     }
-}
-class Song{
-    private int id;
-    // 相应码率的歌曲url:/song/url?id=33894312&br=320000
-    private String url;
-    private int br;
-    private int size;
-    private String level;
-    private String encodeType;
 
-    public int getId() {
-        return id;
+    static class Song{
+        private int id;
+        // 相应码率的歌曲url:/song/url?id=33894312&br=320000
+        private String url;
+        private int br;
+        private int size;
+        private String level;
+        private String encodeType;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public int getBr() {
+            return br;
+        }
+
+        public void setBr(int br) {
+            this.br = br;
+        }
+
+        public int getSize() {
+            return size;
+        }
+
+        public void setSize(int size) {
+            this.size = size;
+        }
+
+        public String getLevel() {
+            return level;
+        }
+
+        public void setLevel(String level) {
+            this.level = level;
+        }
+
+        public String getEncodeType() {
+            return encodeType;
+        }
+
+        public void setEncodeType(String encodeType) {
+            this.encodeType = encodeType;
+        }
     }
+    static class SongPic{
+        private String name;
+        private int id;
+        private String url;
+        private SongPic al;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public String getName() {
+            return name;
+        }
 
-    public String getUrl() {
-        return url;
-    }
+        public void setName(String name) {
+            this.name = name;
+        }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public int getBr() {
-        return br;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setBr(int br) {
-        this.br = br;
-    }
+        public String getUrl() {
+            return url;
+        }
 
-    public int getSize() {
-        return size;
-    }
+        public void setUrl(String url) {
+            this.url = url;
+        }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
+        public SongPic getAl() {
+            return al;
+        }
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getEncodeType() {
-        return encodeType;
-    }
-
-    public void setEncodeType(String encodeType) {
-        this.encodeType = encodeType;
-    }
-}
-class SongPic{
-    private String name;
-    private int id;
-    private String url;
-    private SongPic al;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public SongPic getAl() {
-        return al;
-    }
-
-    public void setAl(SongPic al) {
-        this.al = al;
+        public void setAl(SongPic al) {
+            this.al = al;
+        }
     }
 }
