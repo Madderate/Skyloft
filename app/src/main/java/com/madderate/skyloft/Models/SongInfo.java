@@ -93,19 +93,21 @@ public class SongInfo {
     public int getChooseCodeRate() {
         return chooseCodeRate;
     }
-}
-class Song{
-    private int id;
-    // 相应码率的歌曲url:/song/url?id=33894312&br=320000
-    private String url;
-    private int br;
-    private int size;
-    private String level;
-    private String encodeType;
-}
-class SongPic{
-    private String name;
-    private int id;
-    private String url;
-    private SongPic al;
+
+    static class Song{
+        private int id;
+        // 相应码率的歌曲url:/song/url?id=33894312&br=320000
+        private String url;
+        private int br;
+        private int size;
+        private String level;
+        private String encodeType;
+    }
+    static class SongPic{
+        private String name;
+        private int id;
+        private String url;
+        private SongPic al;
+    }
+
 }
