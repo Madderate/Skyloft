@@ -12,12 +12,7 @@
             android:id="@+id/nav_recommend"
             android:icon="@drawable/main_nav_recommend"
             android:title="@string/main_nav_recommend" />
-
-        <item
-            android:id="@+id/nav_glance"
-            android:icon="@drawable/main_nav_glance"
-            android:title="@string/main_nav_glance" />
-
+        
         <item
             android:id="@+id/nav_radio"
             android:icon="@drawable/main_nav_radio"

@@ -23,6 +23,12 @@
     <string name="main_nav_temp_user_intro">登录以获得为您精选的内容推荐</string>
     <string name="main_menu_search">搜索</string>
     <string name="main_menu_profile">个人信息</string>
+    <string name="main_recommend_fragment_recent_played">最近播放</string>
+    <string name="main_recommend_fragment_popular">流行音乐</string>
+    <string name="main_recommend_fragment_singer_recommend_0">如果你喜欢Justin Bieber</string>
+    <string name="main_recommend_fragment_language_recommend">英语推荐</string>
+    <string name="main_recommend_fragment_singer_recommend_1">如果你喜欢鱼韵</string>
+    <string name="main_view_all">显示全部</string>
 
     <string name="play_music">播放音乐</string>
     <string name="play_list">随机播放</string>
