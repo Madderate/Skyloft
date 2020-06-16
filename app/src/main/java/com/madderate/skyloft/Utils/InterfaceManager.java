@@ -2,24 +2,17 @@ package com.madderate.skyloft.Utils;
 
 import com.google.gson.Gson;
 import com.madderate.skyloft.Models.AccountInfo;
+import com.madderate.skyloft.Models.SongInfo;
 import com.madderate.skyloft.Models.StateCode;
+import com.madderate.skyloft.Models.UserInfo;
+import com.madderate.skyloft.Models.Playlist;
+import com.madderate.skyloft.Models.UserSubCount;
 
 // 需要使用cookie
 public class InterfaceManager {
-    private String cookie;
-
     private CommunicationManager c = new CommunicationManager();
 
     public InterfaceManager(String cookie){
-        setCookie(cookie);
-    }
-
-    public String getCookie() {
-        return cookie;
-    }
-
-    public void setCookie(String cookie) {
-        this.cookie = cookie;
     }
 
     /*
@@ -86,11 +79,12 @@ public class InterfaceManager {
     }
 
     /*
-     * 初始化昵称:刚注册的账号(需登录),调用此接口,可初始化昵称
+     * 需登录
+     * 初始化昵称，刚注册的账号,调用此接口,可初始化昵称
      * 返回StateCode对象
      * 需要参数：昵称 String
      */
-    public StateCode initNicknameInter(String nickname){
+    public StateCode initNicknameInter(String nickname,String cookie){
         return getStateCode("/activate/init/profile","nickname="+nickname+"&cookie="+cookie);
     }
 
@@ -109,6 +103,29 @@ public class InterfaceManager {
     public StateCode logoutInter(){
         return getStateCode("/login/logout","");
     }
+
+    /*
+     * 需登录
+     * 获取id对应的歌单
+     * 参数：id String，cookie String
+     * 返回Playlist对象
+     */
+    public Playlist getPlayListById(String id, String cookie){
+
+        return getPlayList("/playlist/detail","id="+id);
+    }
+
+    /*
+     * 需登录
+     * 获取id对应的专辑
+     * 参数：id String，cookie String
+     * 返回Playlist对象
+     */
+    public Playlist getAlbumById(String id, String cookie){
+
+        return getPlayList("/album","id="+id);
+    }
+
 
     /*
      * 封装，获取账户信息
@@ -150,5 +167,85 @@ public class InterfaceManager {
             }
         }
         return stateCode;
+    }
+
+    /*
+     * 封装获取歌单信息，需要确保url+body正确
+     */
+    public Playlist getPlayList(String url, String body){
+        c.setInterUrl(url);
+        c.setBody(body);
+        c.httpGetter();
+        Playlist userPlaylist;
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                Gson gson = new Gson();
+                userPlaylist = gson.fromJson(c.getText(), Playlist.class);
+                System.out.println(userPlaylist.toString());
+                break;
+            }
+        }
+        return userPlaylist;
+    }
+
+    /*
+     * 封装获取用户信息，需要确保url+body正确
+     */
+    public UserInfo getUserInfo(String url, String body){
+        c.setInterUrl(url);
+        c.setBody(body);
+        c.httpGetter();
+        UserInfo userInfo;
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                Gson gson = new Gson();
+                userInfo = gson.fromJson(c.getText(), UserInfo.class);
+                System.out.println(userInfo.toString());
+                break;
+            }
+        }
+        return userInfo;
+    }
+
+    /*
+     * 封装获取用户各种数量，需要确保url+body正确
+     */
+    public UserSubCount getUserSubCount(String url, String body){
+        c.setInterUrl(url);
+        c.setBody(body);
+        c.httpGetter();
+        UserSubCount userSubCount;
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                Gson gson = new Gson();
+                userSubCount = gson.fromJson(c.getText(), UserSubCount.class);
+                System.out.println(userSubCount.toString());
+                break;
+            }
+        }
+        return userSubCount;
+    }
+
+    /*
+     * 封装获取歌曲信息，需要确保url+body正确
+     */
+    public SongInfo getSongInfo(String url,String body){
+        c.setInterUrl(url);
+        c.setBody(body);
+        c.httpGetter();
+        SongInfo songInfo;
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                Gson gson = new Gson();
+                songInfo = gson.fromJson(c.getText(), SongInfo.class);
+                System.out.println(songInfo.toString());
+                break;
+            }
+        }
+        return songInfo;
     }
 }
