@@ -12,17 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.madderate.skyloft.Models.UserPlaylist;
+import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.R;
 
 import java.util.List;
 
 public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumbnailAdapter.ViewHolder> {
 
-    private List<UserPlaylist> albums;
+    private List<Playlist> albums;
     private Context context;
 
-    public SongListThumbnailAdapter(List<UserPlaylist> albums, Context context) {
+    public SongListThumbnailAdapter(List<Playlist> albums, Context context) {
         this.albums = albums;
         this.context = context;
     }
@@ -39,7 +39,7 @@ public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumb
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        UserPlaylist album = albums.get(position);
+        Playlist album = albums.get(position);
         Uri coverUri = Uri.parse(album.getCoverImgUrl());
         Glide.with(context).load(coverUri).into(holder.cover);
         holder.name.setText(album.getName());

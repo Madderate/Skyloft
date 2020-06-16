@@ -18,6 +18,7 @@ import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.Activities.Login.LoginActivity;
 import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
 import com.madderate.skyloft.Models.Account;
+import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 
@@ -68,8 +69,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nav_header:
-                Account account = Account.getInstance();
-                if (account.getAccountInfo() == null)
+                User user = User.getInstance();
+                if (user.getAccount() == null)
                     ActivityUtils.jumpToActivity(MainActivity.this, LoginActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
         }

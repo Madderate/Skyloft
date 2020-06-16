@@ -1,18 +1,18 @@
 package com.madderate.skyloft.Utils;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
-import com.madderate.skyloft.Models.AccountInfo;
+import com.madderate.skyloft.Models.Account;
+import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Models.StateCode;
+import com.madderate.skyloft.Models.UserInfo;
 
 // 需要使用cookie
 public class InterfaceManager {
     private String cookie;
 
-    private CommunicationManager c = new CommunicationManager();
-
-    public InterfaceManager(String cookie){
-        setCookie(cookie);
-    }
+    private CommunicationManager c;
 
     public String getCookie() {
         return cookie;
@@ -27,8 +27,8 @@ public class InterfaceManager {
      * 返回AccountInfo对象
      * 需要参数：手机号 String，密码 String，国家区号 String
      */
-    public AccountInfo loginByPhone(String phone, String password, String countrycode){
-        return getAccountInfo("/login/cellphone","phone="+phone+"&password="+password+"&countrycode="+countrycode);
+    public User loginByPhone(String phone, String password, String countrycode){
+        return getUser("/login/cellphone","phone="+phone+"&password="+password+"&countrycode="+countrycode);
     }
 
     /*
@@ -36,8 +36,8 @@ public class InterfaceManager {
      * 返回AccountInfo对象
      * 需要参数：邮箱 String，密码 String
      */
-    public AccountInfo loginByEmail(String email, String password){
-        return getAccountInfo("/login/email","email="+email+"&password="+password);
+    public User loginByEmail(String email, String password){
+        return getUser("/login/email","email="+email+"&password="+password);
     }
 
     /*
@@ -95,10 +95,19 @@ public class InterfaceManager {
     }
 
     /*
-     * 获取用户信息 , 歌单，收藏，mv, dj 数量:登陆后调用此接口 , 可以获取用户信息
+     * 获取用户歌单，收藏，mv, dj 数量:登陆后调用此接口 , 可以获取用户信息
      * 返回StateCode对象
      */
-    public StateCode getUserMessage(){ return getStateCode("/user/subcount",""); }
+    //
+
+    /*
+     * 获取用户详情:登陆后调用此接口 , 可以获取用户信息
+     * 返回StateCode对象
+     */
+    public UserInfo getUserMessage(String uid){
+        Log.d("INTER",uid);
+        return getUserInfoFromJson("/user/detail","uid="+uid);
+    }
 
     /*
      * 获取用户歌单:登陆后调用此接口 , 传入用户 id, 可以获取用户歌单
@@ -497,42 +506,69 @@ public class InterfaceManager {
     /*
      * 封装，获取账户信息
      */
-    public AccountInfo getAccountInfo(String url,String body){
-        AccountInfo accountInfo = new AccountInfo();
+    public User getUser(String url, String body){
+        c = new CommunicationManager();
+        User user = User.getInstance();
         c.setInterUrl(url);
         c.setBody(body);
         c.httpGetter();
         while (true){
             if(c.getText()!=null){
+                System.out.println(c.getText().toString());
                 try {
                     Gson gson = new Gson();
-                    accountInfo = gson.fromJson(c.getText(), AccountInfo.class);
+                    user = gson.fromJson(c.getText(), User.class);
+                    System.out.println(user.toString());
                 }catch (Exception e){
                     e.printStackTrace();
                 }
                 break;
             }
         }
-        return accountInfo;
+        return user;
     }
 
     /*
      * 封装，获取状态码信息
      */
     public StateCode getStateCode(String url,String body){
+        c = new CommunicationManager();
         c.setInterUrl(url);
         c.setBody(body);
         c.httpGetter();
         StateCode stateCode;
         while (true){
             if(c.getText()!=null){
-                System.out.println(c.getText());
                 Gson gson = new Gson();
                 stateCode = gson.fromJson(c.getText(), StateCode.class);
-                // System.out.println(stateCode.toString());
                 break;
             }
         }
         return stateCode;
+    }
+
+    /*
+     * 封装
+     */
+    public UserInfo getUserInfoFromJson(String url, String body){
+        c = new CommunicationManager();
+        UserInfo userInfo = new UserInfo();
+        c.setInterUrl(url);
+        c.setBody(body);
+        c.httpGetter();
+        while (true){
+            if(c.getText()!=null){
+                try {
+                    System.out.println(1);
+                    System.out.println(c.getText());
+                    Gson gson = new Gson();
+                    userInfo = gson.fromJson(c.getText(), UserInfo.class);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+        return userInfo;
     }
 }
