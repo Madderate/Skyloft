@@ -50,6 +50,8 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
 
             // Get EditTexts
             etPhone = view.findViewById(R.id.et_phone);
+            etPassword = view.findViewById(R.id.et_password);
+
             // 监听文本输入框的变化
             etPhone.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -67,8 +69,6 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
                     loginViewModel.setPhoneNumber(s.toString());
                 }
             });
-
-            etPassword = view.findViewById(R.id.et_password);
             etPassword.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,6 +85,9 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
                     loginViewModel.setPassword(s.toString());
                 }
             });
+
+            etPhone.setText("15070922393");
+            etPassword.setText("bushengtao16b");
         } catch (Exception e) {
             e.printStackTrace();
         }

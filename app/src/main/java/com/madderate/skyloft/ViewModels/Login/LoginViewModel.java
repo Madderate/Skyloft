@@ -1,12 +1,16 @@
 package com.madderate.skyloft.ViewModels.Login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
+import com.madderate.skyloft.Activities.Main.MainActivity;
 import com.madderate.skyloft.Models.Account;
 import com.madderate.skyloft.Models.User;
+import com.madderate.skyloft.Utils.ActivityUtils;
+import com.madderate.skyloft.Utils.EncodeUtil;
 import com.madderate.skyloft.Utils.InterfaceManager;
 
 import java.util.regex.Pattern;
@@ -95,27 +99,17 @@ public class LoginViewModel extends ViewModel {
 
     public void phoneLogin(Context context) {
 
-        /* 测试代码
-        Log.d("LoginViewModel", "phone login");
-*/
-        InterfaceManager interfaceManager = new InterfaceManager();
-
-        interfaceManager.loginByPhone("15070922393","bushengtao16b","86");
-
-        Log.d("LoginViewModel",String.valueOf(User.getInstance().getAccount().getUserName()));
-        //interfaceManager.setCookie(User.getInstance().getAccount().getCookie());
-
-        System.out.println(interfaceManager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
-
-/*
-        InterfaceManager manager = new InterfaceManager();
-
         if (isPhoneValid && isPasswordValid) {
 
-            AccountInfo accountInfo = manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
 
-            Account user = Account.getInstance();
-            user.setAccountInfo(accountInfo);
+            InterfaceManager manager = new InterfaceManager();
+            manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
+
+            Log.d("LoginViewModel",String.valueOf(User.getInstance().toString()));
+
+            User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
+
+            User user = User.getInstance();
 
             ActivityUtils.jumpToActivity(
                     context,
@@ -126,8 +120,6 @@ public class LoginViewModel extends ViewModel {
                             Intent.FLAG_ACTIVITY_NO_HISTORY
             );
         }
-
- */
     }
 
     public void emailLogin() {
