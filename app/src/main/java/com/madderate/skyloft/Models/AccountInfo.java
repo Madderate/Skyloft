@@ -16,6 +16,9 @@ public class AccountInfo{
     private long viptypeVersion;
     private boolean anonimousUser;
 
+    private String token;
+    private String cookie;
+
     public int getId() {
         return id;
     }
@@ -54,6 +57,30 @@ public class AccountInfo{
 
     public void setWhitelistAuthority(int whitelistAuthority) {
         this.whitelistAuthority = whitelistAuthority;
+    }
+
+    public boolean isAnonimousUser() {
+        return anonimousUser;
+    }
+
+    public void setAnonimousUser(boolean anonimousUser) {
+        this.anonimousUser = anonimousUser;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
     }
 
     public long getCreateTime() {

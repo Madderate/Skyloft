@@ -3,12 +3,13 @@ package com.madderate.skyloft.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserPlaylist{
+public class Playlist {
     private List<Profile> subscribers;
     private Profile creator;
+    private int id;
 
     private Object artists;
-    private Object tracks;
+    private ArrayList<SongInfo> tracks;
     private Object updateFrequency;
 
     private String backgroundCoverUrl;
@@ -46,6 +47,14 @@ public class UserPlaylist{
     private int playCount;
     private int status;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public List<Profile> getSubscribers() {
         return subscribers;
     }
@@ -70,11 +79,11 @@ public class UserPlaylist{
         this.artists = artists;
     }
 
-    public Object getTracks() {
+    public ArrayList<SongInfo> getTracks() {
         return tracks;
     }
 
-    public void setTracks(Object tracks) {
+    public void setTracks(ArrayList<SongInfo> tracks) {
         this.tracks = tracks;
     }
 

@@ -5,6 +5,20 @@ import java.util.ArrayList;
 public class Account {
     private int loginType;
     private int loginState;
+    private volatile static Account account;
+
+    private Account() {}
+
+    public static Account getInstance() {
+        if (account == null) {
+            synchronized (Account.class) {
+                if (account == null) {
+                    account = new Account();
+                }
+            }
+        }
+        return account;
+    }
 
     // 账号信息
     private AccountInfo accountInfo;
@@ -13,18 +27,16 @@ public class Account {
     // 用户各种数量
     private UserSubCount userSubCount;
     // 用户歌单信息
-    private ArrayList<UserPlaylist> playlist;
+    private ArrayList<Playlist> playlist;
     // 本周播放记录
     private ArrayList<Integer> weekData;
 
-    private String token;
-    private String cookie;
 
-    public ArrayList<UserPlaylist> getUserPlaylist() {
+    public ArrayList<Playlist> getUserPlaylist() {
         return playlist;
     }
 
-    public void setUserPlaylist(ArrayList<UserPlaylist> playlist) {
+    public void setUserPlaylist(ArrayList<Playlist> playlist) {
         this.playlist = playlist;
     }
 
@@ -75,22 +87,6 @@ public class Account {
 
     public void setAccount(AccountInfo accountInfo) {
         this.accountInfo = accountInfo;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getCookie() {
-        return cookie;
-    }
-
-    public void setCookie(String cookie) {
-        this.cookie = cookie;
     }
 
 }
