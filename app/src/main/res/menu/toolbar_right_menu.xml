@@ -5,7 +5,7 @@
     <item
         android:id="@+id/quick"
         android:title="查询"
-        android:icon="@mipmap/quick"
+        android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom"
         />
     <item

@@ -103,7 +103,7 @@ public class LoginViewModel extends ViewModel {
         interfaceManager.loginByPhone("15070922393","bushengtao16b","86");
 
         Log.d("LoginViewModel",String.valueOf(User.getInstance().getAccount().getUserName()));
-        interfaceManager.setCookie(User.getInstance().getAccount().getCookie());
+        //interfaceManager.setCookie(User.getInstance().getAccount().getCookie());
 
         System.out.println(interfaceManager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
 

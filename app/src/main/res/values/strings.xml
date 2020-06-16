@@ -21,7 +21,7 @@
     <string name="main_nav_radio">电台</string>
     <string name="main_nav_temp_user_name">点击登录</string>
     <string name="main_nav_temp_user_intro">登录以获得为您精选的内容推荐</string>
-    <string name="main_menu_search">搜索</string>
+    <string name="main_nav_search">搜索</string>
     <string name="main_menu_profile">个人信息</string>
     <string name="main_recommend_fragment_recent_played">最近播放</string>
     <string name="main_recommend_fragment_popular">流行音乐</string>

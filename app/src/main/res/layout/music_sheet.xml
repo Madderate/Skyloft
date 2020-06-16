@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -20,18 +20,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#3C3C3C"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:title="@string/sheet_name"
-
             android:titleTextColor="@android:color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:navigationIcon="@mipmap/navigation_back_white"
-            app:popupTheme="@style/OverflowMenuStyle"
-            />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     </FrameLayout>
 
