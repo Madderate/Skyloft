@@ -20,6 +20,7 @@ import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.Activities.Login.LoginActivity;
 import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
 import com.madderate.skyloft.Models.Account;
+import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 
@@ -37,7 +38,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private TextView userName;
     private TextView userIntro;
 
-    private Account account;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         initWidgets();
 
         // 获取一个账号实例
-        account = Account.getInstance();
+        user = User.getInstance();
 
         try {
-            if (account.getUserInfo() != null) {
+            if (user.getUserInfo() != null) {
                 setAvatar();        // 设置头像
                 setUserName();      // 设置用户名
                 setUserIntro();     // 设置签名
@@ -64,10 +65,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void setAvatar() throws NullPointerException {
-        if (account.getUserInfo().getProfile() == null
-                || account.getUserInfo().getProfile().getAvatarUrl() == null)
+        if (user.getUserInfo().getProfile() == null
+                || user.getUserInfo().getProfile().getAvatarUrl() == null)
             throw new NullPointerException();
-        String userAvatarUrl = account.getUserInfo().getProfile().getAvatarUrl();
+        String userAvatarUrl = user.getUserInfo().getProfile().getAvatarUrl();
         Uri userAvatarUri = Uri.parse(userAvatarUrl);
         // 使用Glide给avatar区域添加占位图
         Glide.with(MainActivity.this)
@@ -78,18 +79,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void setUserName() throws NullPointerException {
-        if (account.getUserInfo().getProfile() == null
-                || account.getUserInfo().getProfile().getNickname() == null)
+        if (user.getUserInfo().getProfile() == null
+                || user.getUserInfo().getProfile().getNickname() == null)
             throw new NullPointerException();
-        String name = account.getUserInfo().getProfile().getNickname();
+        String name = user.getUserInfo().getProfile().getNickname();
         userName.setText(name);
     }
 
     private void setUserIntro() {
-        if (account.getUserInfo().getProfile() == null
-                || account.getUserInfo().getProfile().getSignature() == null)
+        if (user.getUserInfo().getProfile() == null
+                || user.getUserInfo().getProfile().getSignature() == null)
             throw new NullPointerException();
-        String signature = account.getUserInfo().getProfile().getSignature();
+        String signature = user.getUserInfo().getProfile().getSignature();
         userIntro.setText(signature);
     }
 
@@ -129,8 +130,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nav_header:
-                account = Account.getInstance();
-                if (account.getAccountInfo() == null)
+                user = User.getInstance();
+                if (user.getAccount() == null)
                     ActivityUtils.jumpToActivity(MainActivity.this, LoginActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
         }

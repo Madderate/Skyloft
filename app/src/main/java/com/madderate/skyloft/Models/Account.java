@@ -1,92 +1,158 @@
 package com.madderate.skyloft.Models;
 
-import java.util.ArrayList;
-
 public class Account {
-    private int loginType;
-    private int loginState;
-    private volatile static Account account;
+    private int id;
+    private String userName;
+    private int type;
+    private int status;
+    private int whitelistAuthority;
+    private long createTime;
+    private String salt;
+    private int tokenVersion;
+    private int ban;
+    private int baoyueVersion;
+    private int donateVersion;
+    private int vipType;
+    private long viptypeVersion;
+    private boolean anonimousUser;
 
-    private Account() {}
-
-    public static Account getInstance() {
-        if (account == null) {
-            synchronized (Account.class) {
-                if (account == null) {
-                    account = new Account();
-                }
-            }
-        }
-        return account;
+    public int getId() {
+        return id;
     }
 
-    // 账号信息
-    private AccountInfo accountInfo;
-    // 用户信息
-    private UserInfo userInfo;
-    // 用户各种数量
-    private UserSubCount userSubCount;
-    // 用户歌单信息
-    private ArrayList<Playlist> playlist;
-    // 本周播放记录
-    private ArrayList<Integer> weekData;
-
-
-    public ArrayList<Playlist> getUserPlaylist() {
-        return playlist;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setUserPlaylist(ArrayList<Playlist> playlist) {
-        this.playlist = playlist;
+    public String getUserName() {
+        return userName;
     }
 
-
-    public AccountInfo getAccountInfo() {
-        return accountInfo;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public void setAccountInfo(AccountInfo accountInfo) {
-        this.accountInfo = accountInfo;
+    public int getType() {
+        return type;
     }
 
-    public UserInfo getUserInfo() {
-        return userInfo;
+    public void setType(int type) {
+        this.type = type;
     }
 
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
+    public int getStatus() {
+        return status;
     }
 
-    public UserSubCount getUserSubCount() {
-        return userSubCount;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public void setUserSubCount(UserSubCount userSubCount) {
-        this.userSubCount = userSubCount;
+    public int getWhitelistAuthority() {
+        return whitelistAuthority;
     }
 
-    public int getLoginType() {
-        return loginType;
+    public void setWhitelistAuthority(int whitelistAuthority) {
+        this.whitelistAuthority = whitelistAuthority;
     }
 
-    public void setLoginType(int loginType) {
-        this.loginType = loginType;
+    public boolean isAnonimousUser() {
+        return anonimousUser;
     }
 
-    public int getLoginState() {
-        return loginState;
+    public void setAnonimousUser(boolean anonimousUser) {
+        this.anonimousUser = anonimousUser;
     }
 
-    public void setLoginState(int loginState) {
-        this.loginState = loginState;
+    public long getCreateTime() {
+        return createTime;
     }
 
-    public AccountInfo getAccount() {
-        return accountInfo;
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
     }
 
-    public void setAccount(AccountInfo accountInfo) {
-        this.accountInfo = accountInfo;
+    public String getSalt() {
+        return salt;
     }
 
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public int getTokenVersion() {
+        return tokenVersion;
+    }
+
+    public void setTokenVersion(int tokenVersion) {
+        this.tokenVersion = tokenVersion;
+    }
+
+    public int getBan() {
+        return ban;
+    }
+
+    public void setBan(int ban) {
+        this.ban = ban;
+    }
+
+    public int getBaoyueVersion() {
+        return baoyueVersion;
+    }
+
+    public void setBaoyueVersion(int baoyueVersion) {
+        this.baoyueVersion = baoyueVersion;
+    }
+
+    public int getDonateVersion() {
+        return donateVersion;
+    }
+
+    public void setDonateVersion(int donateVersion) {
+        this.donateVersion = donateVersion;
+    }
+
+    public int getVipType() {
+        return vipType;
+    }
+
+    public void setVipType(int vipType) {
+        this.vipType = vipType;
+    }
+
+    public long getViptypeVersion() {
+        return viptypeVersion;
+    }
+
+    public void setViptypeVersion(long viptypeVersion) {
+        this.viptypeVersion = viptypeVersion;
+    }
+
+    public boolean getAnonimousUser() {
+        return anonimousUser;
+    }
+
+    public void setAnonimousUser(Boolean anonimousUser) {
+        this.anonimousUser = anonimousUser;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", whitelistAuthority=" + whitelistAuthority +
+                ", createTime=" + createTime +
+                ", salt='" + salt + '\'' +
+                ", tokenVersion=" + tokenVersion +
+                ", ban=" + ban +
+                ", baoyueVersion=" + baoyueVersion +
+                ", donateVersion=" + donateVersion +
+                ", vipType=" + vipType +
+                ", viptypeVersion=" + viptypeVersion +
+                ", anonimousUser=" + anonimousUser +
+                '}';
+    }
 }
