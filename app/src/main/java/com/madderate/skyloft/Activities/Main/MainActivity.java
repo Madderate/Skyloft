@@ -1,11 +1,13 @@
 package com.madderate.skyloft.Activities.Main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -31,10 +33,81 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private NavigationView navView;
     private View navHeader;
 
+    private CircleImageView avatar;
+    private TextView userName;
+    private TextView userIntro;
+
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initLayout();
+        initWidgets();
+
+        // 获取一个账号实例
+        account = Account.getInstance();
+
+        try {
+            if (account.getUserInfo() != null) {
+                setAvatar();        // 设置头像
+                setUserName();      // 设置用户名
+                setUserIntro();     // 设置签名
+            } else {
+                Glide.with(MainActivity.this)
+                        .load(R.mipmap.avatar)
+                        .into((ImageView) avatar);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setAvatar() throws NullPointerException {
+        if (account.getUserInfo().getProfile() == null
+                || account.getUserInfo().getProfile().getAvatarUrl() == null)
+            throw new NullPointerException();
+        String userAvatarUrl = account.getUserInfo().getProfile().getAvatarUrl();
+        Uri userAvatarUri = Uri.parse(userAvatarUrl);
+        // 使用Glide给avatar区域添加占位图
+        Glide.with(MainActivity.this)
+                .load(userAvatarUri)
+                .placeholder(R.mipmap.avatar)
+                .error(R.mipmap.avatar)
+                .into((ImageView) avatar);
+    }
+
+    private void setUserName() throws NullPointerException {
+        if (account.getUserInfo().getProfile() == null
+                || account.getUserInfo().getProfile().getNickname() == null)
+            throw new NullPointerException();
+        String name = account.getUserInfo().getProfile().getNickname();
+        userName.setText(name);
+    }
+
+    private void setUserIntro() {
+        if (account.getUserInfo().getProfile() == null
+                || account.getUserInfo().getProfile().getSignature() == null)
+            throw new NullPointerException();
+        String signature = account.getUserInfo().getProfile().getSignature();
+        userIntro.setText(signature);
+    }
+
+    private void initWidgets() {
+        navView = findViewById(R.id.main_activity_nav_view);
+        // 得到NavigationView的头部
+        navHeader = navView.getHeaderView(0);
+        avatar = (CircleImageView) navHeader.getRootView().findViewById(R.id.avatar);
+        userName = (TextView) navHeader.getRootView().findViewById(R.id.user_name);
+        userIntro = (TextView) navHeader.getRootView().findViewById(R.id.user_intro);
+
+        navView.setCheckedItem(R.id.nav_recommend);
+        navView.setNavigationItemSelectedListener(this);
+
+        navHeader.setOnClickListener(this);
+    }
+
+    private void initLayout() {
         setContentView(R.layout.main_main_activity);
 
         drawerLayout = findViewById(R.id.main_activity_drawer_layout);
@@ -50,25 +123,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         RecommendFragment fragment = new RecommendFragment();
         ActivityUtils.replaceFragment(getSupportFragmentManager(), R.id.main_activity_fragment_container, fragment);
-
-        navView = findViewById(R.id.main_activity_nav_view);
-        navView.setCheckedItem(R.id.nav_recommend);
-        navView.setNavigationItemSelectedListener(this);
-
-        // 得到NavigationView的头部
-        navHeader = navView.getHeaderView(0);
-        navHeader.setOnClickListener(this);
-        // 使用Glide给avatar区域添加图片
-        Glide.with(MainActivity.this)
-                .load(R.mipmap.avatar)
-                .into((ImageView) navHeader.getRootView().findViewById(R.id.avatar));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.nav_header:
-                Account account = Account.getInstance();
+                account = Account.getInstance();
                 if (account.getAccountInfo() == null)
                     ActivityUtils.jumpToActivity(MainActivity.this, LoginActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK);
                 break;
