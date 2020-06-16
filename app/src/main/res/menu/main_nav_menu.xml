@@ -12,11 +12,16 @@
             android:id="@+id/nav_recommend"
             android:icon="@drawable/main_nav_recommend"
             android:title="@string/main_nav_recommend" />
-        
+
         <item
             android:id="@+id/nav_radio"
             android:icon="@drawable/main_nav_radio"
             android:title="@string/main_nav_radio" />
+
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search"
+            android:title="@string/main_nav_search" />
     </group>
 
 </menu>
