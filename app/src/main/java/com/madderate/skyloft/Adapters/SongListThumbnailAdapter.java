@@ -1,6 +1,7 @@
 package com.madderate.skyloft.Adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.madderate.skyloft.Models.Album;
+import com.madderate.skyloft.Models.UserPlaylist;
 import com.madderate.skyloft.R;
 
 import java.util.List;
 
 public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumbnailAdapter.ViewHolder> {
 
-    private List<Album> albums;
+    private List<UserPlaylist> albums;
     private Context context;
 
-    public SongListThumbnailAdapter(List<Album> albums, Context context) {
+    public SongListThumbnailAdapter(List<UserPlaylist> albums, Context context) {
         this.albums = albums;
         this.context = context;
     }
@@ -38,10 +39,11 @@ public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumb
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Album album = albums.get(position);
-        Glide.with(context).load(album.getAvatar().getBitmap()).into(holder.cover);
+        UserPlaylist album = albums.get(position);
+        Uri coverUri = Uri.parse(album.getCoverImgUrl());
+        Glide.with(context).load(coverUri).into(holder.cover);
         holder.name.setText(album.getName());
-        holder.creator.setText(album.getArtists().get(0).getName());
+//        holder.creator.setText();
     }
 
     @Override

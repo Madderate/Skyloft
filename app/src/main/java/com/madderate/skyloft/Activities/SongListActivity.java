@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.madderate.skyloft.Dialog.MsgDialog;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Adapters.ListAdapter;
 import com.madderate.skyloft.Utils.StatusBarUtils;
@@ -70,9 +69,6 @@ public class SongListActivity extends AppCompatActivity {
                     break;
                 case R.id.message:
                     View view = getLayoutInflater().inflate(R.layout.sheet_msg, null);
-                    MsgDialog mMyDialog = new MsgDialog(SongListActivity.this, 0, 0, view, R.style.DialogTheme);
-                    mMyDialog.setCancelable(true);
-                    mMyDialog.show();
                     break;
                 case R.id.share:
                     break;

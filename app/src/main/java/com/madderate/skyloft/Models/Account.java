@@ -5,6 +5,20 @@ import java.util.ArrayList;
 public class Account {
     private int loginType;
     private int loginState;
+    private volatile static Account account;
+
+    private Account() {}
+
+    public static Account getInstance() {
+        if (account == null) {
+            synchronized (Account.class) {
+                if (account == null) {
+                    account = new Account();
+                }
+            }
+        }
+        return account;
+    }
 
     // 账号信息
     private AccountInfo accountInfo;
