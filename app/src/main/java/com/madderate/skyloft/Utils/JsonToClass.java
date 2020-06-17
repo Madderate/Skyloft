@@ -8,6 +8,7 @@ import com.madderate.skyloft.Models.Settings;
 import com.madderate.skyloft.Models.StateCode;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Models.UserInfo;
+import com.madderate.skyloft.Result.UserPlayRecord;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,69 @@ public class JsonToClass {
             }
         }
     }
+    /*
+     * 获取歌曲信息结果
+     */
+    private static class MusicInfoResult{
+        ArrayList<MusicInfo> result;
+
+        public ArrayList<MusicInfo> getResult() {
+            return result;
+        }
+
+        public void setResult(ArrayList<MusicInfo> result) {
+            this.result = result;
+        }
+    }
+    public ArrayList<MusicInfo> getMusicInfoResult(String url, String body){
+        communicateToSever(url,body);
+        ArrayList<MusicInfo> musicInfo = new ArrayList<>();
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                try {
+                    Gson gson = new Gson();
+                    MusicInfoResult musicInfoResult = gson.fromJson(c.getText(), MusicInfoResult.class);
+                    musicInfo = musicInfoResult.result;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return musicInfo;
+            }
+        }
+    }
+
+    /*
+     * 获取新歌曲信息结果
+     */
+    private static class UserPlayRecordResult{
+        ArrayList<UserPlayRecord> result;
+
+        public ArrayList<UserPlayRecord> getResult() {
+            return result;
+        }
+
+        public void setResult(ArrayList<UserPlayRecord> result) {
+            this.result = result;
+        }
+    }
+    public ArrayList<UserPlayRecord> getUserPlayRecordResult(String url, String body){
+        communicateToSever(url,body);
+        ArrayList<UserPlayRecord> userPlayRecords = new ArrayList<>();
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                try {
+                    Gson gson = new Gson();
+                    UserPlayRecordResult userPlayRecordResult = gson.fromJson(c.getText(), UserPlayRecordResult.class);
+                    userPlayRecords = userPlayRecordResult.result;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return userPlayRecords;
+            }
+        }
+    }
 
     /*
      * 获取歌曲信息
@@ -63,7 +127,6 @@ public class JsonToClass {
             }
         }
     }
-
 
     /*
      * 获取歌单结果

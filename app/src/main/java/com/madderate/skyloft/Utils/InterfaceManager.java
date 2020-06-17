@@ -2,14 +2,13 @@ package com.madderate.skyloft.Utils;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.Settings;
-import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Models.StateCode;
 import com.madderate.skyloft.Models.UserInfo;
+import com.madderate.skyloft.Result.UserPlayRecord;
 
 import java.util.ArrayList;
 
@@ -135,8 +134,8 @@ public class InterfaceManager {
      * 需要参数：用户uid String,记录类型type String
      * TODO
      */
-    public StateCode getUserPlayrecord(String uid,String type){
-        return jsonToClass.getStateCode("/user/record","uid="+uid+"&type="+type);
+    public ArrayList<UserPlayRecord> getUserPlayRecord(String uid, String type){
+        return jsonToClass.getUserPlayRecordResult("/","uid="+uid+"&type="+type);
     }
 
     /*
@@ -304,8 +303,8 @@ public class InterfaceManager {
      * 返回StateCode对象
      * TODO
      */
-    public StateCode personalizedNewsong(){
-        return jsonToClass.getStateCode("/personalized/newsong","");
+    public ArrayList<MusicInfo> getNewestMusic(){
+        return jsonToClass.getMusicInfoResult("/personalized/newsong","");
     }
 
     /*
