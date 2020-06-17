@@ -27,8 +27,8 @@ public class InterfaceManager {
      * 返回AccountInfo对象
      * 需要参数：手机号 String，密码 String，国家区号 String
      */
-    public User loginByPhone(String phone, String password, String countrycode){
-        return getUser("/login/cellphone","phone="+phone+"&password="+password+"&countrycode="+countrycode);
+    public void loginByPhone(String phone, String password, String countrycode){
+        getUser("/login/cellphone","phone="+phone+"&password="+password+"&countrycode="+countrycode);
     }
 
     /*
@@ -36,8 +36,8 @@ public class InterfaceManager {
      * 返回AccountInfo对象
      * 需要参数：邮箱 String，密码 String
      */
-    public User loginByEmail(String email, String password){
-        return getUser("/login/email","email="+email+"&password="+password);
+    public void loginByEmail(String email, String password){
+        getUser("/login/email","email="+email+"&password="+password);
     }
 
     /*
@@ -506,9 +506,8 @@ public class InterfaceManager {
     /*
      * 封装，获取账户信息
      */
-    public User getUser(String url, String body){
+    public void getUser(String url, String body){
         c = new CommunicationManager();
-        User user = User.getInstance();
         c.setInterUrl(url);
         c.setBody(body);
         c.httpGetter();
@@ -517,15 +516,14 @@ public class InterfaceManager {
                 System.out.println(c.getText().toString());
                 try {
                     Gson gson = new Gson();
-                    user = gson.fromJson(c.getText(), User.class);
-                    System.out.println(user.toString());
+                    User.setUser(gson.fromJson(c.getText(), User.class));
+                    System.out.println(User.getInstance().toString());
                 }catch (Exception e){
                     e.printStackTrace();
                 }
                 break;
             }
         }
-        return user;
     }
 
     /*
@@ -559,7 +557,6 @@ public class InterfaceManager {
         while (true){
             if(c.getText()!=null){
                 try {
-                    System.out.println(1);
                     System.out.println(c.getText());
                     Gson gson = new Gson();
                     userInfo = gson.fromJson(c.getText(), UserInfo.class);
