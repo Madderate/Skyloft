@@ -55,9 +55,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 setUserName();      // 设置用户名
                 setUserIntro();     // 设置签名
             } else {
-                Glide.with(MainActivity.this)
-                        .load(R.mipmap.avatar)
-                        .into((ImageView) avatar);
+                ActivityUtils.jumpToActivity(
+                        MainActivity.this,
+                        LoginActivity.class,
+                        Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,6 +100,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initWidgets() {
+        drawerLayout = findViewById(R.id.main_activity_drawer_layout);
+
         navView = findViewById(R.id.main_activity_nav_view);
         // 得到NavigationView的头部
         navHeader = navView.getHeaderView(0);
@@ -111,7 +118,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initLayout() {
         setContentView(R.layout.main_main_activity);
 
-        drawerLayout = findViewById(R.id.main_activity_drawer_layout);
 
         mainToolbar = findViewById(R.id.main_toolbar);
         // 暂时给这个Activity的标题设为"为你推荐"

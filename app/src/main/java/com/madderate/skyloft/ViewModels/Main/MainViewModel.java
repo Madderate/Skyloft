@@ -16,9 +16,11 @@ public class MainViewModel extends ViewModel {
     private ArrayList<PlaylistResult> recommendPlaylist;
     private ArrayList<PlaylistResult> latestAlbum;
 
+//    private Runnable
+
     public void getMainData(){
         InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
-        recentPlayed = manager.getPersonalizedPlaylist("50");
+        recommendPlaylist = manager.getPersonalizedPlaylist("50");
         latestAlbum = manager.getNewestAlbum();
         popular = manager.getNewestAlbum();
     }
