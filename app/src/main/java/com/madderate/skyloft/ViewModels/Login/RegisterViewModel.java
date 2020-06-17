@@ -30,10 +30,20 @@ public class RegisterViewModel extends ViewModel {
     }
     public void setPassword(String password) {
         this.password = password;
+        if (this.password.length() >= 6 && this.password.length() <= 16) {
+            isPhoneValid = true;
+        } else {
+            isPhoneValid = false;
+        }
     }
 
     private boolean isPhoneValid = false;
+    private boolean isPasswordValid = false;
     private boolean isFinished = false;
+
+    public boolean isPasswordValid() {
+        return isPasswordValid;
+    }
 
     public boolean isPhoneValid() {
         return isPhoneValid;

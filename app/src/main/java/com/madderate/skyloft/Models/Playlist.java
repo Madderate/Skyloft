@@ -9,7 +9,7 @@ public class Playlist {
     private int id;
 
     private Object artists;
-    private ArrayList<SongInfo> tracks;
+    private ArrayList<MusicInfo> tracks;
     private Object updateFrequency;
 
     private String backgroundCoverUrl;
@@ -79,11 +79,11 @@ public class Playlist {
         this.artists = artists;
     }
 
-    public ArrayList<SongInfo> getTracks() {
+    public ArrayList<MusicInfo> getTracks() {
         return tracks;
     }
 
-    public void setTracks(ArrayList<SongInfo> tracks) {
+    public void setTracks(ArrayList<MusicInfo> tracks) {
         this.tracks = tracks;
     }
 

@@ -11,8 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.ViewModels.Login.LoginViewModel;
@@ -25,8 +26,10 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
     private Button toLoginWithPhone;
     private Button register;
 
-    private EditText etEmail;
-    private EditText etPassword;
+    private TextInputLayout etEmailLayout;
+    private TextInputLayout etPasswordLayout;
+    private TextInputEditText etEmail;
+    private TextInputEditText etPassword;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,57 +41,80 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
         try {
             if (getActivity() != null)
                 loginViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
-
-            // Get buttons
-            emailLoginButton = view.findViewById(R.id.email_login_button);
-            toLoginWithPhone = view.findViewById(R.id.to_login_with_phone);
-            register = view.findViewById(R.id.register);
-            // Set onClick listener
-            emailLoginButton.setOnClickListener(this);
-            toLoginWithPhone.setOnClickListener(this);
-            register.setOnClickListener(this);
-
-            // Get EditTexts
-            etEmail = view.findViewById(R.id.et_email);
-            // 监听文本输入框的变化
-            etEmail.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    loginViewModel.setEmail(s.toString());
-                }
-            });
-
-            etPassword = view.findViewById(R.id.et_password);
-            etPassword.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    loginViewModel.setPassword(s.toString());
-                }
-            });
+            initWidgets(view);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return view;
+    }
+
+    private void initWidgets(View view) throws NullPointerException {
+        if (view == null) {
+            throw new NullPointerException();
+        }
+        // Get buttons
+        emailLoginButton = view.findViewById(R.id.email_login_button);
+        toLoginWithPhone = view.findViewById(R.id.to_login_with_phone);
+        register = view.findViewById(R.id.register);
+        // Set onClick listener
+        emailLoginButton.setOnClickListener(this);
+        toLoginWithPhone.setOnClickListener(this);
+        register.setOnClickListener(this);
+
+        // Get EditTexts
+        etEmailLayout = view.findViewById(R.id.et_email_login_email_layout);
+        etPasswordLayout = view.findViewById(R.id.et_email_login_password_layout);
+        etEmail = view.findViewById(R.id.et_email_login_email);
+        etPassword = view.findViewById(R.id.et_email_login_password);
+
+        setTextWatcher();
+    }
+
+    private void setTextWatcher() {
+        // 监听文本输入框的变化
+        etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                loginViewModel.setEmail(s.toString());
+                if (!loginViewModel.isEmailValid()) {
+                    etEmailLayout.setError("请输入正确的邮箱！");
+                } else {
+                    etEmailLayout.setError(null);
+                }
+            }
+        });
+
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                loginViewModel.setPassword(s.toString());
+                if (!loginViewModel.isPasswordValid()) {
+                    etPasswordLayout.setError("请输入正确密码");
+                } else {
+                    etPasswordLayout.setError(null);
+                }
+            }
+        });
     }
 
     // 页面被Destroy时，说明页面经过切换

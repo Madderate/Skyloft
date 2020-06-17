@@ -20,6 +20,14 @@ public class User {
         return user;
     }
 
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        User.user = user;
+    }
+
     // 账号信息
     private Account account;
     // 用户信息

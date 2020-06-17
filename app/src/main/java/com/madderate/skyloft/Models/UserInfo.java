@@ -108,7 +108,7 @@ public class UserInfo {
     static class UserPoint{
         private int userId;
         private int balance;
-        private int updateTime;
+        // private long updateTime;
         private int version;
         private int status;
         private int blockBalance;
@@ -128,14 +128,14 @@ public class UserInfo {
         public void setBalance(int balance) {
             this.balance = balance;
         }
-
-        public int getUpdateTime() {
+/*
+        public long getUpdateTime() {
             return updateTime;
         }
 
-        public void setUpdateTime(int updateTime) {
+        public void setUpdateTime(long updateTime) {
             this.updateTime = updateTime;
-        }
+        }*/
 
         public int getVersion() {
             return version;

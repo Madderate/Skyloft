@@ -3,7 +3,7 @@ package com.madderate.skyloft.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongInfo {
+public class MusicInfo {
     private String name;
     private int id;
     // 艺术家
