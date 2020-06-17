@@ -6,7 +6,7 @@ import java.util.List;
 public class Playlist {
     private List<Profile> subscribers;
     private Profile creator;
-    private int id;
+    private long id;
 
     private Object artists;
     private ArrayList<MusicInfo> tracks;
@@ -47,11 +47,11 @@ public class Playlist {
     private int playCount;
     private int status;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -341,5 +341,48 @@ public class Playlist {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Playlist{" +
+                "subscribers=" + subscribers +
+                ", creator=" + creator +
+                ", id=" + id +
+                ", artists=" + artists +
+                ", tracks=" + tracks +
+                ", updateFrequency=" + updateFrequency +
+                ", backgroundCoverUrl='" + backgroundCoverUrl + '\'' +
+                ", titleImageUrl='" + titleImageUrl + '\'' +
+                ", coverImgUrl='" + coverImgUrl + '\'' +
+                ", recommendInfo='" + recommendInfo + '\'' +
+                ", englishTitle='" + englishTitle + '\'' +
+                ", commentThreadId='" + commentThreadId + '\'' +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", tags=" + tags +
+                ", backgroundCoverId=" + backgroundCoverId +
+                ", titleImage=" + titleImage +
+                ", trackNumberUpdateTime=" + trackNumberUpdateTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", coverImgId=" + coverImgId +
+                ", trackUpdateTime=" + trackUpdateTime +
+                ", subscribed=" + subscribed +
+                ", highQuality=" + highQuality +
+                ", newImported=" + newImported +
+                ", anonimous=" + anonimous +
+                ", ordered=" + ordered +
+                ", adType=" + adType +
+                ", subscribedCount=" + subscribedCount +
+                ", cloudTrackCount=" + cloudTrackCount +
+                ", userId=" + userId +
+                ", totalDuration=" + totalDuration +
+                ", specialType=" + specialType +
+                ", privacy=" + privacy +
+                ", trackCount=" + trackCount +
+                ", playCount=" + playCount +
+                ", status=" + status +
+                '}';
     }
 }

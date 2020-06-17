@@ -99,17 +99,20 @@ public class LoginViewModel extends ViewModel {
 
     public void phoneLogin(Context context) {
 
+        InterfaceManager manager = new InterfaceManager();
+        //manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
+        manager.loginByPhone("15070922393", "bushengtao16b", "86");
+
+        //User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
+
+        //User.getInstance().setUserPlaylist(manager.getPlayList(String.valueOf(User.getInstance().getAccount().getId())));
+
+
+        Log.d("LoginViewModel",String.valueOf(manager.getPlaylistDetail("11111111").toString()));
+        /*
         if (isPhoneValid && isPasswordValid) {
 
 
-            InterfaceManager manager = new InterfaceManager();
-            manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
-
-            Log.d("LoginViewModel",String.valueOf(User.getInstance().toString()));
-
-            User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
-
-            User user = User.getInstance();
 
             ActivityUtils.jumpToActivity(
                     context,
@@ -119,7 +122,7 @@ public class LoginViewModel extends ViewModel {
                             Intent.FLAG_ACTIVITY_CLEAR_TOP |
                             Intent.FLAG_ACTIVITY_NO_HISTORY
             );
-        }
+        }*/
     }
 
     public void emailLogin() {
