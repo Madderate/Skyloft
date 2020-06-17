@@ -21,10 +21,6 @@
         <activity android:name=".Activities.Login.LoginActivity" />
         <activity android:name=".Activities.SongListActivity" />
         <activity android:name=".Activities.PlayerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <uses-library
@@ -32,6 +28,10 @@
             android:required="false" />
 
         <activity android:name=".Activities.Main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
