@@ -140,7 +140,7 @@ public class SongListActivity extends BaseActivity {
                     Toast.makeText(SongListActivity.this, "查询", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.message:
-                    View view = getLayoutInflater().inflate(R.layout.sheet_msg, null);
+                    Toast.makeText(SongListActivity.this, "撒大大", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.share:
                     break;

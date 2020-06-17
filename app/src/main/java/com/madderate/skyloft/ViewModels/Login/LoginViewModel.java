@@ -99,14 +99,17 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void phoneLogin(Context context) {
+        InterfaceManager manager = new InterfaceManager();
+        manager.loginByPhone("15070922393", "bushengtao16b", "86");
+        // manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
+
+        // User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
+
+        manager.setCookie(User.getInstance().getCookie());
+
+        Log.d("LoginViewModel",manager.getPersonalizedPlaylist("50").toString());
 
         if (isPhoneValid && isPasswordValid) {
-            InterfaceManager manager = new InterfaceManager();
-            manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
-
-            Log.d("LoginViewModel",User.getInstance().toString());
-
-            User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
 
             if (User.getInstance().getUserInfo() != null) {
                 ToastUtil.getInstance().showToast(context, R.string.login_success, Toast.LENGTH_SHORT);

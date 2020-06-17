@@ -7,6 +7,12 @@ import com.madderate.skyloft.Models.Playlist;
 import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
+    // 变量
+
+    // 日推
+
+    // 推荐
+    // 最近播放
 
     private ArrayList<Playlist> recentPlayed;
     private ArrayList<Playlist> popular;

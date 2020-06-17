@@ -60,6 +60,20 @@
     <string name="release_date">发布日期</string>
     <string name="numbers_of_songs">歌曲数量</string>
 
+    <string name="toast_while_empty_username">请输入用户名！</string>
+    <string name="toast_while_empty_phone_number">请输入电话号码！</string>
+    <string name="toast_while_empty_password">请输入密码！</string>
+    <string name="toast_while_both_username_password_empty">请输入用户名与密码！</string>
+    <string name="toast_while_both_phone_number_password_empty">请输入电话号码与密码！</string>
+    <string name="toast_while_phone_number_is_invalid">电话号码不正确！</string>
+
+    <string name="sheet_name">加油冲冲冲！</string>
+    <string name="sheet_owner_name">Apple Music</string>
+    <string name="sheet_update_time">周五更新</string>
+    <string name="sheet_add">添加</string>
+    <string name="msg_sheet">阿门阿前一棵葡萄树，阿嫩阿嫩绿地刚发芽，蜗牛背着那重重的壳呀，一步一步地往上爬，
+        阿树阿上两只黄鹂鸟，阿嘻阿嘻哈哈在笑它，葡萄成熟还早得很哪，现在上来干什么，阿黄阿黄鹂儿不要笑，等我爬上它就成熟了</string>
+
     <!-- BeforeLoginActivity相关 -->
     <!-- actions -->
     <string name="login_activity_action">com.madderate.skyloft.LOGIN</string>
@@ -70,10 +84,5 @@
     <string name="login_fragment_email">EmailLoginFragment</string>
     <string name="login_activity_register">RegisterActivity</string>
 
-    <string name="sheet_name">加油冲冲冲！</string>
-    <string name="sheet_owner_name">Apple Music</string>
-    <string name="sheet_update_time">周五更新</string>
-    <string name="sheet_add">添加</string>
-    <string name="msg_sheet">阿门阿前一棵葡萄树，阿嫩阿嫩绿地刚发芽，蜗牛背着那重重的壳呀，一步一步地往上爬，
-        阿树阿上两只黄鹂鸟，阿嘻阿嘻哈哈在笑它，葡萄成熟还早得很哪，现在上来干什么，阿黄阿黄鹂儿不要笑，等我爬上它就成熟了</string>
+
 </resources>
