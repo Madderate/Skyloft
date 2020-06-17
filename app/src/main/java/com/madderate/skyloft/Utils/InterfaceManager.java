@@ -21,6 +21,13 @@ public class InterfaceManager {
     public String getCookie() {
         return cookie;
     }
+    public InterfaceManager(){
+
+    }
+
+    public InterfaceManager(String cookie){
+        this.cookie = cookie;
+    }
 
     public void setCookie(String cookie) {
         this.cookie = cookie;
@@ -380,6 +387,13 @@ public class InterfaceManager {
      */
     public StateCode albumSubscribe(String id,String t){
         return jsonToClass.getStateCode("/album/sub","id="+id+"&t="+t);
+    }
+
+    /*
+     * 获取最新专辑
+     */
+    public ArrayList<PlaylistResult> getNewestAlbum(){
+        return jsonToClass.getPlaylistResult("/album/newest","cookie="+cookie);
     }
 
     /*

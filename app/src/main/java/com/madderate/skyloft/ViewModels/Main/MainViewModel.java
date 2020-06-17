@@ -3,51 +3,55 @@ package com.madderate.skyloft.ViewModels.Main;
 import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Models.Playlist;
+import com.madderate.skyloft.Models.PlaylistResult;
+import com.madderate.skyloft.Models.User;
+import com.madderate.skyloft.Utils.InterfaceManager;
 
 import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
-    // 变量
 
-    // 日推
+    private ArrayList<PlaylistResult> recentPlayed;
+    private ArrayList<PlaylistResult> popular;
+    private ArrayList<PlaylistResult> recommendPlaylist;
+    private ArrayList<PlaylistResult> latestAlbum;
 
-    // 推荐
-    // 最近播放
+    public void getMainData(){
+        InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
+        recentPlayed = manager.getPersonalizedPlaylist("50");
+        latestAlbum = manager.getNewestAlbum();
+        popular = manager.getNewestAlbum();
+    }
 
-    private ArrayList<Playlist> recentPlayed;
-    private ArrayList<Playlist> popular;
-    private ArrayList<Playlist> recommendPlaylist;
-    private ArrayList<Playlist> latestAlbum;
-
-    public ArrayList<Playlist> getRecentPlayed() {
+    public ArrayList<PlaylistResult> getRecentPlayed() {
         return recentPlayed;
     }
 
-    public void setRecentPlayed(ArrayList<Playlist> recentPlayed) {
+    public void setRecentPlayed(ArrayList<PlaylistResult> recentPlayed) {
         this.recentPlayed = recentPlayed;
     }
 
-    public ArrayList<Playlist> getPopular() {
+    public ArrayList<PlaylistResult> getPopular() {
         return popular;
     }
 
-    public void setPopular(ArrayList<Playlist> popular) {
+    public void setPopular(ArrayList<PlaylistResult> popular) {
         this.popular = popular;
     }
 
-    public ArrayList<Playlist> getRecommendPlaylist() {
+    public ArrayList<PlaylistResult> getRecommendPlaylist() {
         return recommendPlaylist;
     }
 
-    public void setRecommendPlaylist(ArrayList<Playlist> recommendPlaylist) {
+    public void setRecommendPlaylist(ArrayList<PlaylistResult> recommendPlaylist) {
         this.recommendPlaylist = recommendPlaylist;
     }
 
-    public ArrayList<Playlist> getLatestAlbum() {
+    public ArrayList<PlaylistResult> getLatestAlbum() {
         return latestAlbum;
     }
 
-    public void setLatestAlbum(ArrayList<Playlist> latestAlbum) {
+    public void setLatestAlbum(ArrayList<PlaylistResult> latestAlbum) {
         this.latestAlbum = latestAlbum;
     }
 }
