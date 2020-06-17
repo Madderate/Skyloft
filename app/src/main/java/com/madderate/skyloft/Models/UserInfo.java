@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserInfo {
     private int level;
-    private int listenSongs;
+    private long listenSongs;
     private UserPoint userPoint;
     private boolean mobileSign;
     private boolean pcSign;
@@ -25,11 +25,11 @@ public class UserInfo {
         this.level = level;
     }
 
-    public int getListenSongs() {
+    public long getListenSongs() {
         return listenSongs;
     }
 
-    public void setListenSongs(int listenSongs) {
+    public void setListenSongs(long listenSongs) {
         this.listenSongs = listenSongs;
     }
 
