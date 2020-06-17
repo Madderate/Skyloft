@@ -4,6 +4,8 @@ package com.madderate.skyloft.Utils;
 * 网络通信类，使用api时请先声明此类
 */
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStream;
@@ -79,6 +81,7 @@ public class CommunicationManager {
 
     public void httpGetter(){
         final String registerUrl = ipAddress + interUrl;
+        Log.d(TAG,registerUrl);
         Thread thread=new Thread(new Runnable() {
             @Override
             public void run() {
