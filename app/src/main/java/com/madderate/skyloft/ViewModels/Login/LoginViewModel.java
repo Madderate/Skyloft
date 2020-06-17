@@ -3,15 +3,18 @@ package com.madderate.skyloft.ViewModels.Login;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Activities.Main.MainActivity;
 import com.madderate.skyloft.Models.Account;
 import com.madderate.skyloft.Models.User;
+import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.Utils.EncodeUtil;
 import com.madderate.skyloft.Utils.InterfaceManager;
+import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.regex.Pattern;
 
@@ -34,7 +37,6 @@ public class LoginViewModel extends ViewModel {
         // phoneNumber只能为11位
         // phoneNumber要能匹配对应的正则表达式
         isPhoneValid = this.phoneNumber != null && this.phoneNumber.length() == 11 && Pattern.matches(PHONE_REGEX_PATTERN, this.phoneNumber);
-        Log.d("LoginViewModel", "phone number: " + isPhoneValid);
     }
 
     public String getPassword() {
@@ -46,7 +48,6 @@ public class LoginViewModel extends ViewModel {
         // password不能为空
         // password长度在6到16字符之间
         isPasswordValid = this.password != null && this.password.length() >= 6 && this.password.length() <= 16;
-        Log.d("LoginViewModel", "password: " + isPasswordValid);
     }
 
     public String getEmail() {
@@ -100,26 +101,29 @@ public class LoginViewModel extends ViewModel {
     public void phoneLogin(Context context) {
 
         if (isPhoneValid && isPasswordValid) {
-
-
             InterfaceManager manager = new InterfaceManager();
             manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
 
-            Log.d("LoginViewModel",String.valueOf(User.getInstance().toString()));
+            Log.d("LoginViewModel",User.getInstance().toString());
 
             User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
 
-            User user = User.getInstance();
-
-            ActivityUtils.jumpToActivity(
-                    context,
-                    MainActivity.class,
-                    Intent.FLAG_ACTIVITY_NEW_TASK |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_NO_HISTORY
-            );
+            if (User.getInstance().getUserInfo() != null) {
+                ToastUtil.getInstance().showToast(context, R.string.login_success, Toast.LENGTH_SHORT);
+                ActivityUtils.jumpToActivity(
+                        context,
+                        MainActivity.class,
+                        Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                );
+                return;
+            }
         }
+        ToastUtil.getInstance().showToast(context, R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
+        isPhoneValid = false;
+        isPasswordValid = false;
     }
 
     public void emailLogin() {

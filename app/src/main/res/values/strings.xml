@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">Skyloft</string>
 
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="input_captcha">输入验证码</string>
+    <string name="finish">完成</string>
+    <string name="exit">退出</string>
+    <string name="switch_account">切换账号</string>
+
     <string name="login_username">用户名</string>
-    <string name="login_login_title">登录</string>
-    <string name="login_register_title">注册</string>
+    <string name="phone_login">手机登录</string>
+    <string name="email_login">邮箱登录</string>
+    <string name="send_captcha">发送验证码</string>
     <string name="login_hint_phone">输入手机号</string>
     <string name="login_hint_email">输入邮箱</string>
     <string name="login_hint_password">输入密码</string>
@@ -11,9 +19,12 @@
     <string name="login_register_hint_password">自己想的密码就要好好记住哦</string>
     <string name="login_captcha_text_view">请在下方输入验证码</string>
     <string name="login_captcha_hint_captcha">请输入验证码</string>
-    <string name="login_captcha_button_text_finish">完成</string>
-    <string name="exit">退出</string>
-    <string name="switch_account">切换账号</string>
+    <string name="login_phone_number_invalid">电话号码不正确</string>
+    <string name="login_email_invalid">请输入正确的电子邮箱</string>
+    <string name="login_password_invalid">密码长度在6~16位</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_phone_login_failed">登录失败！请检查您的手机号与密码</string>
+    <string name="login_email_login_failed">登录失败！请检查您的邮箱与密码</string>
 
     <string name="main_nav_repository">资料库</string>
     <string name="main_nav_recommend">为你推荐</string>
@@ -25,9 +36,8 @@
     <string name="main_menu_profile">个人信息</string>
     <string name="main_recommend_fragment_recent_played">最近播放</string>
     <string name="main_recommend_fragment_popular">流行音乐</string>
-    <string name="main_recommend_fragment_singer_recommend_0">如果你喜欢Justin Bieber</string>
-    <string name="main_recommend_fragment_language_recommend">英语推荐</string>
-    <string name="main_recommend_fragment_singer_recommend_1">如果你喜欢鱼韵</string>
+    <string name="main_recommend_fragment_recommend_playlist">推荐歌单</string>
+    <string name="main_recommend_fragment_latest_album">最新专辑</string>
     <string name="main_view_all">显示全部</string>
 
     <string name="play_music">播放音乐</string>
@@ -50,6 +60,7 @@
     <string name="release_date">发布日期</string>
     <string name="numbers_of_songs">歌曲数量</string>
 
+<<<<<<< HEAD
     <string name="toast_while_empty_username">请输入用户名！</string>
     <string name="toast_while_empty_phone_number">请输入电话号码！</string>
     <string name="toast_while_empty_password">请输入密码！</string>
@@ -64,6 +75,8 @@
     <string name="msg_sheet">阿门阿前一棵葡萄树，阿嫩阿嫩绿地刚发芽，蜗牛背着那重重的壳呀，一步一步地往上爬，
         阿树阿上两只黄鹂鸟，阿嘻阿嘻哈哈在笑它，葡萄成熟还早得很哪，现在上来干什么，阿黄阿黄鹂儿不要笑，等我爬上它就成熟了</string>
 
+=======
+>>>>>>> 3ef5b80a119511d52e1bca546004c7535332205a
     <!-- BeforeLoginActivity相关 -->
     <!-- actions -->
     <string name="login_activity_action">com.madderate.skyloft.LOGIN</string>

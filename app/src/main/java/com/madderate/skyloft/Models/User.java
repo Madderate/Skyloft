@@ -24,8 +24,8 @@ public class User {
         return user;
     }
 
-    public static void setUser(User user) {
-        User.user = user;
+    public static void setUser(User u) {
+        user = u;
     }
 
     // 账号信息

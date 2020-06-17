@@ -86,7 +86,7 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 loginViewModel.setEmail(s.toString());
-                if (!loginViewModel.isEmailValid()) {
+                if (!loginViewModel.isEmailValid() && loginViewModel.getEmail().length() != 0) {
                     etEmailLayout.setError("请输入正确的邮箱！");
                 } else {
                     etEmailLayout.setError(null);
@@ -108,7 +108,7 @@ public class EmailLoginFragment extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 loginViewModel.setPassword(s.toString());
-                if (!loginViewModel.isPasswordValid()) {
+                if (!loginViewModel.isPasswordValid() && loginViewModel.getPassword().length() != 0) {
                     etPasswordLayout.setError("请输入正确密码");
                 } else {
                     etPasswordLayout.setError(null);

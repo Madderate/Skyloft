@@ -86,7 +86,7 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 loginViewModel.setPhoneNumber(s.toString());
-                if (!loginViewModel.isPhoneValid()) {
+                if (!loginViewModel.isPhoneValid() && loginViewModel.getPhoneNumber().length() != 0) {
                     etPhoneLayout.setError("请输入正确的手机号！");
                 } else {
                     etPhoneLayout.setError(null);
@@ -108,7 +108,7 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 loginViewModel.setPassword(s.toString());
-                if (!loginViewModel.isPasswordValid()) {
+                if (!loginViewModel.isPasswordValid() && loginViewModel.getPassword().length() != 0) {
                     etPasswordLayout.setError("请输入正确密码");
                 } else {
                     etPasswordLayout.setError(null);
