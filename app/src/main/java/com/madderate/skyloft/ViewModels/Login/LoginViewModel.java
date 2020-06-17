@@ -103,7 +103,7 @@ public class LoginViewModel extends ViewModel {
         manager.loginByPhone("15070922393", "bushengtao16b", "86");
         // manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
 
-        // User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
+        User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
 
         manager.setCookie(User.getInstance().getCookie());
 
