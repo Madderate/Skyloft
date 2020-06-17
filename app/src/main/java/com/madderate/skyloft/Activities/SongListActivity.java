@@ -27,7 +27,7 @@ import com.madderate.skyloft.Utils.StatusBarUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongListActivity extends AppCompatActivity {
+public class SongListActivity extends BaseActivity {
     String TAG = "歌单";
     private Toolbar mToolbar;
     private ImageView mHeaderBg;
@@ -140,7 +140,7 @@ public class SongListActivity extends AppCompatActivity {
                     Toast.makeText(SongListActivity.this, "查询", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.message:
-                    View view = getLayoutInflater().inflate(R.layout.sheet_msg, null);
+                    Toast.makeText(SongListActivity.this, "撒大大", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.share:
                     break;

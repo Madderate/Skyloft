@@ -34,8 +34,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_login_activity);
 
-        fragmentManager = getSupportFragmentManager();
-
         // 初始化LoginViewModel
         // ViewModel总是由一个ViewModelProvider来管理
         // ViewModelProvider接收一个Fragment或FragmentActivity对象
@@ -44,6 +42,23 @@ public class LoginActivity extends BaseActivity {
                 new ViewModelProvider(LoginActivity.this)
                         .get(LoginViewModel.class);
 
+        initWidgets();
+        initToolbar();
+        fragmentManager = getSupportFragmentManager();
+        initBroadcastReceiver();
+    }
+
+    private void initWidgets() {
+        loginToolbar = findViewById(R.id.login_toolbar);
+    }
+
+    private void initToolbar() {
+        // 初始化Toolbar
+        loginToolbar.setTitle(R.string.login);
+        setSupportActionBar(loginToolbar);
+    }
+
+    private void initBroadcastReceiver() {
         // 获取本地广播管理员的实例
         localBroadcastManager = LocalBroadcastManager.getInstance(LoginActivity.this);
         broadcastReceiver = new LoginBroadcastReceiver();
@@ -51,11 +66,6 @@ public class LoginActivity extends BaseActivity {
         filter.addAction(getString(R.string.login_activity_action));
         // 注册这个receiver为本地广播监听器
         localBroadcastManager.registerReceiver(broadcastReceiver, filter);
-
-        // 初始化Toolbar
-        loginToolbar = findViewById(R.id.login_toolbar);
-        loginToolbar.setTitle(R.string.login_login_title);
-        setSupportActionBar(loginToolbar);
     }
 
     @Override

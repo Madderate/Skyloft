@@ -3,6 +3,7 @@ package com.madderate.skyloft.Utils;
 import com.google.gson.Gson;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Models.Playlist;
+import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.Settings;
 import com.madderate.skyloft.Models.StateCode;
 import com.madderate.skyloft.Models.User;
@@ -44,6 +45,7 @@ public class JsonToClass {
     /*
      * 获取歌曲信息
      */
+
     public MusicInfo getMusicInfo(String url, String body){
         communicateToSever(url,body);
         MusicInfo musicInfo = new MusicInfo();
@@ -53,6 +55,59 @@ public class JsonToClass {
                 try {
                     Gson gson = new Gson();
                     musicInfo = gson.fromJson(c.getText(), MusicInfo.class);
+                    System.out.println(musicInfo.toString());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return musicInfo;
+            }
+        }
+    }
+
+
+    /*
+     * 获取歌单结果
+     */
+
+    private static class PlaylistResultJson{
+        private boolean hasTaste;
+        private int category;
+        private ArrayList<PlaylistResult> result;
+
+        public boolean isHasTaste() {
+            return hasTaste;
+        }
+
+        public void setHasTaste(boolean hasTaste) {
+            this.hasTaste = hasTaste;
+        }
+
+        public int getCategory() {
+            return category;
+        }
+
+        public void setCategory(int category) {
+            this.category = category;
+        }
+
+        public ArrayList<PlaylistResult> getResult() {
+            return result;
+        }
+
+        public void setResult(ArrayList<PlaylistResult> result) {
+            this.result = result;
+        }
+    }
+    public ArrayList<PlaylistResult> getPlaylistResult(String url, String body){
+        communicateToSever(url,body);
+        ArrayList<PlaylistResult> musicInfo = new ArrayList<>();
+        while (true){
+            if(c.getText()!=null){
+                System.out.println(c.getText());
+                try {
+                    Gson gson = new Gson();
+                    PlaylistResultJson playlistResultJson = gson.fromJson(c.getText(), PlaylistResultJson.class);
+                    musicInfo = playlistResultJson.result;
                     System.out.println(musicInfo.toString());
                 }catch (Exception e){
                     e.printStackTrace();

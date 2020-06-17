@@ -48,8 +48,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private void initToolbar() throws NullPointerException {
         registerToolbar = findViewById(R.id.register_toolbar);
-        registerToolbar.setTitle(R.string.login_register_title);
+        registerToolbar.setTitle(R.string.register);
         setSupportActionBar(registerToolbar);
+        if (getSupportActionBar() == null) {
+            throw new NullPointerException();
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -79,7 +82,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void afterTextChanged(Editable s) {
                 registerViewModel.setPhoneNumber(s.toString());
-                if (!registerViewModel.isPhoneValid()) {
+                if (!registerViewModel.isPhoneValid() && registerViewModel.getPhoneNumber().length() != 0) {
                     etPhoneLayout.setError("请输入正确的手机号！");
                 } else {
                     etPhoneLayout.setError(null);
@@ -101,7 +104,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void afterTextChanged(Editable s) {
                 registerViewModel.setPassword(s.toString());
-                if (!registerViewModel.isPasswordValid()) {
+                if (!registerViewModel.isPasswordValid() && registerViewModel.getPassword().length() != 0) {
                     etPasswordLayout.setError("密码长度应在6-16位");
                 } else {
                     etPasswordLayout.setError(null);

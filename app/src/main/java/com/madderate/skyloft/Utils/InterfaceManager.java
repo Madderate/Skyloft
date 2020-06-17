@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Models.Playlist;
+import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.Settings;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Models.StateCode;
@@ -286,10 +287,9 @@ public class InterfaceManager {
      * 推荐歌单:调用此接口 , 可获取推荐歌单
      * 返回StateCode对象
      * 需要参数：取出数量limit String, 默认为 50
-     * TODO
      */
-    public StateCode personalized(String limit){
-        return jsonToClass.getStateCode("/personalized","limit="+limit);
+    public ArrayList<PlaylistResult> getPersonalizedPlaylist(String limit){
+        return jsonToClass.getPlaylistResult("/personalized","limit="+limit+"&cookie="+cookie);
     }
 
     /*

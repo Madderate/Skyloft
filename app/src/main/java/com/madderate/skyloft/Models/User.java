@@ -24,8 +24,8 @@ public class User {
         return user;
     }
 
-    public static void setUser(User user) {
-        User.user = user;
+    public static void setUser(User u) {
+        user = u;
     }
 
     // 账号信息
@@ -39,11 +39,40 @@ public class User {
     // 本周播放记录
     private ArrayList<Integer> weekData;
 
-
-
     private String token;
     private String cookie;
 
+    public ArrayList<Playlist> getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(ArrayList<Playlist> playlist) {
+        this.playlist = playlist;
+    }
+
+    public ArrayList<Integer> getWeekData() {
+        return weekData;
+    }
+
+    public void setWeekData(ArrayList<Integer> weekData) {
+        this.weekData = weekData;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
+    }
 
     public ArrayList<Playlist> getUserPlaylist() {
         return playlist;
@@ -103,6 +132,8 @@ public class User {
                 ", userSubCount=" + userSubCount +
                 ", playlist=" + playlist +
                 ", weekData=" + weekData +
+                ", token='" + token + '\'' +
+                ", cookie='" + cookie + '\'' +
                 '}';
     }
 }

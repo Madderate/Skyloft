@@ -1,5 +1,6 @@
 package com.madderate.skyloft.Activities.Login;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -7,8 +8,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.ViewModels.Login.CaptchaViewModel;
@@ -17,8 +19,11 @@ public class CaptchaActivity extends BaseActivity implements View.OnClickListene
 
     private CaptchaViewModel captchaViewModel;
 
+    private Toolbar captchaToolbar;
+
     private Button sendCaptcha;
-    private EditText etCaptcha;
+    private TextInputLayout etCaptchaLayout;
+    private TextInputEditText etCaptcha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +32,26 @@ public class CaptchaActivity extends BaseActivity implements View.OnClickListene
 
         captchaViewModel = new ViewModelProvider(CaptchaActivity.this).get(CaptchaViewModel.class);
 
-        sendCaptcha = findViewById(R.id.send_captcha);
-        sendCaptcha.setOnClickListener(this);
+        initWidgets();
+        initToolbar();
+    }
 
+    private void initWidgets() {
+        captchaToolbar = findViewById(R.id.captcha_toolbar);
+        sendCaptcha = findViewById(R.id.send_captcha);
+        etCaptchaLayout = findViewById(R.id.et_captcha_layout);
         etCaptcha = findViewById(R.id.et_captcha);
+
+        sendCaptcha.setOnClickListener(this);
+        setTextWatchers();
+    }
+
+    private void initToolbar() {
+        captchaToolbar.setTitle(R.string.input_captcha);
+        setSupportActionBar(captchaToolbar);
+    }
+
+    private void setTextWatchers() {
         etCaptcha.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
