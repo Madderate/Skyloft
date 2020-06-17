@@ -35,7 +35,8 @@
         android:layout_above="@id/email_login_button"
         android:layout_margin="8dp"
         android:hint="@string/login_hint_password"
-        app:endIconMode="password_toggle">
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email_login_password"
@@ -51,7 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/other_options"
         android:layout_margin="8dp"
-        android:text="@string/login_login_title"
+        android:background="@color/colorPrimary"
+        android:text="@string/login"
+        android:textColor="@color/colorText"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -63,17 +66,22 @@
 
         <Button
             android:id="@+id/to_login_with_phone"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/login_hint_phone" />
+            android:text="@string/phone_login"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/register"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/login_register_title" />
+            android:text="@string/register"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

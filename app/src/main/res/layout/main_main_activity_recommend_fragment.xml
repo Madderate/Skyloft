@@ -13,6 +13,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
             android:orientation="horizontal">
 
             <TextView
@@ -21,7 +22,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="12dp"
                 android:text="@string/main_recommend_fragment_recent_played"
                 android:textColor="@color/colorTextPrimary"
@@ -35,7 +35,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="12dp"
                 android:gravity="bottom|right"
                 android:padding="0dp"
@@ -55,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="16dp"
-        android:background="@color/colorDivider"/>
+        android:background="@color/colorDivider" />
 
     <LinearLayout
         android:id="@+id/popular"
@@ -67,9 +66,9 @@
             android:id="@+id/popular_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="12dp"
+            android:gravity="center"
             android:text="@string/main_recommend_fragment_popular"
             android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
@@ -86,28 +85,28 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="16dp"
-        android:background="@color/colorDivider"/>
+        android:background="@color/colorDivider" />
 
     <LinearLayout
-        android:id="@+id/singer_recommend_0"
+        android:id="@+id/recommend_playlists"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/singer_recommend_0_title"
+            android:id="@+id/recommend_playlist_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="12dp"
-            android:text="@string/main_recommend_fragment_popular"
+            android:gravity="center"
+            android:text="@string/main_recommend_fragment_recommend_playlist"
             android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/singer_recommend_0_recycler_view"
+            android:id="@+id/recommend_playlist_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -117,59 +116,28 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginHorizontal="16dp"
-        android:background="@color/colorDivider"/>
+        android:background="@color/colorDivider" />
 
     <LinearLayout
-        android:id="@+id/language_recommend"
+        android:id="@+id/latest_album"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/language_recommend_title"
+            android:id="@+id/latest_albums_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="12dp"
-            android:text="@string/main_recommend_fragment_popular"
+            android:gravity="center"
+            android:text="@string/main_recommend_fragment_latest_album"
             android:textColor="@color/colorTextPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/language_recommend_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="@color/colorDivider"/>
-
-    <LinearLayout
-        android:id="@+id/singer_recommend_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/singer_recommend_1_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="12dp"
-            android:text="@string/main_recommend_fragment_popular"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/singer_recommend_1_recycler_view"
+            android:id="@+id/latest_album_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

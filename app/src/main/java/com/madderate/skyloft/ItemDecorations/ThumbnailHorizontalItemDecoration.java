@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Objects;
 
-public class SongListThumbnailHorizontalItemDecoration extends RecyclerView.ItemDecoration {
+public class ThumbnailHorizontalItemDecoration extends RecyclerView.ItemDecoration {
 
     private float density;
 
-    public SongListThumbnailHorizontalItemDecoration(float density) {
+    public ThumbnailHorizontalItemDecoration(float density) {
         this.density = density;
     }
 

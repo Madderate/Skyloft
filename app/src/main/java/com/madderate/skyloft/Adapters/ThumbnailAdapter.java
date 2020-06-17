@@ -17,12 +17,12 @@ import com.madderate.skyloft.R;
 
 import java.util.List;
 
-public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumbnailAdapter.ViewHolder> {
+public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ViewHolder> {
 
     private List<Playlist> albums;
     private Context context;
 
-    public SongListThumbnailAdapter(List<Playlist> albums, Context context) {
+    public ThumbnailAdapter(List<Playlist> albums, Context context) {
         this.albums = albums;
         this.context = context;
     }
