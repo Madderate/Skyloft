@@ -24,8 +24,8 @@ public class User {
         return user;
     }
 
-    public static void setUser(User user) {
-        User.user = user;
+    public static void setUser(User u) {
+        user = u;
     }
 
     // 账号信息
@@ -38,8 +38,6 @@ public class User {
     private ArrayList<Playlist> playlist;
     // 本周播放记录
     private ArrayList<Integer> weekData;
-
-
 
     private String token;
     private String cookie;

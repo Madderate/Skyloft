@@ -27,7 +27,7 @@ import com.madderate.skyloft.Utils.StatusBarUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongListActivity extends AppCompatActivity {
+public class SongListActivity extends BaseActivity {
     String TAG = "歌单";
     private Toolbar mToolbar;
     private ImageView mHeaderBg;
