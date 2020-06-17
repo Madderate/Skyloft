@@ -5,22 +5,22 @@ import java.util.List;
 
 public class MusicInfo {
     private String name;
-    private int id;
+    private long id;
     // 艺术家
     private ArrayList<Artist> artist;
     // 歌曲封面
     private SongPic al;
     // 持续时间
-    private int dt;
+    private long dt;
     // 可用性
-    private int available;
+    private long available;
     // 歌词:/lyric?id=33894312
     private String lrc;
     // 不同码率的歌
     private ArrayList<Song> songs;
 
     // 选择不同码率的歌
-    private int chooseCodeRate = 320000;
+    private long chooseCodeRate = 320000;
 
     public void setChooseCodeRate(int chooseCodeRate){
         this.chooseCodeRate = chooseCodeRate;
@@ -34,7 +34,7 @@ public class MusicInfo {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -58,7 +58,7 @@ public class MusicInfo {
         this.al = al;
     }
 
-    public int getDt() {
+    public long getDt() {
         return dt;
     }
 
@@ -66,7 +66,7 @@ public class MusicInfo {
         this.dt = dt;
     }
 
-    public int getAvailable() {
+    public long getAvailable() {
         return available;
     }
 
@@ -90,7 +90,7 @@ public class MusicInfo {
         this.songs = songs;
     }
 
-    public int getChooseCodeRate() {
+    public long getChooseCodeRate() {
         return chooseCodeRate;
     }
 

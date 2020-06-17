@@ -1,76 +1,76 @@
 package com.madderate.skyloft.Models;
 
 public class UserSubCount {
-    private int programCount;
-    private int djRadioCount;
-    private int mvCount;
-    private int artistCount;
-    private int newProgramCount;
-    private int createDjRadioCount;
-    private int createdPlaylistCount;
-    private int subPlaylistCount;
+    private long programCount;
+    private long djRadioCount;
+    private long mvCount;
+    private long artistCount;
+    private long newProgramCount;
+    private long createDjRadioCount;
+    private long createdPlaylistCount;
+    private long subPlaylistCount;
 
-    public int getProgramCount() {
+    public long getProgramCount() {
         return programCount;
     }
 
-    public void setProgramCount(int programCount) {
+    public void setProgramCount(long programCount) {
         this.programCount = programCount;
     }
 
-    public int getDjRadioCount() {
+    public long getDjRadioCount() {
         return djRadioCount;
     }
 
-    public void setDjRadioCount(int djRadioCount) {
+    public void setDjRadioCount(long djRadioCount) {
         this.djRadioCount = djRadioCount;
     }
 
-    public int getMvCount() {
+    public long getMvCount() {
         return mvCount;
     }
 
-    public void setMvCount(int mvCount) {
+    public void setMvCount(long mvCount) {
         this.mvCount = mvCount;
     }
 
-    public int getArtistCount() {
+    public long getArtistCount() {
         return artistCount;
     }
 
-    public void setArtistCount(int artistCount) {
+    public void setArtistCount(long artistCount) {
         this.artistCount = artistCount;
     }
 
-    public int getNewProgramCount() {
+    public long getNewProgramCount() {
         return newProgramCount;
     }
 
-    public void setNewProgramCount(int newProgramCount) {
+    public void setNewProgramCount(long newProgramCount) {
         this.newProgramCount = newProgramCount;
     }
 
-    public int getCreateDjRadioCount() {
+    public long getCreateDjRadioCount() {
         return createDjRadioCount;
     }
 
-    public void setCreateDjRadioCount(int createDjRadioCount) {
+    public void setCreateDjRadioCount(long createDjRadioCount) {
         this.createDjRadioCount = createDjRadioCount;
     }
 
-    public int getCreatedPlaylistCount() {
+    public long getCreatedPlaylistCount() {
         return createdPlaylistCount;
     }
 
-    public void setCreatedPlaylistCount(int createdPlaylistCount) {
+    public void setCreatedPlaylistCount(long createdPlaylistCount) {
         this.createdPlaylistCount = createdPlaylistCount;
     }
 
-    public int getSubPlaylistCount() {
+    public long getSubPlaylistCount() {
         return subPlaylistCount;
     }
 
-    public void setSubPlaylistCount(int subPlaylistCount) {
+    public void setSubPlaylistCount(long subPlaylistCount) {
         this.subPlaylistCount = subPlaylistCount;
     }
 }

@@ -3,7 +3,7 @@ package com.madderate.skyloft.Models;
 import java.util.ArrayList;
 
 public class UserInfo {
-    private int level;
+    private long level;
     private long listenSongs;
     private UserPoint userPoint;
     private boolean mobileSign;
@@ -17,11 +17,11 @@ public class UserInfo {
     private Profile profile;
     private ArrayList<Binding> bindings;
 
-    public int getLevel() {
+    public long getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(long level) {
         this.level = level;
     }
 

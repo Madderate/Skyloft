@@ -36,24 +36,16 @@ public class Playlist {
     private boolean anonimous;
     private boolean ordered;
 
-    private int adType;
-    private int subscribedCount;
-    private int cloudTrackCount;
-    private int userId;
-    private int totalDuration;
-    private int specialType;
-    private int privacy;
-    private int trackCount;
-    private int playCount;
-    private int status;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private long adType;
+    private long subscribedCount;
+    private long cloudTrackCount;
+    private long userId;
+    private long totalDuration;
+    private long specialType;
+    private long privacy;
+    private long trackCount;
+    private long playCount;
+    private long status;
 
     public List<Profile> getSubscribers() {
         return subscribers;
@@ -69,6 +61,14 @@ public class Playlist {
 
     public void setCreator(Profile creator) {
         this.creator = creator;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Object getArtists() {
@@ -263,83 +263,83 @@ public class Playlist {
         this.ordered = ordered;
     }
 
-    public int getAdType() {
+    public long getAdType() {
         return adType;
     }
 
-    public void setAdType(int adType) {
+    public void setAdType(long adType) {
         this.adType = adType;
     }
 
-    public int getSubscribedCount() {
+    public long getSubscribedCount() {
         return subscribedCount;
     }
 
-    public void setSubscribedCount(int subscribedCount) {
+    public void setSubscribedCount(long subscribedCount) {
         this.subscribedCount = subscribedCount;
     }
 
-    public int getCloudTrackCount() {
+    public long getCloudTrackCount() {
         return cloudTrackCount;
     }
 
-    public void setCloudTrackCount(int cloudTrackCount) {
+    public void setCloudTrackCount(long cloudTrackCount) {
         this.cloudTrackCount = cloudTrackCount;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public int getTotalDuration() {
+    public long getTotalDuration() {
         return totalDuration;
     }
 
-    public void setTotalDuration(int totalDuration) {
+    public void setTotalDuration(long totalDuration) {
         this.totalDuration = totalDuration;
     }
 
-    public int getSpecialType() {
+    public long getSpecialType() {
         return specialType;
     }
 
-    public void setSpecialType(int specialType) {
+    public void setSpecialType(long specialType) {
         this.specialType = specialType;
     }
 
-    public int getPrivacy() {
+    public long getPrivacy() {
         return privacy;
     }
 
-    public void setPrivacy(int privacy) {
+    public void setPrivacy(long privacy) {
         this.privacy = privacy;
     }
 
-    public int getTrackCount() {
+    public long getTrackCount() {
         return trackCount;
     }
 
-    public void setTrackCount(int trackCount) {
+    public void setTrackCount(long trackCount) {
         this.trackCount = trackCount;
     }
 
-    public int getPlayCount() {
+    public long getPlayCount() {
         return playCount;
     }
 
-    public void setPlayCount(int playCount) {
+    public void setPlayCount(long playCount) {
         this.playCount = playCount;
     }
 
-    public int getStatus() {
+    public long getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(long status) {
         this.status = status;
     }
 

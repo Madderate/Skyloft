@@ -1,8 +1,8 @@
 package com.madderate.skyloft.Models;
 
 public class Artist {
-    private int id;
-    private int name;
-    private int tns;
-    private int alias;
+    private long id;
+    private String name;
+    private String tns;
+    private String alias;
 }

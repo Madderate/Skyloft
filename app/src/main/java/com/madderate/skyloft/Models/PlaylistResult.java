@@ -5,7 +5,7 @@ public class PlaylistResult {
     private String name;
     private String picUrl;
     private String copywriter;
-    private int playCount;
+    private long playCount;
     private String trackCount;
 
     public long getId() {
@@ -40,11 +40,11 @@ public class PlaylistResult {
         this.copywriter = copywriter;
     }
 
-    public int getPlayCount() {
+    public long getPlayCount() {
         return playCount;
     }
 
-    public void setPlayCount(int playCount) {
+    public void setPlayCount(long playCount) {
         this.playCount = playCount;
     }
 

@@ -3,8 +3,8 @@ package com.madderate.skyloft.Models;
 import java.util.ArrayList;
 
 public class User {
-    private int loginType;
-    private int loginState;
+    private long loginType;
+    private long loginState;
     private volatile static User user;
 
     private User() {}
@@ -98,19 +98,19 @@ public class User {
         this.userSubCount = userSubCount;
     }
 
-    public int getLoginType() {
+    public long getLoginType() {
         return loginType;
     }
 
-    public void setLoginType(int loginType) {
+    public void setLoginType(long loginType) {
         this.loginType = loginType;
     }
 
-    public int getLoginState() {
+    public long getLoginState() {
         return loginState;
     }
 
-    public void setLoginState(int loginState) {
+    public void setLoginState(long loginState) {
         this.loginState = loginState;
     }
 
