@@ -106,58 +106,50 @@ public class UserInfo {
     }
 
     static class UserPoint{
-        private int userId;
-        private int balance;
+        private long userId;
+        private long balance;
         // private long updateTime;
-        private int version;
-        private int status;
-        private int blockBalance;
+        private long version;
+        private long status;
+        private long blockBalance;
 
-        public int getUserId() {
+        public long getUserId() {
             return userId;
         }
 
-        public void setUserId(int userId) {
+        public void setUserId(long userId) {
             this.userId = userId;
         }
 
-        public int getBalance() {
+        public long getBalance() {
             return balance;
         }
 
-        public void setBalance(int balance) {
+        public void setBalance(long balance) {
             this.balance = balance;
         }
-/*
-        public long getUpdateTime() {
-            return updateTime;
-        }
 
-        public void setUpdateTime(long updateTime) {
-            this.updateTime = updateTime;
-        }*/
-
-        public int getVersion() {
+        public long getVersion() {
             return version;
         }
 
-        public void setVersion(int version) {
+        public void setVersion(long version) {
             this.version = version;
         }
 
-        public int getStatus() {
+        public long getStatus() {
             return status;
         }
 
-        public void setStatus(int status) {
+        public void setStatus(long status) {
             this.status = status;
         }
 
-        public int getBlockBalance() {
+        public long getBlockBalance() {
             return blockBalance;
         }
 
-        public void setBlockBalance(int blockBalance) {
+        public void setBlockBalance(long blockBalance) {
             this.blockBalance = blockBalance;
         }
     }
