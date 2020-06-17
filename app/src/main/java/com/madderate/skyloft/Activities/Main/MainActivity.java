@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.madderate.skyloft.Activities.BaseActivity;
 import com.madderate.skyloft.Activities.Login.LoginActivity;
+import com.madderate.skyloft.Activities.Main.Fragments.PlayerBarFragment;
 import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
 import com.madderate.skyloft.Models.Account;
 import com.madderate.skyloft.Models.User;
@@ -43,8 +44,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_main_activity);
+
         initLayout();
         initWidgets();
+
 
         // 获取一个账号实例
         user = User.getInstance();
@@ -96,6 +100,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void initWidgets() {
         navView = findViewById(R.id.main_activity_nav_view);
+        drawerLayout = findViewById(R.id.main_activity_drawer_layout);
         // 得到NavigationView的头部
         navHeader = navView.getHeaderView(0);
         avatar = (CircleImageView) navHeader.getRootView().findViewById(R.id.avatar);
@@ -109,9 +114,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initLayout() {
-        setContentView(R.layout.main_main_activity);
-
-        drawerLayout = findViewById(R.id.main_activity_drawer_layout);
 
         mainToolbar = findViewById(R.id.main_toolbar);
         // 暂时给这个Activity的标题设为"为你推荐"
@@ -124,6 +126,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         RecommendFragment fragment = new RecommendFragment();
         ActivityUtils.replaceFragment(getSupportFragmentManager(), R.id.main_activity_fragment_container, fragment);
+
+        PlayerBarFragment playerBar = new PlayerBarFragment();
+        ActivityUtils.replaceFragment(getSupportFragmentManager(), R.id.player_bar_container, playerBar);
     }
 
     @Override

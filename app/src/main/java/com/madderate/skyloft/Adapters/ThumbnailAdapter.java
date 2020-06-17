@@ -33,7 +33,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.View
         View view =
                 LayoutInflater
                         .from(parent.getContext())
-                        .inflate(R.layout.item_song_list_thumbnail, parent, false);
+                        .inflate(R.layout.thumbnail_layout, parent, false);
         return new ViewHolder(view);
     }
 
