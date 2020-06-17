@@ -32,6 +32,30 @@ public class PlayerViewModel extends ViewModel {
     public final int MODE_NEXT = 0;
     public final int MODE_PREV = 1;
 
+    public List<Integer> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(List<Integer> musics) {
+        this.musics = musics;
+    }
+
+    public MediaPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(MediaPlayer player) {
+        this.player = player;
+    }
+
+    public int getPlayMode() {
+        return playMode;
+    }
+
+    public void setPlayMode(int playMode) {
+        this.playMode = playMode;
+    }
+
     public int getNextOrPrev() {
         return nextOrPrev;
     }
