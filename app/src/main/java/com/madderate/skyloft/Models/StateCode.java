@@ -4,6 +4,7 @@ public class StateCode {
     private String mag;
     private int code;
     private String message;
+    private boolean success;
 
     public int getCode() {
         return code;
@@ -27,6 +28,14 @@ public class StateCode {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     @Override

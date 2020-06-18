@@ -3,8 +3,8 @@ package com.madderate.skyloft.Models;
 import java.util.ArrayList;
 
 public class User {
-    private int loginType;
-    private int loginState;
+    private long loginType;
+    private long loginState;
     private volatile static User user;
 
     private User() {}
@@ -42,6 +42,38 @@ public class User {
     private String token;
     private String cookie;
 
+    public ArrayList<Playlist> getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(ArrayList<Playlist> playlist) {
+        this.playlist = playlist;
+    }
+
+    public ArrayList<Integer> getWeekData() {
+        return weekData;
+    }
+
+    public void setWeekData(ArrayList<Integer> weekData) {
+        this.weekData = weekData;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
+    }
+
     public ArrayList<Playlist> getUserPlaylist() {
         return playlist;
     }
@@ -66,19 +98,19 @@ public class User {
         this.userSubCount = userSubCount;
     }
 
-    public int getLoginType() {
+    public long getLoginType() {
         return loginType;
     }
 
-    public void setLoginType(int loginType) {
+    public void setLoginType(long loginType) {
         this.loginType = loginType;
     }
 
-    public int getLoginState() {
+    public long getLoginState() {
         return loginState;
     }
 
-    public void setLoginState(int loginState) {
+    public void setLoginState(long loginState) {
         this.loginState = loginState;
     }
 
@@ -100,6 +132,8 @@ public class User {
                 ", userSubCount=" + userSubCount +
                 ", playlist=" + playlist +
                 ", weekData=" + weekData +
+                ", token='" + token + '\'' +
+                ", cookie='" + cookie + '\'' +
                 '}';
     }
 }

@@ -2,14 +2,14 @@ package com.madderate.skyloft.Models;
 
 public class Binding {
     private String url;
-    private int userId;
-    private int expiresIn;
+    private long userId;
+    private long expiresIn;
     private long refreshTime;
     private long bindingTime;
     private String tokenJsonStr;
     private boolean expired;
     private long id;
-    private int type;
+    private long type;
 
     public String getUrl() {
         return url;
@@ -19,19 +19,19 @@ public class Binding {
         this.url = url;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public int getExpiresIn() {
+    public long getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(int expiresIn) {
+    public void setExpiresIn(long expiresIn) {
         this.expiresIn = expiresIn;
     }
 
@@ -75,7 +75,7 @@ public class Binding {
         this.id = id;
     }
 
-    public int getType() {
+    public long getType() {
         return type;
     }
 

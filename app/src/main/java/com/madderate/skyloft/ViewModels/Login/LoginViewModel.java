@@ -2,6 +2,8 @@ package com.madderate.skyloft.ViewModels.Login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.text.PrecomputedText;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -11,12 +13,15 @@ import com.madderate.skyloft.Activities.Main.MainActivity;
 import com.madderate.skyloft.Models.Account;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
+import com.madderate.skyloft.Task.LoginByPhoneTask;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.Utils.EncodeUtil;
 import com.madderate.skyloft.Utils.InterfaceManager;
 import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.regex.Pattern;
+
+import javax.xml.transform.Result;
 
 public class LoginViewModel extends ViewModel {
 
@@ -26,6 +31,7 @@ public class LoginViewModel extends ViewModel {
     private String phoneNumber;
     private String password;
     private String email;
+
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -98,30 +104,13 @@ public class LoginViewModel extends ViewModel {
         isFirstStart = firstStart;
     }
 
+
     public void phoneLogin(Context context) {
-
         if (isPhoneValid && isPasswordValid) {
-            InterfaceManager manager = new InterfaceManager();
-            manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
-
-            Log.d("LoginViewModel",User.getInstance().toString());
-
-            User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
-
-            if (User.getInstance().getUserInfo() != null) {
-                ToastUtil.getInstance().showToast(context, R.string.login_success, Toast.LENGTH_SHORT);
-                ActivityUtils.jumpToActivity(
-                        context,
-                        MainActivity.class,
-                        Intent.FLAG_ACTIVITY_NEW_TASK |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_NO_HISTORY
-                );
-                return;
-            }
-        }
-        ToastUtil.getInstance().showToast(context, R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
+            LoginByPhoneTask loginByPhoneTask = new LoginByPhoneTask(phoneNumber,password,context);
+            loginByPhoneTask.execute();
+        }else
+            ToastUtil.getInstance().showToast(context, R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
         isPhoneValid = false;
         isPasswordValid = false;
     }
@@ -131,4 +120,6 @@ public class LoginViewModel extends ViewModel {
         // 测试代码
         Log.d("LoginViewModel", "email login");
     }
+
+
 }

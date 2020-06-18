@@ -1,26 +1,26 @@
 package com.madderate.skyloft.Models;
 
 public class Account {
-    private int id;
+    private long id;
     private String userName;
-    private int type;
-    private int status;
-    private int whitelistAuthority;
+    private long type;
+    private long status;
+    private long whitelistAuthority;
     private long createTime;
     private String salt;
-    private int tokenVersion;
-    private int ban;
-    private int baoyueVersion;
-    private int donateVersion;
-    private int vipType;
+    private long tokenVersion;
+    private long ban;
+    private long baoyueVersion;
+    private long donateVersion;
+    private long vipType;
     private long viptypeVersion;
     private boolean anonimousUser;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -32,36 +32,28 @@ public class Account {
         this.userName = userName;
     }
 
-    public int getType() {
+    public long getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(long type) {
         this.type = type;
     }
 
-    public int getStatus() {
+    public long getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(long status) {
         this.status = status;
     }
 
-    public int getWhitelistAuthority() {
+    public long getWhitelistAuthority() {
         return whitelistAuthority;
     }
 
-    public void setWhitelistAuthority(int whitelistAuthority) {
+    public void setWhitelistAuthority(long whitelistAuthority) {
         this.whitelistAuthority = whitelistAuthority;
-    }
-
-    public boolean isAnonimousUser() {
-        return anonimousUser;
-    }
-
-    public void setAnonimousUser(boolean anonimousUser) {
-        this.anonimousUser = anonimousUser;
     }
 
     public long getCreateTime() {
@@ -80,43 +72,43 @@ public class Account {
         this.salt = salt;
     }
 
-    public int getTokenVersion() {
+    public long getTokenVersion() {
         return tokenVersion;
     }
 
-    public void setTokenVersion(int tokenVersion) {
+    public void setTokenVersion(long tokenVersion) {
         this.tokenVersion = tokenVersion;
     }
 
-    public int getBan() {
+    public long getBan() {
         return ban;
     }
 
-    public void setBan(int ban) {
+    public void setBan(long ban) {
         this.ban = ban;
     }
 
-    public int getBaoyueVersion() {
+    public long getBaoyueVersion() {
         return baoyueVersion;
     }
 
-    public void setBaoyueVersion(int baoyueVersion) {
+    public void setBaoyueVersion(long baoyueVersion) {
         this.baoyueVersion = baoyueVersion;
     }
 
-    public int getDonateVersion() {
+    public long getDonateVersion() {
         return donateVersion;
     }
 
-    public void setDonateVersion(int donateVersion) {
+    public void setDonateVersion(long donateVersion) {
         this.donateVersion = donateVersion;
     }
 
-    public int getVipType() {
+    public long getVipType() {
         return vipType;
     }
 
-    public void setVipType(int vipType) {
+    public void setVipType(long vipType) {
         this.vipType = vipType;
     }
 
@@ -128,11 +120,11 @@ public class Account {
         this.viptypeVersion = viptypeVersion;
     }
 
-    public boolean getAnonimousUser() {
+    public boolean isAnonimousUser() {
         return anonimousUser;
     }
 
-    public void setAnonimousUser(Boolean anonimousUser) {
+    public void setAnonimousUser(boolean anonimousUser) {
         this.anonimousUser = anonimousUser;
     }
 
