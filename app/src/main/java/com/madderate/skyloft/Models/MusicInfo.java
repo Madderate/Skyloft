@@ -8,7 +8,7 @@ public class MusicInfo {
     private long id;
     // 艺术家
     private ArrayList<Artist> artist;
-    // 歌曲封面
+    // 专辑
     private SongPic al;
     // 持续时间
     private long dt;
@@ -17,7 +17,7 @@ public class MusicInfo {
     // 歌词:/lyric?id=33894312
     private String lrc;
     // 不同码率的歌
-    private ArrayList<Song> songs;
+    private ArrayList<Music> songs;
 
     // 选择不同码率的歌
     private long chooseCodeRate = 320000;
@@ -82,11 +82,11 @@ public class MusicInfo {
         this.lrc = lrc;
     }
 
-    public ArrayList<Song> getSongs() {
+    public ArrayList<Music> getSongs() {
         return songs;
     }
 
-    public void setSongs(ArrayList<Song> songs) {
+    public void setSongs(ArrayList<Music> songs) {
         this.songs = songs;
     }
 
@@ -94,64 +94,7 @@ public class MusicInfo {
         return chooseCodeRate;
     }
 
-    static class Song{
-        private int id;
-        // 相应码率的歌曲url:/song/url?id=33894312&br=320000
-        private String url;
-        private int br;
-        private int size;
-        private String level;
-        private String encodeType;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public int getBr() {
-            return br;
-        }
-
-        public void setBr(int br) {
-            this.br = br;
-        }
-
-        public int getSize() {
-            return size;
-        }
-
-        public void setSize(int size) {
-            this.size = size;
-        }
-
-        public String getLevel() {
-            return level;
-        }
-
-        public void setLevel(String level) {
-            this.level = level;
-        }
-
-        public String getEncodeType() {
-            return encodeType;
-        }
-
-        public void setEncodeType(String encodeType) {
-            this.encodeType = encodeType;
-        }
-    }
-    static class SongPic{
+    static public class SongPic{
         private String name;
         private int id;
         private String url;

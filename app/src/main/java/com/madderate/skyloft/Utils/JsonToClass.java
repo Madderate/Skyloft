@@ -1,14 +1,22 @@
 package com.madderate.skyloft.Utils;
 
 import com.google.gson.Gson;
+import com.madderate.skyloft.Models.Music;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Models.Playlist;
+import com.madderate.skyloft.Result.LyricResult;
+import com.madderate.skyloft.Result.MusicResult;
 import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.Settings;
 import com.madderate.skyloft.Models.StateCode;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Models.UserInfo;
-import com.madderate.skyloft.Result.UserPlayRecord;
+import com.madderate.skyloft.Models.UserPlayRecord;
+import com.madderate.skyloft.Result.MusicUrlResult;
+import com.madderate.skyloft.Result.PlayListDetailJson;
+import com.madderate.skyloft.Result.PlayListJson;
+import com.madderate.skyloft.Result.PlaylistResultJson;
+import com.madderate.skyloft.Result.UserPlayRecordResultJson;
 
 import java.util.ArrayList;
 
@@ -45,17 +53,6 @@ public class JsonToClass {
     /*
      * 获取歌曲信息结果
      */
-    private static class MusicInfoResult{
-        ArrayList<MusicInfo> result;
-
-        public ArrayList<MusicInfo> getResult() {
-            return result;
-        }
-
-        public void setResult(ArrayList<MusicInfo> result) {
-            this.result = result;
-        }
-    }
     public ArrayList<MusicInfo> getMusicInfoResult(String url, String body){
         communicateToSever(url,body);
         ArrayList<MusicInfo> musicInfo = new ArrayList<>();
@@ -64,8 +61,8 @@ public class JsonToClass {
                 System.out.println(c.getText());
                 try {
                     Gson gson = new Gson();
-                    MusicInfoResult musicInfoResult = gson.fromJson(c.getText(), MusicInfoResult.class);
-                    musicInfo = musicInfoResult.result;
+                    MusicResult musicResult = gson.fromJson(c.getText(), MusicResult.class);
+                    musicInfo = musicResult.getResult();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -77,17 +74,6 @@ public class JsonToClass {
     /*
      * 获取新歌曲信息结果
      */
-    private static class UserPlayRecordResult{
-        ArrayList<UserPlayRecord> result;
-
-        public ArrayList<UserPlayRecord> getResult() {
-            return result;
-        }
-
-        public void setResult(ArrayList<UserPlayRecord> result) {
-            this.result = result;
-        }
-    }
     public ArrayList<UserPlayRecord> getUserPlayRecordResult(String url, String body){
         communicateToSever(url,body);
         ArrayList<UserPlayRecord> userPlayRecords = new ArrayList<>();
@@ -96,8 +82,8 @@ public class JsonToClass {
                 System.out.println(c.getText());
                 try {
                     Gson gson = new Gson();
-                    UserPlayRecordResult userPlayRecordResult = gson.fromJson(c.getText(), UserPlayRecordResult.class);
-                    userPlayRecords = userPlayRecordResult.result;
+                    UserPlayRecordResultJson userPlayRecordResultJson = gson.fromJson(c.getText(), UserPlayRecordResultJson.class);
+                    userPlayRecords = userPlayRecordResultJson.getResult();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -131,36 +117,6 @@ public class JsonToClass {
     /*
      * 获取歌单结果
      */
-
-    private static class PlaylistResultJson{
-        private boolean hasTaste;
-        private int category;
-        private ArrayList<PlaylistResult> result;
-
-        public boolean isHasTaste() {
-            return hasTaste;
-        }
-
-        public void setHasTaste(boolean hasTaste) {
-            this.hasTaste = hasTaste;
-        }
-
-        public int getCategory() {
-            return category;
-        }
-
-        public void setCategory(int category) {
-            this.category = category;
-        }
-
-        public ArrayList<PlaylistResult> getResult() {
-            return result;
-        }
-
-        public void setResult(ArrayList<PlaylistResult> result) {
-            this.result = result;
-        }
-    }
     public ArrayList<PlaylistResult> getPlaylistResult(String url, String body){
         communicateToSever(url,body);
         ArrayList<PlaylistResult> musicInfo = new ArrayList<>();
@@ -170,7 +126,7 @@ public class JsonToClass {
                 try {
                     Gson gson = new Gson();
                     PlaylistResultJson playlistResultJson = gson.fromJson(c.getText(), PlaylistResultJson.class);
-                    musicInfo = playlistResultJson.result;
+                    musicInfo = playlistResultJson.getResult();
                     System.out.println(musicInfo.toString());
                 }catch (Exception e){
                     e.printStackTrace();
@@ -183,26 +139,6 @@ public class JsonToClass {
     /*
      * 获取用户歌单信息（有什么歌单）
      */
-    private static class PlayListJson{
-        boolean more;
-        ArrayList<Playlist> playlist;
-
-        public boolean isMore() {
-            return more;
-        }
-
-        public void setMore(boolean more) {
-            this.more = more;
-        }
-
-        public ArrayList<Playlist> getPlaylist() {
-            return playlist;
-        }
-
-        public void setPlaylist(ArrayList<Playlist> playlist) {
-            this.playlist = playlist;
-        }
-    }
     public ArrayList<Playlist> getPlayList(String url, String body){
         communicateToSever(url,body);
         ArrayList<Playlist> playlists = new ArrayList<>();
@@ -212,7 +148,7 @@ public class JsonToClass {
                 try {
                     Gson gson = new Gson();
                     PlayListJson playListJson = gson.fromJson(c.getText(), PlayListJson.class);
-                    playlists = playListJson.playlist;
+                    playlists = playListJson.getPlaylist();
                     System.out.println(playlists.toString());
                 }catch (Exception e){
                     e.printStackTrace();
@@ -225,35 +161,6 @@ public class JsonToClass {
     /*
      * 获取歌单详细信息（歌单有什么歌）
      */
-    private static class PlayListDetailJson{
-        boolean relatedVideos;
-        Playlist playlist;
-        String urls;
-
-        public boolean isRelatedVideos() {
-            return relatedVideos;
-        }
-
-        public void setRelatedVideos(boolean relatedVideos) {
-            this.relatedVideos = relatedVideos;
-        }
-
-        public Playlist getPlaylist() {
-            return playlist;
-        }
-
-        public void setPlaylist(Playlist playlist) {
-            this.playlist = playlist;
-        }
-
-        public String getUrls() {
-            return urls;
-        }
-
-        public void setUrls(String urls) {
-            this.urls = urls;
-        }
-    }
     public Playlist getPlayListDetail(String url, String body){
         communicateToSever(url,body);
         Playlist playlist = new Playlist();
@@ -263,7 +170,7 @@ public class JsonToClass {
                 try {
                     Gson gson = new Gson();
                     PlayListDetailJson json = gson.fromJson(c.getText(), PlayListDetailJson.class);
-                    playlist = json.playlist;
+                    playlist = json.getPlaylist();
                     System.out.println(playlist.toString());
                 }catch (Exception e){
                     e.printStackTrace();
@@ -324,6 +231,42 @@ public class JsonToClass {
                     e.printStackTrace();
                 }
                 return userInfo;
+            }
+        }
+    }
+
+    // 获取音乐url json
+    public ArrayList<Music> getMusicUrl(String url, String body){
+        communicateToSever(url,body);
+        ArrayList<Music> musics = new ArrayList<>();
+        Gson gson = new Gson();
+        while (true){
+            if(c.getText()!=null){
+                try {
+                    MusicUrlResult musicUrlResult = gson.fromJson(c.getText(), MusicUrlResult.class);
+                    musics = musicUrlResult.getData();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return musics;
+            }
+        }
+    }
+
+    // 获取音乐歌词
+    public String getMusicLyric(String url, String body){
+        communicateToSever(url,body);
+        Gson gson = new Gson();
+        String lyric = null;
+        while (true){
+            if(c.getText()!=null){
+                try {
+                    LyricResult lyricResult = gson.fromJson(c.getText(), LyricResult.class);
+                    lyric = lyricResult.getLrc().getLyric();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                return lyric;
             }
         }
     }

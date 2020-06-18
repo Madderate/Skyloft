@@ -1,4 +1,4 @@
-package com.madderate.skyloft.Result;
+package com.madderate.skyloft.Models;
 
 import com.madderate.skyloft.Models.MusicInfo;
 
