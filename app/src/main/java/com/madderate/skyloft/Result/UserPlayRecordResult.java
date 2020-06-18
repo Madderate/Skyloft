@@ -5,7 +5,7 @@ import com.madderate.skyloft.Models.UserPlayRecord;
 
 import java.util.ArrayList;
 
-public class UserPlayRecordResultJson {
+public class UserPlayRecordResult {
     ArrayList<UserPlayRecord> result;
 
     public ArrayList<UserPlayRecord> getResult() {

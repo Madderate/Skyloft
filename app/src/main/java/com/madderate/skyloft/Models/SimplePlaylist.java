@@ -1,11 +1,11 @@
-package com.madderate.skyloft.Result;
+package com.madderate.skyloft.Models;
 
 
 import com.madderate.skyloft.Models.PlaylistResult;
 
 import java.util.ArrayList;
 
-public class PlaylistResultJson{
+public class SimplePlaylist {
     private boolean hasTaste;
     private int category;
     private ArrayList<PlaylistResult> result;

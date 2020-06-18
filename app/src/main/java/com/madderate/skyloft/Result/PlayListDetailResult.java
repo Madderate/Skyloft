@@ -3,7 +3,7 @@ package com.madderate.skyloft.Result;
 
 import com.madderate.skyloft.Models.Playlist;
 
-public class PlayListDetailJson{
+public class PlayListDetailResult {
     boolean relatedVideos;
     Playlist playlist;
     String urls;

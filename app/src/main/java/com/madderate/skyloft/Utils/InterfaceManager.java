@@ -201,39 +201,26 @@ public class InterfaceManager {
     }
 
     /*
-     * 获取歌手单曲:调用此接口 , 传入歌手 id, 可获得歌手部分信息和热门歌曲
+     * 获取歌手信息:调用此接口，传入歌手 id，可获得歌手信息
      * 返回StateCode对象
      * 需要参数：歌手 id String
-     * TODO
      */
-    public ArrayList<MusicInfo> getArtistMusic(String id){
-        return jsonToClass.getArtistMusic("/artists","id="+id);
+    public Artist getArtistById(String id){
+        return jsonToClass.getArtist("/artists","id="+id);
     }
 
     /*
      * 获取歌手专辑:调用此接口 , 传入歌手 id, 可获得歌手专辑内容
-     * 返回StateCode对象
+     * 返回ArrayList<Playlist>
      * 需要参数：歌手 id String,取出数量limit String, 默认为 5s,偏移数量offset String,默认为 0
-     * TODO
      */
     public ArrayList<Playlist> getArtistAlbum(String id,String limit,String offset){
         return jsonToClass.getPlayList("/artists","id="+id+"&limit="+limit+"&offset="+offset);
     }
 
     /*
-     * 获取歌手描述:调用此接口 , 传入歌手 id, 可获得歌手描述
-     * 返回StateCode对象
-     * 需要参数：歌手 id String
-     * TODO
-     */
-    public Artist getArtistDesc(String id){
-        return jsonToClass.getArtistDetail("/artist/desc","id="+id);
-    }
-
-    /*
      * 获取每日推荐歌单:调用此接口 , 可获得每日推荐歌单 ( 需要登录 )
-     * 返回StateCode对象
-     * TODO
+     * 返回ArrayList<Playlist>
      */
     public ArrayList<Playlist> getRecommendResource(){
         return jsonToClass.getRecommendPlayList("/recommend/resource","");
@@ -241,19 +228,17 @@ public class InterfaceManager {
 
     /*
      * 获取每日推荐歌曲:调用此接口 , 可获得每日推荐歌曲
-     * 返回StateCode对象
-     * TODO
+     * 返回ArrayList<String>
      */
-    public ArrayList<String> getRecommendSongs(){
+    public ArrayList<Long> getRecommendSongs(){
         return jsonToClass.getRecommendSongs("/recommend/songs","");
     }
 
     /*
      * 私人 FM:私人 FM
-     * 返回StateCode对象
-     * TODO
+     * 返回ArrayList<String>
      */
-    public ArrayList<String> getPersonalFM(){
+    public ArrayList<Playlist> getPersonalFM(){
         return jsonToClass.getPersonalFM("/personal_fm","");
     }
 
@@ -269,7 +254,7 @@ public class InterfaceManager {
     /*
      * 获取音乐url:调用此接口,传入音乐id,可获取音乐url
      * 参数：歌曲id String，是否喜欢like boolean 默认为 true 即喜欢 , 若传 false, 则取消喜欢
-     * 返回:String对象
+     * 返回:String
      */
     public List<Music> getMusicUrlById(String id){
         return jsonToClass.getMusicUrl("/like","id="+id);
@@ -277,7 +262,7 @@ public class InterfaceManager {
 
     /*
      * 推荐歌单:调用此接口 , 可获取推荐歌单
-     * 返回StateCode对象
+     * 返回StateCode
      * 需要参数：取出数量limit String, 默认为 50
      */
     public ArrayList<PlaylistResult> getPersonalizedPlaylist(String limit){
@@ -286,7 +271,7 @@ public class InterfaceManager {
 
     /*
      * 推荐新音乐:调用此接口 , 可获取推荐新音乐
-     * 返回StateCode对象
+     * 返回StateCode
      */
     public ArrayList<MusicInfo> getNewestMusic(){
         return jsonToClass.getMusicInfoResult("/personalized/newsong","");
@@ -294,7 +279,7 @@ public class InterfaceManager {
 
     /*
      * 新建歌单:调用此接口 , 传入歌单名字可新建歌单,privacy : 是否设置为隐私歌单，默认否，传'10'则设置成隐私歌单
-     * 返回StateCode对象
+     * 返回StateCode
      * 需要参数：歌单名name String,隐私歌单设置privacy String
      */
     public StateCode playlistCreate(String name,String privacy){
@@ -303,7 +288,7 @@ public class InterfaceManager {
 
     /*
      * 收藏/取消收藏歌单:调用此接口 , 传入类型和歌单 id 可收藏歌单或者取消收藏歌单
-     * 返回StateCode对象
+     * 返回StateCode
      * 需要参数：类型t String，歌单id String
      */
     public StateCode platlistSubscribe(String t,String id){
@@ -312,7 +297,7 @@ public class InterfaceManager {
 
     /*
      * 歌单分类:调用此接口,可获取歌单分类,包含 category 信息
-     * 返回StateCode对象
+     * 返回StateCode
      * TODO
      */
     public StateCode playlistCatlist(){
@@ -321,7 +306,7 @@ public class InterfaceManager {
 
     /*
      * 收藏的歌手列表:调用此接口,可获取收藏的歌手列表
-     * 返回StateCode对象
+     * 返回StateCode
      * TODO
      */
     public StateCode artistSublist(){
@@ -348,10 +333,9 @@ public class InterfaceManager {
     /*
      * 喜欢音乐列表:调用此接口 , 传入用户 id, 可获取已喜欢音乐id列表(id数组)
      * 需要参数：用户uid String
-     * TODO
      */
-    public StateCode likeList(String uid){
-        return jsonToClass.getStateCode("/likelist","uid="+uid);
+    public ArrayList<Long> getLikeListByUid(String uid){
+        return jsonToClass.getLikeList("/likelist","uid="+uid);
     }
 
     /*
@@ -429,8 +413,8 @@ public class InterfaceManager {
      * 参数：歌单id Sring ,可多个,用逗号隔开
      * TODO
      */
-    public StateCode artistTopSong(String id){
-        return jsonToClass.getStateCode("/artist/top/song","id="+id);
+    public ArrayList<MusicInfo> artistTopSong(String id){
+        return jsonToClass.getMusicInfoResult("/artist/top/song","id="+id);
     }
 
     /*

@@ -5,7 +5,7 @@ import com.madderate.skyloft.Models.Playlist;
 
 import java.util.ArrayList;
 
-public class PlayListJson{
+public class PlayListResult {
     boolean more;
     ArrayList<Playlist> playlist;
 
