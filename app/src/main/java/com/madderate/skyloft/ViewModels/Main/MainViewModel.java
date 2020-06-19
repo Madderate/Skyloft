@@ -7,50 +7,58 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
+import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.User;
-import com.madderate.skyloft.Models.UserPlayRecord;
 import com.madderate.skyloft.Utils.InterfaceManager;
 import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
-    ArrayList<UserPlayRecord> recentPlayed;
-    ArrayList<MusicInfo> popular;
-    ArrayList<PlaylistResult> recommendPlaylist;
-    ArrayList<PlaylistResult> latestAlbum;
+    public ArrayList<PlaylistResult> recentPlayed;
+    public ArrayList<MusicInfo> popular;
+    public ArrayList<PlaylistResult> recommendPlaylist;
+    public ArrayList<PlaylistResult> latestAlbum;
 
+//    private GetMainPageInfoTask mainPageInfoTask;
 
-    public void run(){
-        GetMainPageInfoTask mainPageInfoTask = new GetMainPageInfoTask();
-        mainPageInfoTask.execute();
+    public void getSongListInfo() {
+//        mainPageInfoTask = new GetMainPageInfoTask();
+//        mainPageInfoTask.execute();
+        new GetMainPageInfoTask().execute();
     }
 
-
-
     class GetMainPageInfoTask extends AsyncTask<String, Integer, String> {
-        @SuppressLint("StaticFieldLeak")
+
+        public static final String FINISHED = "finished";
+
+        public GetMainPageInfoTask() {
+        }
 
         @Override
         protected String doInBackground(String... params) {
             InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
-            recentPlayed = manager.getUserPlayRecord(String.valueOf(User.getInstance().getAccount().getId()),1);
             recommendPlaylist = manager.getPersonalizedPlaylist("50");
             latestAlbum = manager.getNewestAlbum();
             popular = manager.getNewestMusic();
-            return null;
+            return FINISHED;
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... progresses) {
-            ToastUtil.getInstance().showToast(context, "获取中", Toast.LENGTH_SHORT);
-        }
+//        @Override
+//        protected void onProgressUpdate(Integer... progresses) {
+//            ToastUtil.getInstance().showToast(MyApplication.getContext(), "获取中", Toast.LENGTH_SHORT);
+//        }
+
 
         @Override
         protected void onPostExecute(String result) {
-            // 任务完成后代码
+            if (FINISHED.equals(result)) {
+                RecommendFragment.sendSongListLoadedBroadcast();
+            } else
+                RecommendFragment.sendSongListLoadedFailedBroadcast();
         }
     }
 }

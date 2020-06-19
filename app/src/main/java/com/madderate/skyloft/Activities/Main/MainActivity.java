@@ -1,5 +1,7 @@
 package com.madderate.skyloft.Activities.Main;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
+
     private Toolbar mainToolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -42,20 +45,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_main_activity);
-
-        initLayout();
-        initWidgets();
-
 
         // 获取一个账号实例
         user = User.getInstance();
 
         try {
-            if (user.getUserInfo() != null) {
-                setAvatar();        // 设置头像
-                setUserName();      // 设置用户名
-                setUserIntro();     // 设置签名
+//            if (user.getUserInfo() != null) {
+            if(true) {
+                setContentView(R.layout.main_main_activity);
+                initWidgets();
+                initLayout();
+
+//                setAvatar();        // 设置头像
+//                setUserName();      // 设置用户名
+//                setUserIntro();     // 设置签名
             } else {
                 ActivityUtils.jumpToActivity(
                         MainActivity.this,
@@ -102,6 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initWidgets() {
+        mainToolbar = findViewById(R.id.main_toolbar);
         drawerLayout = findViewById(R.id.main_activity_drawer_layout);
 
         navView = findViewById(R.id.main_activity_nav_view);
@@ -119,7 +123,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initLayout() {
-        mainToolbar = findViewById(R.id.main_toolbar);
         // 暂时给这个Activity的标题设为"为你推荐"
         mainToolbar.setTitle(R.string.main_nav_recommend);
         setSupportActionBar(mainToolbar);
@@ -162,4 +165,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         drawerLayout.closeDrawers();
         return true;
     }
+
 }
