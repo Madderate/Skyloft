@@ -18,17 +18,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.madderate.skyloft.Activities.SongListActivity;
-import com.madderate.skyloft.Adapters.ThumbnailAdapter;
+import com.madderate.skyloft.Adapters.SongListThumbnailAdapter;
+import com.madderate.skyloft.Adapters.SongThumbnailAdapter;
 import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.ItemDecorations.ThumbnailHorizontalItemDecoration;
-import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.Utils.ToastUtil;
 import com.madderate.skyloft.ViewModels.Main.MainViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class RecommendFragment extends Fragment implements View.OnClickListener {
@@ -51,7 +49,8 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
     private TextView latestAlbumTitle;
     private RecyclerView latestAlbumRecyclerView;
 
-    private ThumbnailAdapter adapter;
+    private SongListThumbnailAdapter songListThumbnailAdapter;
+    private SongThumbnailAdapter songThumbnailAdapter;
     private ThumbnailHorizontalItemDecoration decoration;
 
     private RecommendReceiver receiver;
@@ -121,7 +120,11 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
             String extra = intent.getStringExtra(EXTRA_TYPE);
             if (EXTRA_GET_SONG_LIST_FINISHED.equals(extra)) {
 //                ToastUtil.getInstance().showToast(MyApplication.getContext(), "Things are all done", Toast.LENGTH_SHORT);
-                setRecyclerViews();
+                try {
+                    setRecyclerViews();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else if (EXTRA_GET_SONG_LIST_FAILED.equals(extra)) {
                 ToastUtil.getInstance().showToast(MyApplication.getContext(), "FAILED!", Toast.LENGTH_SHORT);
             }
@@ -129,23 +132,44 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
     }
 
     private void setRecyclerViews() {
+        decoration = new ThumbnailHorizontalItemDecoration(
+                MyApplication.getContext()
+                        .getResources()
+                        .getDisplayMetrics()
+                        .density
+        );
 
-        decoration = new ThumbnailHorizontalItemDecoration(MyApplication.getContext().getResources().getDisplayMetrics().density);
-        // popular
-        // adapter = new ThumbnailAdapter(mainViewModel.popular);
+        try {
+            // popular
+            songThumbnailAdapter = new SongThumbnailAdapter(mainViewModel.popular);
+            popularRecyclerView.setAdapter(songThumbnailAdapter);
+            popularRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
+            popularRecyclerView.addItemDecoration(decoration);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        // recommend playlist
-        adapter = new ThumbnailAdapter(mainViewModel.recommendPlaylist);
-        recommendPlaylistRecyclerView.setAdapter(adapter);
-        recommendPlaylistRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
-        recommendPlaylistRecyclerView.addItemDecoration(decoration);
+        try {
+            // recommend playlist
+            songListThumbnailAdapter = new SongListThumbnailAdapter(mainViewModel.recommendPlaylist);
+            recommendPlaylistRecyclerView.setAdapter(songListThumbnailAdapter);
+            recommendPlaylistRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
+            recommendPlaylistRecyclerView.addItemDecoration(decoration);
 
-        // latest album
-        adapter = new ThumbnailAdapter(mainViewModel.latestAlbum);
-        latestAlbumRecyclerView.setAdapter(adapter);
-        recommendPlaylistRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
-        recommendPlaylistRecyclerView.addItemDecoration(decoration);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        try {
+            // latest album
+            songListThumbnailAdapter = new SongListThumbnailAdapter(mainViewModel.latestAlbum);
+            latestAlbumRecyclerView.setAdapter(songListThumbnailAdapter);
+            recommendPlaylistRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
+            recommendPlaylistRecyclerView.addItemDecoration(decoration);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private LinearLayoutManager getHorizontalLinearLayoutManager() {

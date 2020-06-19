@@ -12,19 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.madderate.skyloft.Application.MyApplication;
-import com.madderate.skyloft.Models.MusicInfo;
-import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ViewHolder> {
+public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumbnailAdapter.ViewHolder> {
 
     private List<PlaylistResult> albums;
 
-    public ThumbnailAdapter(ArrayList<PlaylistResult> albums) {
+    public SongListThumbnailAdapter(ArrayList<PlaylistResult> albums) {
         if (albums.size() > 10) {
             this.albums = albums.subList(0, 10);
         } else {
@@ -53,7 +51,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.View
 
     @Override
     public int getItemCount() {
-        return Math.min(albums.size(), 10);
+        return albums.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
