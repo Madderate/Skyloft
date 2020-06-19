@@ -9,6 +9,7 @@
         android:layout_height="310dp"
         android:scaleType="centerCrop"
         android:visibility="visible"
+        android:src="@mipmap/bk"
         />
     <ImageView
         android:id="@+id/image"
