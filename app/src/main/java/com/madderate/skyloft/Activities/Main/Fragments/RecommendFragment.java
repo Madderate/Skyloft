@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.madderate.skyloft.Adapters.SongListThumbnailAdapter;
 import com.madderate.skyloft.Adapters.SongThumbnailAdapter;
 import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.ItemDecorations.ThumbnailHorizontalItemDecoration;
+import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.Utils.ToastUtil;
@@ -39,13 +41,20 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
 
     private MainViewModel mainViewModel;
 
+    private LinearLayout recentPlayed;
     private TextView recentPlayedTitle;
     private RecyclerView recentPlayedRecyclerView;
     private Button recentPlayedShowAll;
+
+    private LinearLayout popular;
     private TextView popularTitle;
     private RecyclerView popularRecyclerView;
+
+    private LinearLayout recommendPlaylists;
     private TextView recommendPlaylistTitle;
     private RecyclerView recommendPlaylistRecyclerView;
+
+    private LinearLayout latestAlbum;
     private TextView latestAlbumTitle;
     private RecyclerView latestAlbumRecyclerView;
 
@@ -80,13 +89,24 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initWidgets(View view) {
+        recentPlayed = view.findViewById(R.id.recent_played);
         recentPlayedTitle = view.findViewById(R.id.recent_played_title);
         recentPlayedShowAll = view.findViewById(R.id.recent_played_view_all);
         recentPlayedRecyclerView = view.findViewById(R.id.recent_played_recycler_view);
+
+        // 初始的时候如果没有登录，需要隐藏recent相关界面
+        if(User.getInstance().getAccount() == null) {
+            recentPlayed.setVisibility(View.GONE);
+        }
+        popular = view.findViewById(R.id.popular);
         popularTitle = view.findViewById(R.id.popular_title);
         popularRecyclerView = view.findViewById(R.id.popular_recycler_view);
+
+        recommendPlaylists = view.findViewById(R.id.recommend_playlists);
         recommendPlaylistTitle = view.findViewById(R.id.recommend_playlist_title);
         recommendPlaylistRecyclerView = view.findViewById(R.id.recommend_playlist_recycler_view);
+
+        latestAlbum = view.findViewById(R.id.latest_album);
         latestAlbumTitle = view.findViewById(R.id.latest_albums_title);
         latestAlbumRecyclerView = view.findViewById(R.id.latest_album_recycler_view);
 
@@ -138,6 +158,10 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
                         .getDisplayMetrics()
                         .density
         );
+
+        if (mainViewModel.recentPlayed != null) {
+            recentPlayed.setVisibility(View.VISIBLE);
+        }
 
         try {
             // popular

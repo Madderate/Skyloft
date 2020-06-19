@@ -17,6 +17,7 @@ import com.madderate.skyloft.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumbnailAdapter.ViewHolder> {
 
@@ -24,7 +25,8 @@ public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumb
 
     public SongListThumbnailAdapter(ArrayList<PlaylistResult> albums) {
         if (albums.size() > 10) {
-            this.albums = albums.subList(0, 10);
+            int index = new Random().nextInt(albums.size() - 9) + 10;
+            this.albums = albums.subList(index - 10, index);
         } else {
             this.albums = albums;
         }
@@ -46,7 +48,7 @@ public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumb
         Uri coverUri = Uri.parse(album.getPicUrl());
         Glide.with(MyApplication.getContext()).load(coverUri).into(holder.cover);
         holder.name.setText(album.getName());
-//        holder.creator.setText();
+        holder.creator.setVisibility(View.GONE);
     }
 
     @Override
