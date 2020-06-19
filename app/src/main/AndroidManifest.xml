@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".Application.MyApplication"
+        android:name="com.madderate.skyloft.Application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,19 +16,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:targetApi="n">
-        <activity android:name=".Activities.Login.CaptchaActivity" />
-        <activity android:name=".Activities.Login.RegisterActivity" />
-        <activity android:name=".Activities.Login.LoginActivity" />
-        <activity android:name=".Activities.SongListActivity" />
-        <activity android:name=".Activities.PlayerActivity">
-        </activity>
+        tools:targetApi="m">
+        <activity
+            android:name=".Activities.Login.CaptchaActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".Activities.Login.RegisterActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".Activities.Login.LoginActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".Activities.SongListActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".Activities.PlayerActivity"
+            android:launchMode="standard" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Activities.Main.MainActivity">
+        <activity
+            android:name=".Activities.Main.MainActivity"
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

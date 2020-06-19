@@ -25,9 +25,10 @@ public class ActivityUtils {
     // Activity的跳转
     // context: 用来创建Intent对象以及进行跳转
     // activity: 指定要跳转到的Activity
-    public static void jumpToActivity(Context context, Class activity, int intentFlag) {
+    public static void jumpToActivity(Context context, Class activity, Integer intentFlag) {
         Intent intent = new Intent(context, activity);
-        intent.setFlags(intentFlag);
+        if (intentFlag != null)
+            intent.setFlags(intentFlag);
         context.startActivity(intent);
     }
 
@@ -40,5 +41,4 @@ public class ActivityUtils {
         transaction.replace(replacedWidget, fragment);
         transaction.commit();
     }
-
 }

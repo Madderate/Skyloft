@@ -136,8 +136,7 @@ public class LoginViewModel extends ViewModel {
                         MainActivity.class,
                         Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP
                 );
             } else
                 ToastUtil.getInstance().showToast(MyApplication.getContext(), "登录失败！", Toast.LENGTH_SHORT);

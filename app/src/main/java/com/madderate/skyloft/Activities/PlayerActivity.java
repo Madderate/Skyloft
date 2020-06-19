@@ -1,11 +1,9 @@
 package com.madderate.skyloft.Activities;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.R;
 
 public class PlayerActivity extends BaseActivity {

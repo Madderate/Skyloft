@@ -188,8 +188,8 @@ public class RecommendFragment extends Fragment implements View.OnClickListener 
             // latest album
             songListThumbnailAdapter = new SongListThumbnailAdapter(mainViewModel.latestAlbum);
             latestAlbumRecyclerView.setAdapter(songListThumbnailAdapter);
-            recommendPlaylistRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
-            recommendPlaylistRecyclerView.addItemDecoration(decoration);
+            latestAlbumRecyclerView.setLayoutManager(getHorizontalLinearLayoutManager());
+            latestAlbumRecyclerView.addItemDecoration(decoration);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -50,23 +50,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         user = User.getInstance();
 
         try {
-//            if (user.getUserInfo() != null) {
-            if(true) {
+            if (user.getUserInfo() != null) {
                 setContentView(R.layout.main_main_activity);
                 initWidgets();
                 initLayout();
 
-//                setAvatar();        // 设置头像
-//                setUserName();      // 设置用户名
-//                setUserIntro();     // 设置签名
+                setAvatar();        // 设置头像
+                setUserName();      // 设置用户名
+                setUserIntro();     // 设置签名
             } else {
                 ActivityUtils.jumpToActivity(
                         MainActivity.this,
                         LoginActivity.class,
                         Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP
                 );
             }
         } catch (Exception e) {

@@ -1,9 +1,10 @@
 package com.madderate.skyloft.Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MusicInfo {
+public class MusicInfo implements Serializable {
     private String name;
     private long id;
     // 艺术家
@@ -18,6 +19,17 @@ public class MusicInfo {
     private String lrc;
     // 不同码率的歌
     private ArrayList<Music> songs;
+
+    // 专辑封面
+    private String picUrl;
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
 
     // 选择不同码率的歌
     private long chooseCodeRate = 320000;
