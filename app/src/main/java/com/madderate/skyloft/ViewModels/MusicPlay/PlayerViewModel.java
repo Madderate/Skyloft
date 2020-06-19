@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.Models.Music;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Utils.FileUtils;
@@ -258,7 +259,7 @@ public class PlayerViewModel extends ViewModel {
 
         @Override
         protected void onProgressUpdate(Integer... progresses) {
-            ToastUtil.getInstance().showToast(context, "获取中", Toast.LENGTH_SHORT);
+            ToastUtil.getInstance().showToast(MyApplication.getContext(), "获取中", Toast.LENGTH_SHORT);
         }
 
         @Override

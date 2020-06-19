@@ -19,11 +19,4 @@ public class PlayerActivity extends BaseActivity {
 
     }
 
-//    static class MyThread extends AsyncTask<Void, Void, String> {
-//
-//        @Override
-//        protected String doInBackground(Void... voids) {
-//            return null;
-//        }
-//    }
 }

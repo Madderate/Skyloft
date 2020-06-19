@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Activities.Main.MainActivity;
+import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Utils.ActivityUtils;
@@ -100,12 +101,12 @@ public class LoginViewModel extends ViewModel {
     }
 
 
-    public void phoneLogin(Context context) {
+    public void phoneLogin() {
         if (isPhoneValid && isPasswordValid) {
-            LoginByPhoneTask loginByPhoneTask = new LoginByPhoneTask(phoneNumber,password,context);
+            LoginByPhoneTask loginByPhoneTask = new LoginByPhoneTask();
             loginByPhoneTask.execute();
-        }else
-            ToastUtil.getInstance().showToast(context, R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
+        } else
+            ToastUtil.getInstance().showToast(MyApplication.getContext(), R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
         isPhoneValid = false;
         isPasswordValid = false;
     }
@@ -115,6 +116,7 @@ public class LoginViewModel extends ViewModel {
         // 测试代码
         Log.d("LoginViewModel", "email login");
     }
+
     public class LoginByPhoneTask extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -126,16 +128,11 @@ public class LoginViewModel extends ViewModel {
         }
 
         @Override
-        protected void onProgressUpdate(Integer... progresses) {
-            ToastUtil.getInstance().showToast(context, "登录中", Toast.LENGTH_SHORT);
-        }
-
-        @Override
         protected void onPostExecute(String result) {
             if (User.getInstance().getUserInfo() != null) {
-                ToastUtil.getInstance().showToast(context, R.string.login_success, Toast.LENGTH_SHORT);
+                ToastUtil.getInstance().showToast(MyApplication.getContext(), R.string.login_success, Toast.LENGTH_SHORT);
                 ActivityUtils.jumpToActivity(
-                        context,
+                        MyApplication.getContext(),
                         MainActivity.class,
                         Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -143,7 +140,7 @@ public class LoginViewModel extends ViewModel {
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
             } else
-                ToastUtil.getInstance().showToast(context, "登录失败！", Toast.LENGTH_SHORT);
+                ToastUtil.getInstance().showToast(MyApplication.getContext(), "登录失败！", Toast.LENGTH_SHORT);
         }
     }
 
