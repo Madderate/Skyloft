@@ -6,6 +6,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.madderate.skyloft.Application.MyApplication;
+import com.madderate.skyloft.Models.Music;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Receivers.BasePlayReceiver;
 
@@ -27,7 +28,7 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
     private List<MusicInfo> musicList;
     private int index;
     private PlayMode mPlayMode = PlayMode.ORDER;
-    private MusicInfo nowPlaying;
+    private Music nowPlaying;
     private AudioFocusManager audioFocusManager;
 
     // -----------------------
@@ -103,7 +104,7 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
     }
     // --------------------------
 
-    private void play(MusicInfo music) {
+    private void play(Music music) {
         if (music == null) {
             Log.e(TAG, "没有可用资源");
             return;
@@ -120,7 +121,9 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
 
         // 更新Notification
 
-        BasePlayReceiver.sendBroadcastInitSource(MyApplication.getContext(), music);
+        BasePlayReceiver.sendBroadcastInitSource(MyApplication.getContext(), musicList.get(index));
+
+        play(nowPlaying.getUrl());
     }
 
     private void play(String dataSource) {
@@ -204,21 +207,21 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
     }
 
     public void play() {
-        MusicInfo music = getPlaying();
+        Music music = getPlaying();
         play(music);
     }
 
     public void next() {
-        MusicInfo data = getNextPlaying();
+        Music data = getNextPlaying();
         play(data);
     }
 
     public void previous() {
-        MusicInfo music = getPreviousPlaying();
+        Music music = getPreviousPlaying();
         play(music);
     }
 
-    public MusicInfo getNowPlaying() {
+    public Music getNowPlaying() {
         if (nowPlaying != null) {
             return nowPlaying;
         } else {
@@ -266,7 +269,7 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
         return musicList;
     }
 
-    private MusicInfo getNextPlaying() {
+    private Music getNextPlaying() {
         switch (mPlayMode) {
             case ORDER:
                 index = index + 1;
@@ -285,7 +288,7 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
         return null;
     }
 
-    private MusicInfo getPreviousPlaying() {
+    private Music getPreviousPlaying() {
         switch (mPlayMode) {
             case ORDER:
                 index -= 1;
@@ -304,12 +307,10 @@ public class PlayerManager implements MediaPlayer.OnCompletionListener, MediaPla
         return null;
     }
 
-    private MusicInfo getPlaying() {
+    private Music getPlaying() {
         if (musicList != null && !musicList.isEmpty() && index >= 0 && index < musicList.size()) {
-            return musicList.get(index);
+            return musicList.get(index).getSongs().get(0);
         } else
             return null;
     }
-
-
 }

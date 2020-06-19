@@ -1,7 +1,9 @@
 package com.madderate.skyloft.Models;
 
 
-public class Music{
+import java.io.Serializable;
+
+public class Music implements Serializable {
     private int id;
     // 相应码率的歌曲url:/song/url?id=33894312&br=320000
     private String url;

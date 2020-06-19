@@ -23,6 +23,7 @@ import com.madderate.skyloft.Activities.Main.Fragments.PlayerBarFragment;
 import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
+import com.madderate.skyloft.Services.PlayerService;
 import com.madderate.skyloft.Utils.ActivityUtils;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -134,6 +135,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         PlayerBarFragment playerBar = new PlayerBarFragment();
         ActivityUtils.replaceFragment(getSupportFragmentManager(), R.id.player_bar_container, playerBar);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PlayerService.stopPlayerService();
     }
 
     @Override

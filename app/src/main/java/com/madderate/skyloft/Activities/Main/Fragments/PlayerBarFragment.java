@@ -17,13 +17,19 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.madderate.skyloft.Activities.PlayerActivity;
 import com.madderate.skyloft.Application.MyApplication;
+import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Receivers.BasePlayReceiver;
 import com.madderate.skyloft.Utils.ActivityUtils;
+import com.madderate.skyloft.Utils.MusicPlayer;
+import com.madderate.skyloft.Utils.PlayerManager;
 
 import java.util.Objects;
 
 public class PlayerBarFragment extends Fragment implements View.OnClickListener {
+
+    public static final String ACTION = "com.madderate.skyloft.Activities.Main.Fragments.PlayerBarFragment";
+    public static final String EXTRA_TYPE = "extra_type";
 
     private LinearLayout playerBar;
     private ImageView albumThumbnailSmall;
@@ -77,4 +83,46 @@ public class PlayerBarFragment extends Fragment implements View.OnClickListener 
 
         }
     }
+
+//    class PlayerBarReceiver extends BasePlayReceiver {
+//
+//        private PlayerManager manager = PlayerManager.getInstance();
+//
+//        @Override
+//        protected void onInitSource(MusicInfo music) {
+//            playingMusicName.setText(music.getName());
+//            Glide.with(MyApplication.getContext())
+//                    .load(music.getPicUrl())
+//                    .into(albumThumbnailSmall);
+//        }
+//
+//        @Override
+//        protected void onPrepared() {
+//
+//        }
+//
+//        @Override
+//        protected void onCompletion() {
+//            if (manager.getStatus() == MusicPlayer.Status.STARTED) {
+//                Glide.with(MyApplication.getContext()).load(R.drawable.ic_pause).into(playerBarPlay);
+//            } else if (manager.getStatus() == MusicPlayer.Status.STOPPED) {
+//                Glide.with(MyApplication.getContext()).load(R.drawable.ic_play).into(playerBarPlay);
+//            }
+//        }
+//
+//        @Override
+//        protected void onPlayStatus() {
+//
+//        }
+//
+//        @Override
+//        protected void onBufferingUpdate(int percent) {
+//
+//        }
+//
+//        @Override
+//        protected void onError(int what, int extra) {
+//
+//        }
+//    }
 }

@@ -18,7 +18,10 @@ import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.Models.Artist;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.R;
+import com.madderate.skyloft.Receivers.BasePlayReceiver;
+import com.madderate.skyloft.Services.PlayerService;
 import com.madderate.skyloft.Utils.InterfaceManager;
+import com.madderate.skyloft.Utils.MusicPlayer;
 import com.madderate.skyloft.Utils.PlayerManager;
 import com.madderate.skyloft.Utils.ToastUtil;
 
@@ -28,8 +31,6 @@ import java.util.List;
 public class SongThumbnailAdapter extends RecyclerView.Adapter<SongThumbnailAdapter.ViewHolder> implements View.OnClickListener {
 
     private List<MusicInfo> musicList;
-
-    private int position;
 
     public SongThumbnailAdapter(ArrayList<MusicInfo> songs) {
         if (songs.size() > 10) {
@@ -70,10 +71,13 @@ public class SongThumbnailAdapter extends RecyclerView.Adapter<SongThumbnailAdap
         ToastUtil.getInstance().showToast(MyApplication.getContext(), "Clicked", Toast.LENGTH_SHORT);
         int id = v.getId();
         if (R.id.song_list_item == id) {
-            PlayerManager playerManager = PlayerManager.getInstance();
-            playerManager.setMusicList(musicList);
-            playerManager.setIndex((Integer)v.getTag());
-            playerManager.play();
+            PlayerManager manager = PlayerManager.getInstance();
+            if (manager.getStatus() == MusicPlayer.Status.STARTED) {
+                manager.setIndex((Integer)v.getTag());
+            } else {
+                manager.setMusicListAndIndex(musicList, (Integer) v.getTag());
+            }
+            PlayerService.startPlayerService();
         }
     }
 
@@ -99,9 +103,9 @@ public class SongThumbnailAdapter extends RecyclerView.Adapter<SongThumbnailAdap
         protected Integer doInBackground(Void... voids) {
             boolean isError = false;
             InterfaceManager manager = new InterfaceManager();
-            for (MusicInfo music : musicList) {
-                music.setSongs(manager.getMusicUrlById(String.valueOf(music.getId())));
-                if (music.getSongs() == null) {
+            for (int i = 0; i < musicList.size(); i++) {
+                musicList.get(i).setSongs(manager.getMusicUrlById(String.valueOf(musicList.get(i).getId())));
+                if (musicList.get(i).getSongs() == null) {
                     isError = true;
                 }
             }

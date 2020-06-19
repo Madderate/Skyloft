@@ -53,7 +53,7 @@ public class Notifier {
                 (NotificationManager) playerService.getSystemService(Context.NOTIFICATION_SERVICE);
         this.playerService.startForeground(
                 NOTIFICATION_ID,
-                buildNotification(playerService, PlayerManager.getInstance().getNowPlaying())
+                buildNotification(playerService, PlayerManager.getInstance().getMusicList().get(PlayerManager.getInstance().getIndex()))
         );
         this.packageName = MyApplication.getContext().getPackageName();
     }
@@ -89,7 +89,7 @@ public class Notifier {
 
     private RemoteViews getRemoteViews(Context context, MusicInfo music) {
         final RemoteViews remoteViews =
-                new RemoteViews(context.getPackageName(), R.layout.player_bar_layout);
+                new RemoteViews(context.getPackageName(), R.layout.player_bar_notification);
         if (music == null) {
             remoteViews.setTextViewText(R.id.playing_music_name, "暂无歌曲播放");
             remoteViews.setViewVisibility(R.id.player_bar_play, View.GONE);
