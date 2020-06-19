@@ -1,35 +1,32 @@
-package com.madderate.skyloft.ViewModels.Login;
+package com.madderate.skyloft.ViewModels.MusicPlay;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
-import com.madderate.skyloft.Models.Music;
+import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Utils.InterfaceManager;
 import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.ArrayList;
 
-public class PlayerViewModel extends ViewModel {
-    ArrayList<Music> music;
+public class PlayListViewModel extends ViewModel {
+    Playlist playlist;
+    Long playlistId;
 
-    Long musicId;
-
-    void run(Long musicId){
-        this.musicId=musicId;
-        GetMusicTask getMusicTask = new GetMusicTask();
+    void run(Long playlistId){
+        this.playlistId=playlistId;
+        GetUserPlaylistTask getMusicTask = new GetUserPlaylistTask();
         getMusicTask.execute();
     }
 
-    class GetMusicTask extends AsyncTask<String, Integer, String> {
+    class GetUserPlaylistTask extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
             InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
-            music = manager.getMusicUrlById(String.valueOf(musicId));
+            playlist = manager.getPlaylistDetail(String.valueOf(playlistId));
             return null;
         }
 

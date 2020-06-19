@@ -3,14 +3,18 @@ package com.madderate.skyloft.ViewModels.MusicPlay;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.madderate.skyloft.Models.Music;
+import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Utils.FileUtils;
 import com.madderate.skyloft.Utils.InterfaceManager;
+import com.madderate.skyloft.Utils.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -26,6 +30,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +39,11 @@ import java.util.Random;
 public class PlayerViewModel extends ViewModel {
     public static final String GET_URL = "http://m7.music.126.net/20200617163101/82fe5cadce3a9ad025dd4829bf36cae6/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3";
 
+    ArrayList<Music> music;
+
+    Long musicId;
     // 变量
+
     private List<Integer> musics;
     private MediaPlayer player;
 
@@ -230,54 +239,33 @@ public class PlayerViewModel extends ViewModel {
     }
     // 喜欢：参数 id + 喜欢/取消喜欢，调用喜欢api
     private void likeMusic(String id,boolean like){
-//        //params用于存储要请求的参数
-//        Map params = new HashMap();
-//        params.put("id",id);
-//        params.put("like",like);
-//
-//        String result = "";
-//        BufferedReader in = null;
-//
-//        try {
-//            //String urlNameString = GET_URL + "?" + params.get(id) + "&" + params.get(like);
-//            URL realUrl = new URL(GET_URL);
-//            // 打开和URL之间的连接
-//            URLConnection connection = realUrl.openConnection();
-//            // 设置通用的请求属性
-//            connection.setRequestProperty("accept", "*/*");
-//            connection.setRequestProperty("connection", "Keep-Alive");
-//            connection.setRequestProperty("user-agent",
-//                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-//            // 建立实际的连接
-//            connection.connect();
-//            // 获取所有响应头字段
-//            Map<String, List<String>> map = connection.getHeaderFields();
-//            // 遍历所有的响应头字段
-//            for (String key : map.keySet()) {
-//                System.out.println(key + "--->" + map.get(key));
-//            }
-//            // 定义 BufferedReader输入流来读取URL的响应
-//            in = new BufferedReader(new InputStreamReader(
-//                    connection.getInputStream()));
-//            String line;
-//            while ((line = in.readLine()) != null) {
-//                result += line;
-//            }
-//        }catch (Exception e){
-//            System.out.println("发送GET请求出现异常！" + e);
-//            e.printStackTrace();
-//        }// 使用finally块来关闭输入流
-//        finally {
-//            try {
-//                if (in != null) {
-//                    in.close();
-//                }
-//            } catch (Exception e2) {
-//                e2.printStackTrace();
-//            }
-//        }
+
     }
 
+    void run(Long musicId){
+        this.musicId=musicId;
+        GetMusicTask getMusicTask = new GetMusicTask();
+        getMusicTask.execute();
+    }
+
+    class GetMusicTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
+            music = manager.getMusicUrlById(String.valueOf(musicId));
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progresses) {
+            ToastUtil.getInstance().showToast(context, "获取中", Toast.LENGTH_SHORT);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // 任务完成后代码
+        }
+    }
 }
 
 

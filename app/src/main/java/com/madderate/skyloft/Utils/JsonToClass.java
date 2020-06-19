@@ -1,5 +1,7 @@
 package com.madderate.skyloft.Utils;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.madderate.skyloft.Models.Artist;
 import com.madderate.skyloft.Models.Music;
@@ -134,7 +136,7 @@ public class JsonToClass {
                     Gson gson = new Gson();
                     SimplePlaylist simplePlaylist = gson.fromJson(c.getText(), SimplePlaylist.class);
                     musicInfo = simplePlaylist.getResult();
-                    System.out.println(musicInfo.toString());
+                    Log.d("JsonToClass",musicInfo.toString());
                 }catch (Exception e){
                     e.printStackTrace();
                 }

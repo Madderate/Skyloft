@@ -1,4 +1,4 @@
-package com.madderate.skyloft.ViewModels.Login;
+package com.madderate.skyloft.ViewModels.Main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
