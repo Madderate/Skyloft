@@ -136,7 +136,7 @@ public class InterfaceManager {
      * 返回StateCode对象
      * 需要参数：用户uid String,记录类型type String
      */
-    public ArrayList<UserPlayRecord> getUserPlayRecord(String uid, String type){
+    public ArrayList<UserPlayRecord> getUserPlayRecord(String uid, int type){
         return jsonToClass.getUserPlayRecordResult("/","uid="+uid+"&type="+type);
     }
 
@@ -186,7 +186,7 @@ public class InterfaceManager {
      * 获取歌曲详情:调用此接口 , 传入音乐 id(支持多个 id, 用 , 隔开), 可获得歌曲详情(注意:歌曲封面现在需要通过专辑内容接口获取)
      * 参数：音乐ids String，返回StateCode对象
      */
-    public MusicInfo getSongDetail(String ids){
+    public ArrayList<MusicInfo> getMusicDetail(String ids){
         return jsonToClass.getMusicInfo("/song/detail","ids="+ids);
     }
 
@@ -256,7 +256,7 @@ public class InterfaceManager {
      * 参数：歌曲id String，是否喜欢like boolean 默认为 true 即喜欢 , 若传 false, 则取消喜欢
      * 返回:String
      */
-    public List<Music> getMusicUrlById(String id){
+    public ArrayList<Music> getMusicUrlById(String id){
         return jsonToClass.getMusicUrl("/like","id="+id);
     }
 

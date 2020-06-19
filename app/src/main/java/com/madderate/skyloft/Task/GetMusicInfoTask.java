@@ -15,24 +15,48 @@ import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.ArrayList;
 
-public class GetMainPageInfoTask extends AsyncTask<String, Integer, String> {
+public class GetMusicInfoTask extends AsyncTask<String, Integer, String> {
     @SuppressLint("StaticFieldLeak")
     private Context context;
 
-    public ArrayList<UserPlayRecord> recentPlayed;
-    public ArrayList<MusicInfo> popular;
-    public ArrayList<PlaylistResult> recommendPlaylist;
-    public ArrayList<PlaylistResult> latestAlbum;
+    public ArrayList<MusicInfo> musicInfo;
 
+    public ArrayList<String> ids;
 
+    public void setIds(ArrayList<String> ids) {
+        this.ids = ids;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public ArrayList<MusicInfo> getMusicInfo() {
+        return musicInfo;
+    }
+
+    public void setMusicInfo(ArrayList<MusicInfo> musicInfo) {
+        this.musicInfo = musicInfo;
+    }
+
+    public ArrayList<String> getIds() {
+        return ids;
+    }
 
     @Override
     protected String doInBackground(String... params) {
         InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
-        recentPlayed = manager.getUserPlayRecord(String.valueOf(User.getInstance().getAccount().getId()),1);
-        recommendPlaylist = manager.getPersonalizedPlaylist("50");
-        latestAlbum = manager.getNewestAlbum();
-        popular = manager.getNewestMusic();
+
+        StringBuilder body = new StringBuilder();
+        for (String i:ids) {
+            body.append(i);
+        }
+
+        musicInfo = manager.getMusicDetail(body.toString());
         return null;
     }
 

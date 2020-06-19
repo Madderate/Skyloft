@@ -6,33 +6,30 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.madderate.skyloft.Models.Music;
 import com.madderate.skyloft.Models.MusicInfo;
-import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.User;
-import com.madderate.skyloft.Models.UserPlayRecord;
 import com.madderate.skyloft.Utils.InterfaceManager;
 import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.ArrayList;
 
-public class GetMainPageInfoTask extends AsyncTask<String, Integer, String> {
+public class GetMusicTask extends AsyncTask<String, Integer, String> {
     @SuppressLint("StaticFieldLeak")
     private Context context;
 
-    public ArrayList<UserPlayRecord> recentPlayed;
-    public ArrayList<MusicInfo> popular;
-    public ArrayList<PlaylistResult> recommendPlaylist;
-    public ArrayList<PlaylistResult> latestAlbum;
+    public ArrayList<Music> music;
 
+    public String id;
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @Override
     protected String doInBackground(String... params) {
         InterfaceManager manager = new InterfaceManager(User.getInstance().getCookie());
-        recentPlayed = manager.getUserPlayRecord(String.valueOf(User.getInstance().getAccount().getId()),1);
-        recommendPlaylist = manager.getPersonalizedPlaylist("50");
-        latestAlbum = manager.getNewestAlbum();
-        popular = manager.getNewestMusic();
+        music = manager.getMusicUrlById(id);
         return null;
     }
 

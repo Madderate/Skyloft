@@ -8,6 +8,7 @@ import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.Result.ArtistResult;
 import com.madderate.skyloft.Result.LikeListResult;
 import com.madderate.skyloft.Result.LyricResult;
+import com.madderate.skyloft.Result.MusicInfoResult;
 import com.madderate.skyloft.Result.MusicResult;
 import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.Settings;
@@ -102,20 +103,20 @@ public class JsonToClass {
      * 获取歌曲信息
      */
 
-    public MusicInfo getMusicInfo(String url, String body){
+    public ArrayList<MusicInfo> getMusicInfo(String url, String body){
         communicateToSever(url,body);
-        MusicInfo musicInfo = new MusicInfo();
+        ArrayList<MusicInfo> musicInfos = new ArrayList<MusicInfo>();
         while (true){
             if(c.getText()!=null){
                 System.out.println(c.getText());
                 try {
                     Gson gson = new Gson();
-                    musicInfo = gson.fromJson(c.getText(), MusicInfo.class);
-                    System.out.println(musicInfo.toString());
+                    MusicInfoResult musicInfoResult = gson.fromJson(c.getText(), MusicInfoResult.class);
+                    musicInfos = musicInfoResult.getMusicInfos();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                return musicInfo;
+                return musicInfos;
             }
         }
     }

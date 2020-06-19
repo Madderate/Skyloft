@@ -15,7 +15,7 @@ import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.ArrayList;
 
-public class GetMainPageInfoTask extends AsyncTask<String, Integer, String> {
+public class GetUserPlayListTask extends AsyncTask<String, Integer, String> {
     @SuppressLint("StaticFieldLeak")
     private Context context;
 
@@ -24,7 +24,45 @@ public class GetMainPageInfoTask extends AsyncTask<String, Integer, String> {
     public ArrayList<PlaylistResult> recommendPlaylist;
     public ArrayList<PlaylistResult> latestAlbum;
 
+    public Context getContext() {
+        return context;
+    }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public ArrayList<UserPlayRecord> getRecentPlayed() {
+        return recentPlayed;
+    }
+
+    public void setRecentPlayed(ArrayList<UserPlayRecord> recentPlayed) {
+        this.recentPlayed = recentPlayed;
+    }
+
+    public ArrayList<MusicInfo> getPopular() {
+        return popular;
+    }
+
+    public void setPopular(ArrayList<MusicInfo> popular) {
+        this.popular = popular;
+    }
+
+    public ArrayList<PlaylistResult> getRecommendPlaylist() {
+        return recommendPlaylist;
+    }
+
+    public void setRecommendPlaylist(ArrayList<PlaylistResult> recommendPlaylist) {
+        this.recommendPlaylist = recommendPlaylist;
+    }
+
+    public ArrayList<PlaylistResult> getLatestAlbum() {
+        return latestAlbum;
+    }
+
+    public void setLatestAlbum(ArrayList<PlaylistResult> latestAlbum) {
+        this.latestAlbum = latestAlbum;
+    }
 
     @Override
     protected String doInBackground(String... params) {
