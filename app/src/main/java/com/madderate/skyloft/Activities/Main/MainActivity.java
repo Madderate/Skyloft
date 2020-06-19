@@ -30,10 +30,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String ACTION = "com.madderate.skyloft.MAIN_ACTIVITY";
-
-    public static final String EXTRA_TYPE = "extra_type";
-    public static final String EXTRA_GET_SONG_LIST_FINISHED = "get_song_list_finished";
 
     private Toolbar mainToolbar;
     private DrawerLayout drawerLayout;
@@ -54,14 +50,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         user = User.getInstance();
 
         try {
-            if (user.getUserInfo() != null) {
+//            if (user.getUserInfo() != null) {
+            if(true) {
                 setContentView(R.layout.main_main_activity);
                 initWidgets();
                 initLayout();
 
-                setAvatar();        // 设置头像
-                setUserName();      // 设置用户名
-                setUserIntro();     // 设置签名
+//                setAvatar();        // 设置头像
+//                setUserName();      // 设置用户名
+//                setUserIntro();     // 设置签名
             } else {
                 ActivityUtils.jumpToActivity(
                         MainActivity.this,
@@ -169,17 +166,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         return true;
     }
 
-    class MainActivityReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (!ACTION.equals(intent.getAction()) || intent.getExtras() == null) {
-                return;
-            }
-            String extra = intent.getStringExtra(EXTRA_TYPE);
-            if (EXTRA_GET_SONG_LIST_FINISHED.equals(extra)) {
-
-            }
-        }
-    }
 }

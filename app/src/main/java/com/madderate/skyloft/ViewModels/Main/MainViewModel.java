@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
 import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.Models.MusicInfo;
 import com.madderate.skyloft.Models.PlaylistResult;
@@ -18,18 +19,22 @@ import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
 
-    private ArrayList<PlaylistResult> recentPlayed;
-    private ArrayList<MusicInfo> popular;
-    private ArrayList<PlaylistResult> recommendPlaylist;
-    private ArrayList<PlaylistResult> latestAlbum;
+    public ArrayList<PlaylistResult> recentPlayed;
+    public ArrayList<MusicInfo> popular;
+    public ArrayList<PlaylistResult> recommendPlaylist;
+    public ArrayList<PlaylistResult> latestAlbum;
 
-    private GetMainPageInfoTask mainPageInfoTask;
+//    private GetMainPageInfoTask mainPageInfoTask;
 
     public void getSongListInfo() {
-        mainPageInfoTask = new GetMainPageInfoTask();
+//        mainPageInfoTask = new GetMainPageInfoTask();
+//        mainPageInfoTask.execute();
+        new GetMainPageInfoTask().execute();
     }
 
     class GetMainPageInfoTask extends AsyncTask<String, Integer, String> {
+
+        public static final String FINISHED = "finished";
 
         public GetMainPageInfoTask() {
         }
@@ -40,17 +45,21 @@ public class MainViewModel extends ViewModel {
             recommendPlaylist = manager.getPersonalizedPlaylist("50");
             latestAlbum = manager.getNewestAlbum();
             popular = manager.getNewestMusic();
-            return null;
+            return FINISHED;
         }
 
-        @Override
-        protected void onProgressUpdate(Integer... progresses) {
-            ToastUtil.getInstance().showToast(MyApplication.getContext(), "获取中", Toast.LENGTH_SHORT);
-        }
+//        @Override
+//        protected void onProgressUpdate(Integer... progresses) {
+//            ToastUtil.getInstance().showToast(MyApplication.getContext(), "获取中", Toast.LENGTH_SHORT);
+//        }
+
 
         @Override
         protected void onPostExecute(String result) {
-            // 任务完成后代码
+            if (FINISHED.equals(result)) {
+                RecommendFragment.sendSongListLoadedBroadcast();
+            } else
+                RecommendFragment.sendSongListLoadedFailedBroadcast();
         }
     }
 }
