@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.R;
 import com.madderate.skyloft.Adapters.ListAdapter;
 import com.madderate.skyloft.Utils.StatusBarUtils;
@@ -152,12 +151,11 @@ public class SongListActivity extends BaseActivity {
         }
     };
 
-    public List<Playlist> getData() {
-        List<Playlist> list = new ArrayList<>();
-
-//        for (int i = 0; i < 100; i++) {
-//            list.add("item :" + i);
-//        }
+    public List<String> getData() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add("item :" + i);
+        }
         return list;
     }
 
