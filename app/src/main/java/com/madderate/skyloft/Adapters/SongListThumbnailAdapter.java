@@ -1,6 +1,5 @@
 package com.madderate.skyloft.Adapters;
 
-import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +11,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.madderate.skyloft.Models.Playlist;
+import com.madderate.skyloft.Application.MyApplication;
+import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.ViewHolder> {
+public class SongListThumbnailAdapter extends RecyclerView.Adapter<SongListThumbnailAdapter.ViewHolder> {
 
-    private List<Playlist> albums;
-    private Context context;
+    private List<PlaylistResult> albums;
 
-    public ThumbnailAdapter(List<Playlist> albums, Context context) {
-        this.albums = albums;
-        this.context = context;
+    public SongListThumbnailAdapter(ArrayList<PlaylistResult> albums) {
+        if (albums.size() > 10) {
+            this.albums = albums.subList(0, 10);
+        } else {
+            this.albums = albums;
+        }
     }
 
     @NonNull
@@ -39,9 +42,9 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Playlist album = albums.get(position);
-        Uri coverUri = Uri.parse(album.getCoverImgUrl());
-        Glide.with(context).load(coverUri).into(holder.cover);
+        PlaylistResult album = albums.get(position);
+        Uri coverUri = Uri.parse(album.getPicUrl());
+        Glide.with(MyApplication.getContext()).load(coverUri).into(holder.cover);
         holder.name.setText(album.getName());
 //        holder.creator.setText();
     }

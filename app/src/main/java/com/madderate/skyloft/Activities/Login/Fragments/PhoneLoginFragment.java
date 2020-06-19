@@ -143,7 +143,7 @@ public class PhoneLoginFragment extends Fragment implements View.OnClickListener
                 break;
             // 登录
             case R.id.phone_login_button:
-                loginViewModel.phoneLogin(getActivity());
+                loginViewModel.phoneLogin();
                 break;
         }
     }

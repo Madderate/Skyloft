@@ -3,25 +3,21 @@ package com.madderate.skyloft.ViewModels.Login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.text.PrecomputedText;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Activities.Main.MainActivity;
-import com.madderate.skyloft.Models.Account;
+import com.madderate.skyloft.Application.MyApplication;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.R;
-import com.madderate.skyloft.Task.LoginByPhoneTask;
 import com.madderate.skyloft.Utils.ActivityUtils;
 import com.madderate.skyloft.Utils.EncodeUtil;
 import com.madderate.skyloft.Utils.InterfaceManager;
 import com.madderate.skyloft.Utils.ToastUtil;
 
 import java.util.regex.Pattern;
-
-import javax.xml.transform.Result;
 
 public class LoginViewModel extends ViewModel {
 
@@ -105,12 +101,12 @@ public class LoginViewModel extends ViewModel {
     }
 
 
-    public void phoneLogin(Context context) {
+    public void phoneLogin() {
         if (isPhoneValid && isPasswordValid) {
-            LoginByPhoneTask loginByPhoneTask = new LoginByPhoneTask(phoneNumber,password,context);
+            LoginByPhoneTask loginByPhoneTask = new LoginByPhoneTask();
             loginByPhoneTask.execute();
-        }else
-            ToastUtil.getInstance().showToast(context, R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
+        } else
+            ToastUtil.getInstance().showToast(MyApplication.getContext(), R.string.login_phone_login_failed, Toast.LENGTH_SHORT);
         isPhoneValid = false;
         isPasswordValid = false;
     }
@@ -121,5 +117,31 @@ public class LoginViewModel extends ViewModel {
         Log.d("LoginViewModel", "email login");
     }
 
+    public class LoginByPhoneTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            InterfaceManager manager = new InterfaceManager();
+            manager.loginByPhone(phoneNumber, EncodeUtil.replaceURLSpecialChar(password), "86");
+            User.getInstance().setUserInfo(manager.getUserMessage(String.valueOf(User.getInstance().getAccount().getId())));
+            manager.setCookie(User.getInstance().getCookie());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (User.getInstance().getUserInfo() != null) {
+                ToastUtil.getInstance().showToast(MyApplication.getContext(), R.string.login_success, Toast.LENGTH_SHORT);
+                ActivityUtils.jumpToActivity(
+                        MyApplication.getContext(),
+                        MainActivity.class,
+                        Intent.FLAG_ACTIVITY_NEW_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_NO_HISTORY
+                );
+            } else
+                ToastUtil.getInstance().showToast(MyApplication.getContext(), "登录失败！", Toast.LENGTH_SHORT);
+        }
+    }
 
 }
