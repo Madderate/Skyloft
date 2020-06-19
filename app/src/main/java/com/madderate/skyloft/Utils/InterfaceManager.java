@@ -248,7 +248,7 @@ public class InterfaceManager {
      * 返回:StateCode
      */
     public StateCode likeSong(String id,boolean like){
-        return jsonToClass.getStateCode("/like","id="+id+"&like="+like);
+        return jsonToClass.getStateCode("/song/url","id="+id+"&like="+like);
     }
 
     /*
@@ -257,7 +257,7 @@ public class InterfaceManager {
      * 返回:String
      */
     public ArrayList<Music> getMusicUrlById(String id){
-        return jsonToClass.getMusicUrl("/like","id="+id);
+        return jsonToClass.getMusicUrl("/song/url","id="+id);
     }
 
     /*
