@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.R;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ListAdapter extends RecyclerView.Adapter {
     public static final int TYPE_HEADER = 0;
     public static final  int TYPE_CONTENT = 1;
-    private List<String> mData;
+    private List<Playlist> mData;
     private ImageView mHeaderView;
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,7 +32,7 @@ public class ListAdapter extends RecyclerView.Adapter {
         return mHeaderView;
     }
 
-    public void setData(List<String> data) {
+    public void setData(List<Playlist> data) {
         mData = data;
     }
 
