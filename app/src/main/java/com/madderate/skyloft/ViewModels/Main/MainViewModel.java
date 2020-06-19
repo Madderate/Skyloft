@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.madderate.skyloft.Activities.Main.Fragments.RecommendFragment;
 import com.madderate.skyloft.Models.MusicInfo;
+import com.madderate.skyloft.Models.Playlist;
 import com.madderate.skyloft.Models.PlaylistResult;
 import com.madderate.skyloft.Models.User;
 import com.madderate.skyloft.Utils.InterfaceManager;

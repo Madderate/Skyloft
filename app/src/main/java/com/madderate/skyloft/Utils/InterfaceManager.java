@@ -360,7 +360,7 @@ public class InterfaceManager {
      * 获取最新专辑
      */
     public ArrayList<PlaylistResult> getNewestAlbum(){
-        return jsonToClass.getPlaylistResult("/album/newest","");
+        return jsonToClass.getNewestAlbum("/album/newest","");
     }
 
     /*
